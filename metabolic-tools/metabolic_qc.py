@@ -10,8 +10,9 @@ from datetime import datetime
 
 def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmusculus', output_dir: str = None) -> dict:
     """
-    Performs QC and automatically extracts hidden gene symbols from a raw JSON model,
-    outputting both a human-readable CSV and a machine-readable JSON for downstream automation.
+    Performs QC and automatically extracts hidden gene symbols from a raw JSON model.
+    Precisely flags genes exclusively duplicated across multiple single-gene GPRs 
+    to prevent downstream clustering artifacts.
     """
     prefix_map = {'hsapiens': 'ENSG', 'mmusculus': 'ENSMUSG', 'drerio': 'ENSDARG'}
     if species not in prefix_map:
@@ -31,26 +32,20 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
     
     for rxn in raw_data.get('reactions', []):
         notes = rxn.get('notes', {})
-        # Flatten keys to lowercase for safe searching
         notes_lower = {str(k).lower(): str(v) for k, v in notes.items()}
         
         if 'gene_association' in notes_lower and 'gene_list' in notes_lower:
             assoc_str = notes_lower['gene_association']
             list_str = notes_lower['gene_list']
 
-            # Aggressively strip out all brackets, parentheses, and commas
             c_assoc = re.sub(r'[\(\)\[\],]', ' ', assoc_str)
             c_list = re.sub(r'[\(\)\[\],]', ' ', list_str)
-
-            # Replace 'and' / 'or' with spaces (case-insensitive)
             c_assoc = re.sub(r'(?i)\b(and|or)\b', ' ', c_assoc)
             c_list = re.sub(r'(?i)\b(and|or)\b', ' ', c_list)
 
-            # Split into raw words
             raw_ids = c_assoc.split()
             raw_syms = c_list.split()
 
-            # If lengths match, pair them up
             if len(raw_ids) == len(raw_syms):
                 for gid, sym in zip(raw_ids, raw_syms):
                     id_to_symbol[gid.strip()] = sym.strip()
@@ -72,7 +67,6 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
     is_logged = max_val < 50
     print(f"Normalization State: {'Appears Log-Normalized' if is_logged else 'Appears as Raw Counts'} (Max expression = {max_val:.2f})")
 
-    # Isolate Target Genes
     target_genes = [g for g in model.genes if g.id.startswith(species_prefix)]
     model_gene_ids = [g.id for g in target_genes]
     adata_genes = set(adata.var_names)
@@ -80,7 +74,6 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
     mapped_ids = list(set(model_gene_ids).intersection(adata_genes))
     missing_ids = list(set(model_gene_ids).difference(adata_genes))
         
-    # Calculate Sparsity
     metabolic_adata = adata[:, mapped_ids]
     if is_sparse:
         nnz = metabolic_adata.X.nnz
@@ -98,13 +91,14 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
     # =========================================================================
     # STEP 3: BUILD THE DUAL OUTPUT REPORTS (CSV & JSON)
     # =========================================================================
+    print("Compiling artifact risks and final reports...")
     gene_metadata_list = []
     gene_metadata_dict = {}
+    hub_artifact_count = 0
     
     for g in target_genes:
         clean_id = g.id.strip()
         
-        # Determine Status
         if clean_id in zero_expr_ids:
             status = "Zero Expression"
         elif clean_id in missing_ids:
@@ -112,29 +106,47 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
         else:
             status = "Mapped & Expressed"
             
-        # GUARANTEED CONNECTION: Pull the symbol directly from the dictionary we built in Step 1
         true_name = id_to_symbol.get(clean_id, clean_id)
-                    
+        
+        # --- PRECISION ARTIFACT LOGIC ---
         reactions_list = [r.name for r in g.reactions]
         
-        # 1. Structure for Human-Readable CSV
+        # If the reaction's rule does NOT contain "and", it acts as a single-gene driver (pure OR)
+        single_gene_rxns = [r.name for r in g.reactions if " and " not in r.gene_reaction_rule.lower()]
+        
+        # If the reaction's rule contains "and", it is part of a complex, which mitigates duplication risk
+        complex_rxns = [r.name for r in g.reactions if " and " in r.gene_reaction_rule.lower()]
+        
+        # A gene is only a toxic hub artifact if it independently drives MORE than 1 reaction
+        is_hub_artifact = len(single_gene_rxns) > 1
+        
+        if is_hub_artifact:
+            hub_artifact_count += 1
+        
         gene_metadata_list.append({
             "Ensembl_ID": clean_id,
             "Gene_Name": true_name,
             "QC_Status": status,
-            "Reactions_Count": len(reactions_list),
+            "Total_Reactions": len(reactions_list),
+            "Single_Gene_GPRs": len(single_gene_rxns),
+            "Complex_AND_GPRs": len(complex_rxns),
+            "Hub_Artifact_Risk": is_hub_artifact,
             "Affected_Reactions": " | ".join(reactions_list)
         })
 
-        # 2. Structure for Automated JSON
         gene_metadata_dict[clean_id] = {
             "ensembl_id": clean_id,
             "gene_name": true_name,
             "status": status,
+            "total_reactions": len(reactions_list),
+            "single_gene_gprs": len(single_gene_rxns),
+            "complex_and_gprs": len(complex_rxns),
+            "is_hub_artifact": is_hub_artifact,
             "reactions": reactions_list
         }
 
-    # Compile the Master JSON Dictionary
+    print(f"--> Detected {hub_artifact_count} Hub genes exclusively duplicating across single-gene GPRs.")
+
     results = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "species_analyzed": species,
@@ -146,22 +158,21 @@ def metabolic_qc_report(adata_path: str, model_path: str, species: str = 'mmuscu
         "missing_genes_count": len(missing_ids),
         "metabolic_dropout_rate": global_sparsity,
         "zero_expression_genes_count": len(zero_expr_ids),
+        "hub_artifact_genes_count": hub_artifact_count,
         "gene_details": gene_metadata_dict
     }
 
-    # Save Both Outputs
     if output_dir:
         print(f"\nSaving reports to: {output_dir}")
         os.makedirs(output_dir, exist_ok=True)
         
-        # Save JSON
         json_path = os.path.join(output_dir, "metabolic_qc_automated.json")
         with open(json_path, 'w') as f:
             json.dump(results, f, indent=4)
             
-        # Save CSV
         df = pd.DataFrame(gene_metadata_list)
-        df.sort_values(by=["QC_Status", "Reactions_Count"], ascending=[False, False], inplace=True)
+        # Sort so the most severe pure-duplication artifacts sit at the top
+        df.sort_values(by=["Hub_Artifact_Risk", "Single_Gene_GPRs"], ascending=[False, False], inplace=True)
         df.to_csv(os.path.join(output_dir, "metabolic_qc_summary.csv"), index=False)
 
     print("=== QC Complete ===")
