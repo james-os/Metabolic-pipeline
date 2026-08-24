@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import logging
 import warnings
 
-def run_stratified_metacells(
+def stratify_metacells(
     input_h5ad_path,              # str: Path to your cleaned, post-QC single-cell .h5ad file.
     celltype_column,              # str: The exact column name in adata.obs holding your cell annotations.
     output_h5ad_path=None,        # str (optional): Where to save the final dense metacell .h5ad file.
