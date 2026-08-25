@@ -46,21 +46,49 @@ def characterise_metabolism(
     # -------------------------------------------------------------------------
     if target_reactions:
         print(f"--> Generating feature plots. Searching for {len(target_reactions)} target strings...")
+        
+        # Step A: Collect all unique matching reactions across all target strings
+        all_matching_rxns = set()
         for target_str in target_reactions:
-            # Find all features in the matrix that contain the target string
             matching_rxns = [var for var in adata.var_names if target_str in var]
-            
             if matching_rxns:
-                for rxn in matching_rxns:
-                    # Clean the reaction name for safe file saving
-                    safe_rxn_name = str(rxn).replace('/', '_').replace('\\', '_').replace(':', '_')
-                    sc.pl.embedding(
-                        adata, basis=plot_key, color=rxn, 
-                        cmap='viridis', frameon=False, 
-                        show=False, save=f'_{safe_rxn_name}_capacity.png'
-                    )
+                all_matching_rxns.update(matching_rxns)
             else:
                 print(f"WARNING: No features found containing the target string '{target_str}'.")
+                
+        if all_matching_rxns:
+            all_matching_rxns = list(all_matching_rxns)
+            
+            # Step B: Calculate the global maximum capacity score across all matches
+            expr_data = adata[:, all_matching_rxns].X
+            global_max = expr_data.max()
+            
+            # Step C: Build the custom Magma colormap with a light grey absolute zero
+            magma_colors = plt.get_cmap('viridis')(np.linspace(0, 1, 256))
+            magma_colors[0] = mcolors.to_rgba('lightgrey')
+            custom_magma = mcolors.LinearSegmentedColormap.from_list('magma_grey_zero', magma_colors)
+            
+            print(f"--> Found {len(all_matching_rxns)} unique reactions. Generating plots with shared max value: {global_max:.2f}")
+            
+            # Step D: Plot each reaction using the shared scale and custom colormap
+            for rxn in all_matching_rxns:
+                # Clean the reaction name for safe file saving
+                safe_rxn_name = str(rxn).replace('/', '_').replace('\\', '_').replace(':', '_')
+                
+                # Generate the plot and capture the Axis object
+                ax = sc.pl.embedding(
+                    adata, basis=plot_key, color=rxn, 
+                    size=150,         
+                    cmap=custom_magma, vmin=0, vmax=global_max, frameon=False, 
+                    show=False
+                )
+                
+                # Save using standard Matplotlib to avoid the Scanpy deprecation warning
+                save_path = os.path.join(output_dir, f"{plot_key}_{safe_rxn_name}_capacity.png")
+                ax.figure.savefig(save_path, dpi=300, bbox_inches='tight')
+                
+                # Close the figure to prevent memory leaks from opening too many plots
+                plt.close(ax.figure)
 
     # -------------------------------------------------------------------------
     # 2 & 3) SUBSYSTEM ENRICHMENT GRAPHS & STATISTICAL SPREADSHEETS (CLUSTERS)
