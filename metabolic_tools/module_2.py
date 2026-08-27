@@ -14,6 +14,7 @@ def characterise_metabolism(
     cluster_column: str = "metabolic_cluster",
     target_reactions: list = None,
     viz_method: str = "umap",
+    point_size=120,
     pval_thresh: float = 0.01,
     lfc_thresh: float = 1.0
 ):
@@ -78,7 +79,7 @@ def characterise_metabolism(
                 # Generate the plot and capture the Axis object
                 ax = sc.pl.embedding(
                     adata, basis=plot_key, color=rxn, 
-                    size=150,         
+                    size=point_size,         
                     cmap=custom_magma, vmin=0, vmax=global_max, frameon=False, 
                     show=False
                 )
