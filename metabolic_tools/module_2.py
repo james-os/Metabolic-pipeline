@@ -14,7 +14,7 @@ def characterise_metabolism(
     cluster_column: str = "metabolic_cluster",
     target_reactions: list = None,
     viz_method: str = "umap",
-    point_size=120,
+    point_size: int = 150,
     pval_thresh: float = 0.01,
     lfc_thresh: float = 1.0
 ):
@@ -65,7 +65,7 @@ def characterise_metabolism(
             global_max = expr_data.max()
             
             # Step C: Build the custom Magma colormap with a light grey absolute zero
-            magma_colors = plt.get_cmap('viridis')(np.linspace(0, 1, 256))
+            magma_colors = plt.get_cmap('Purples')(np.linspace(0, 1, 256))
             magma_colors[0] = mcolors.to_rgba('lightgrey')
             custom_magma = mcolors.LinearSegmentedColormap.from_list('magma_grey_zero', magma_colors)
             

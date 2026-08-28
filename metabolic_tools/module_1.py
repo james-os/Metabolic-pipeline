@@ -7,6 +7,8 @@ import matplotlib.patheffects as pe
 import seaborn as sns
 from scipy.stats import chi2_contingency, norm
 from statsmodels.stats.multitest import multipletests
+from adjustText import adjust_text
+import textwrap
 
 def celltype_annotate(
     adata_path,
@@ -67,8 +69,12 @@ def celltype_annotate(
         else:
             top_cts = enriched_cts.head(4).index.tolist()
             archetype_name = ", ".join(top_cts)
+            
+            # <--- NEW: Wrap the text if it exceeds 15 characters
+            wrapped_name = textwrap.fill(archetype_name, width=15) 
+            
             total_prop = cluster_props.loc[cluster, top_cts].sum()
-            label = f"{archetype_name}\n({total_prop:.0f}%)"
+            label = f"{wrapped_name}\n({total_prop:.0f}%)"
 
         cluster_to_archetype[cluster] = archetype_name
         cluster_to_umap_label[cluster] = label
@@ -109,9 +115,22 @@ def celltype_annotate(
               legend_fontsize=label_size, palette='Set2', ax=ax_emb, show=False, frameon=False,
               title=f'Metabolic Archetypes ({plot_basis.upper()})')
 
-    # <--- INCREASED HALO THICKNESS AND OPACITY HERE
+    # Collect text objects, apply halo, and repel collisions
+    texts = []
     for text in ax_emb.texts:
         text.set_path_effects([pe.withStroke(linewidth=4.5, foreground=(1.0, 1.0, 1.0, 0.9))])
+        texts.append(text)
+        
+    # Magically repel the labels so they don't overlap!
+    if texts:
+        adjust_text(
+            texts, 
+            ax=ax_emb, 
+            force_static=0.0,   # Stop running away from the data points
+            force_text=0.01,      # Gently nudge away from other labels
+            max_move=(1, 1),     # Cap the maximum distance it can travel
+            arrowprops=dict(arrowstyle='-', color='gray', lw=0.5, alpha=0.6)
+        )
 
     plt.tight_layout()
     plt.savefig(f"{output_dir}/{plot_basis.upper()}_Metabolic_Archetypes.pdf", bbox_inches='tight', transparent=True)
@@ -143,11 +162,16 @@ def celltype_annotate(
 
     # C. Stacked Bar Chart (Percentages)
     print("Plotting Bar Charts...")
-    fig_bar1, ax_bar1 = plt.subplots(figsize=(8, 6))
-    cluster_props.plot(kind='bar', stacked=True, ax=ax_bar1, colormap='tab20', edgecolor='white', linewidth=0.5)
+    fig_bar1, ax_bar1 = plt.subplots(figsize=(10, 6)) # Widened slightly for text
+    
+    bar_props = cluster_props.copy()
+    bar_props.index = bar_props.index.map(cluster_to_archetype)
+    
+    bar_props.plot(kind='bar', stacked=True, ax=ax_bar1, colormap='tab20', edgecolor='white', linewidth=0.5)
     ax_bar1.set_title('Cluster Composition (Percentages)', pad=15)
-    ax_bar1.set_xlabel('Leiden Cluster', labelpad=10)
+    ax_bar1.set_xlabel('Metabolic Archetype', labelpad=10)
     ax_bar1.set_ylabel('Percentage of Cells (%)')
+    ax_bar1.set_xticklabels(ax_bar1.get_xticklabels(), rotation=45, ha='right') # Angled for readability
     ax_bar1.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=8, title="Cell Types")
     ax_bar1.spines[['top', 'right']].set_visible(False)
     plt.tight_layout()
@@ -155,11 +179,16 @@ def celltype_annotate(
     plt.close(fig_bar1)
 
     # D. Stacked Bar Chart (Absolute Counts)
-    fig_bar2, ax_bar2 = plt.subplots(figsize=(8, 6))
-    cluster_counts.plot(kind='bar', stacked=True, ax=ax_bar2, colormap='tab20', edgecolor='white', linewidth=0.5)
+    fig_bar2, ax_bar2 = plt.subplots(figsize=(10, 6))
+    
+    bar_counts = cluster_counts.copy()
+    bar_counts.index = bar_counts.index.map(cluster_to_archetype)
+    
+    bar_counts.plot(kind='bar', stacked=True, ax=ax_bar2, colormap='tab20', edgecolor='white', linewidth=0.5)
     ax_bar2.set_title('Cluster Composition (Absolute Cells)', pad=15)
-    ax_bar2.set_xlabel('Leiden Cluster', labelpad=10)
+    ax_bar2.set_xlabel('Metabolic Archetype', labelpad=10)
     ax_bar2.set_ylabel('Total Number of Cells')
+    ax_bar2.set_xticklabels(ax_bar2.get_xticklabels(), rotation=45, ha='right')
     ax_bar2.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=8, title="Cell Types")
     ax_bar2.spines[['top', 'right']].set_visible(False)
     plt.tight_layout()
