@@ -7,6 +7,7 @@ import os
 import json
 import re
 from datetime import datetime
+from .gene_mapping import resolve_model_path, map_var_names_to_model
 
 
 def cleaning_report(
@@ -34,14 +35,12 @@ def cleaning_report(
     # =========================================================================
     if model_path == "default":
         print("--> Loading default modified mitoMAMMAL model from package resources...")
-        # Looks inside the 'metabolic_tools' package folder for the JSON file
-        with pkg_resources.path('metabolic_tools', 'mitoMAMMAL_modified.json') as default_path:
-            with open(default_path, 'r', encoding='utf-8') as f:
-                raw_data = json.load(f)
     else:
         print(f"--> Loading custom model from {model_path}...")
-        with open(model_path, 'r', encoding='utf-8') as f:
-            raw_data = json.load(f)
+    # Looks inside the 'metabolic_tools/data' folder for the JSON file when "default"
+    model_path = resolve_model_path(model_path)
+    with open(model_path, 'r', encoding='utf-8') as f:
+        raw_data = json.load(f)
 
     id_to_symbol = {}
     rxn_to_category = {}
@@ -116,6 +115,9 @@ def cleaning_report(
     except Exception as e:
         raise IOError(f"Failed to load files: {e}")
 
+    # Datasets indexed by symbols or placeholder IDs are mapped onto the model's Ensembl IDs
+    adata = map_var_names_to_model(adata, raw_data, gene_column, species_prefix)
+
     # --- NEW: Extract dataset-specific gene annotations ---
     adata_symbol_map = {}
     if gene_column and gene_column != 'index':
@@ -136,9 +138,16 @@ def cleaning_report(
     
     mapped_ids = list(set(model_gene_ids).intersection(adata_genes))
     missing_ids = list(set(model_gene_ids).difference(adata_genes))
-        
+
+    if not mapped_ids:
+        raise ValueError(
+            f"None of the {len(model_gene_ids)} {species} model genes were found in the dataset. "
+            f"Check that species='{species}' is correct and that adata.var_names (or "
+            f"adata.var['{gene_column}']) holds Ensembl IDs or gene symbols."
+        )
+
     metabolic_adata = adata[:, mapped_ids]
-    
+
     if is_sparse:
         nnz = metabolic_adata.X.nnz
         total_elements = metabolic_adata.shape[0] * metabolic_adata.shape[1]

@@ -7,7 +7,7 @@ import pandas as pd
 import scanpy as sc
 import scipy.sparse as sp
 import anndata
-import importlib.resources as pkg_resources
+from .gene_mapping import resolve_model_path, map_var_names_to_model
 
 def calculate_ecs(
     adata_path, 
@@ -30,13 +30,19 @@ def calculate_ecs(
     
     if model_path == "default":
         print("--> Loading default modified mitoMAMMAL model from package resources...")
-        with pkg_resources.path('metabolic_tools', 'mitoMAMMAL_modified.json') as default_path:
-            with open(default_path, 'r', encoding='utf-8') as f:
-                model_json = json.load(f)
     else:
         print(f"--> Loading custom model natively from {model_path}...")
-        with open(model_path, 'r', encoding='utf-8') as f:
-            model_json = json.load(f)
+    with open(resolve_model_path(model_path), 'r', encoding='utf-8') as f:
+        model_json = json.load(f)
+
+    with open(cleaning_report_path, 'r') as f:
+        report_data = json.load(f)
+
+    # Match the gene ID mapping used by cleaning_report (species taken from the report's IDs)
+    if model_gene_col is None:
+        prefixes = {re.match(r'[A-Z]+', g).group(0) for g in report_data.get('gene_details', {}) if re.match(r'[A-Z]+', g)}
+        species_prefix = prefixes.pop() if len(prefixes) == 1 else None
+        adata = map_var_names_to_model(adata, model_json, symbol_col, species_prefix)
 
     # Safely map Ensembl IDs to Gene Symbols
     ensembl_ids = adata.var.index if model_gene_col is None else adata.var[model_gene_col]
@@ -46,9 +52,6 @@ def calculate_ecs(
     symbol_to_ensembl = {str(v): str(k) for k, v in zip(ensembl_ids, symbols)}
 
     print("--> Processing metabolic cleaning report...")
-    with open(cleaning_report_path, 'r') as f:
-        report_data = json.load(f)
-        
     cleaning_df = pd.DataFrame.from_dict(report_data['gene_details'], orient='index')
     if 'gene_symbol' not in cleaning_df.columns:
         cleaning_df['gene_symbol'] = cleaning_df.index
