@@ -4,3 +4,10 @@ cobra
 numpy
 scipy
 pandas
+matplotlib
+seaborn
+statsmodels
+scikit-learn
+adjustText
+# SEACells is only needed for stratify_metacells:
+# pip install git+https://github.com/dpeerlab/SEACells.git
