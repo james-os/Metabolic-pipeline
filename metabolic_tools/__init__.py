@@ -4,6 +4,7 @@ import importlib
 # (e.g. SEACells) are only needed by the tools that actually use them.
 _EXPORTS = {
     'stratify_metacells': '.seacell_aggregation',
+    'metabolic_metacells': '.metabolic_metacells',
     'cleaning_report': '.cleaning_report',
     'calculate_ecs': '.ecs_calculator',
     'resolution_sweep': '.cluster_checker',

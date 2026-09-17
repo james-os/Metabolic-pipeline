@@ -154,6 +154,38 @@ def _evaluate(node, mapping, values, n, and_op, or_op):
     return np.zeros(n)
 
 
+def _collect_features(model_json, dataset_genes, species_prefix, split_isozymes=True):
+    """
+    The scored features calculate_ecs would produce: one per deduplicated rule, or one per isozyme
+    branch when split_isozymes is on. Returns a list of (rule, category, reaction_id, feature_label).
+    """
+    features, seen = [], set()
+    for rxn in model_json.get('reactions', []):
+        if not isinstance(rxn, dict):
+            continue
+        rule = _rule_string(rxn)
+        if not rule or rule == 'nan':
+            continue
+        present = {g for g in _rule_genes(rule) if g in dataset_genes}
+        if not present:
+            continue
+        signature = (tuple(sorted(present)), ' and ' in rule.lower(), ' or ' in rule.lower())
+        if signature in seen:
+            continue
+        seen.add(signature)
+
+        category = _rule_category(rule, species_prefix)
+        rxn_id = str(rxn.get('id', 'Unknown_Reaction'))
+        if split_isozymes and category == 'isozyme_or':
+            for i, branch in enumerate(re.split(r'\s+or\s+', rule, flags=re.IGNORECASE)):
+                branch = branch.strip('() ')
+                if any(g in dataset_genes for g in _rule_genes(branch)):
+                    features.append((branch, category, rxn_id, f'{rxn_id}_iso{i + 1}'))
+        else:
+            features.append((rule, category, rxn_id, rxn_id))
+    return features
+
+
 def _group_means(matrix, labels):
     groups = pd.Index(pd.unique(labels))
     codes = groups.get_indexer(labels)
@@ -211,37 +243,13 @@ def gene_dropout_leverage(
         means = np.tile(overall, (len(groups), 1))
     n = len(groups)
 
-    # Collect scored features exactly as calculate_ecs would (deduplicated rules, split isozymes)
-    features, seen = [], set()
-    for rxn in model_json.get('reactions', []):
-        if not isinstance(rxn, dict):
-            continue
-        rule = _rule_string(rxn)
-        if not rule or rule == 'nan':
-            continue
-        present = {g for g in _rule_genes(rule) if g in dataset_genes}
-        if not present:
-            continue
-        signature = (tuple(sorted(present)), ' and ' in rule.lower(), ' or ' in rule.lower())
-        if signature in seen:
-            continue
-        seen.add(signature)
-
-        category = _rule_category(rule, species_prefix)
-        rxn_id = str(rxn.get('id', 'Unknown_Reaction'))
-        if split_isozymes and category == 'isozyme_or':
-            for branch in re.split(r'\s+or\s+', rule, flags=re.IGNORECASE):
-                branch = branch.strip('() ')
-                if any(g in dataset_genes for g in _rule_genes(branch)):
-                    features.append((branch, category, rxn_id))
-        else:
-            features.append((rule, category, rxn_id))
+    features = _collect_features(model_json, dataset_genes, species_prefix, split_isozymes)
 
     leverage = {}
     n_features = {}
     category_counts = {}
     reactions = {}
-    for rule, category, rxn_id in features:
+    for rule, category, rxn_id, _ in features:
         tree, mapping = _compile_rule(rule)
         if tree is None:
             continue
@@ -424,7 +432,7 @@ def dropout_diagnostic(
             'group': group, 'model_gene': genes, 'symbol': leverage.loc[genes, 'symbol'].values,
             'leverage': weight, 'zero_frac': zero_frac, 'expected_zero_frac': expected_zero,
             'excess_zero_frac': zero_frac - expected_zero, 'units_needed': units_needed,
-            'dispersion': dispersion,
+            'rate': rate, 'dispersion': dispersion,
         }))
 
         w_total = weight.sum()
