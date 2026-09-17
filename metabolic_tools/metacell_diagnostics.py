@@ -174,20 +174,29 @@ def gene_dropout_leverage(
     symbol_col='gene_symbol',     # str: adata.var column with gene symbols (used if var_names are not model IDs).
     and_strategy='median',        # str: AND operator, matching calculate_ecs.
     or_strategy='sum',            # str: OR operator, matching calculate_ecs.
-    split_isozymes=True           # bool: score isozyme OR branches separately, matching calculate_ecs.
+    split_isozymes=True,          # bool: score isozyme OR branches separately, matching calculate_ecs.
+    reference='group'             # str: 'group' evaluates rules on each cell type's mean expression;
+                                  #      'global' uses the whole-dataset mean for every cell type.
 ):
     """
     For each model gene and cell type, measures how much reaction scores depend on that gene
     being detected: the relative drop in each reaction score when the gene alone is set to zero,
-    evaluated on the cell type's mean expression and summed over reactions.
+    evaluated on mean expression and summed over reactions.
 
     A single-gene reaction contributes 1, an isozyme under OR=sum contributes its share of the
     total, and a subunit of a large complex under AND=median contributes close to 0.
 
+    With reference='group', a gene absent from a cell type gets zero leverage there. With
+    reference='global', leverage reflects the gene's role in the model as expressed across the
+    whole dataset, so genes missing from a cell type stay visible in dropout_diagnostic.
+
     Returns (leverage DataFrame indexed by model gene ID, the AnnData with var_names mapped to model IDs).
+    The DataFrame's 'reactions' column lists the reaction IDs each gene feeds into.
     """
     if and_strategy not in AND_OPS or or_strategy not in OR_OPS:
         raise ValueError(f"and_strategy must be in {list(AND_OPS)} and or_strategy in {list(OR_OPS)}")
+    if reference not in ('group', 'global'):
+        raise ValueError(f"reference must be 'group' or 'global', got '{reference}'")
     and_op, or_op = AND_OPS[and_strategy], OR_OPS[or_strategy]
     species_prefix = SPECIES_PREFIX[species]
 
@@ -197,6 +206,9 @@ def gene_dropout_leverage(
 
     dataset_genes = {g: i for i, g in enumerate(adata.var_names.astype(str))}
     groups, means = _group_means(adata.X, adata.obs[groupby].astype(str).values)
+    if reference == 'global':
+        overall = np.asarray(adata.X.mean(axis=0)).ravel()
+        means = np.tile(overall, (len(groups), 1))
     n = len(groups)
 
     # Collect scored features exactly as calculate_ecs would (deduplicated rules, split isozymes)
@@ -216,18 +228,20 @@ def gene_dropout_leverage(
         seen.add(signature)
 
         category = _rule_category(rule, species_prefix)
+        rxn_id = str(rxn.get('id', 'Unknown_Reaction'))
         if split_isozymes and category == 'isozyme_or':
             for branch in re.split(r'\s+or\s+', rule, flags=re.IGNORECASE):
                 branch = branch.strip('() ')
                 if any(g in dataset_genes for g in _rule_genes(branch)):
-                    features.append((branch, category))
+                    features.append((branch, category, rxn_id))
         else:
-            features.append((rule, category))
+            features.append((rule, category, rxn_id))
 
     leverage = {}
     n_features = {}
     category_counts = {}
-    for rule, category in features:
+    reactions = {}
+    for rule, category, rxn_id in features:
         tree, mapping = _compile_rule(rule)
         if tree is None:
             continue
@@ -243,10 +257,12 @@ def gene_dropout_leverage(
                 n_features[gene] = n_features.get(gene, 0) + 1
                 category_counts.setdefault(gene, {}).setdefault(category, 0)
                 category_counts[gene][category] += 1
+                reactions.setdefault(gene, set()).add(rxn_id)
 
     df = pd.DataFrame.from_dict(leverage, orient='index', columns=list(groups))
     df.index.name = 'model_gene'
     cats = pd.DataFrame.from_dict(category_counts, orient='index').fillna(0).astype(int).add_prefix('n_')
+    df.insert(0, 'reactions', pd.Series({g: ';'.join(sorted(r)) for g, r in reactions.items()}))
     df.insert(0, 'n_features', pd.Series(n_features))
     df = cats.join(df, how='right')
     if symbol_col in adata.var.columns:
@@ -347,3 +363,112 @@ def dropout_diagnostic(
         })
 
     return pd.concat(rows, ignore_index=True), pd.DataFrame(summary).set_index('group')
+
+
+# =========================================================
+# 5. CELL QC AND UNEXPECTED ZEROS
+# =========================================================
+def cell_qc(adata, counts_layer='counts', symbol_col='gene_symbol', mito_prefix='mt-'):
+    """Per-cell library size, genes detected and percentage of counts from mitochondrial genes."""
+    counts = sp.csr_matrix(adata.layers[counts_layer])
+    symbols = adata.var[symbol_col].astype(str) if symbol_col in adata.var.columns else adata.var_names.to_series().astype(str)
+    mito = symbols.str.lower().str.startswith(mito_prefix.lower()).to_numpy()
+    total = np.asarray(counts.sum(axis=1)).ravel()
+    mito_total = np.asarray(counts[:, mito].sum(axis=1)).ravel()
+    return pd.DataFrame({
+        'total_counts': total,
+        'n_genes': np.diff(counts.indptr),
+        'pct_mito': 100 * mito_total / np.maximum(total, 1),
+    }, index=adata.obs_names)
+
+
+def unexpected_zeros(
+    adata,                        # AnnData: cells with a raw counts layer and model gene var_names.
+    genes,                        # list: model gene IDs to check.
+    groupby,                      # str: adata.obs column holding cell types.
+    group,                        # str: the cell type to check.
+    counts_layer='counts',        # str: layer with raw integer counts.
+    min_detect_prob=0.9           # float: a zero only counts as unexpected if depth predicted detection at least this likely.
+):
+    """
+    For each cell in `group` and each gene, flags zeros that sequencing depth says should not have
+    happened (Poisson detection probability >= min_detect_prob, using the cell type's average
+    expression rate). If the same cells carry unexpected zeros across many genes, the zeros are a
+    property of those cells (a subpopulation, or damaged/low-quality cells) rather than random dropout.
+
+    Returns (unexpected: cells x genes bool DataFrame, detect_prob: cells x genes float DataFrame).
+    """
+    mask = (adata.obs[groupby].astype(str) == str(group)).to_numpy()
+    counts = sp.csr_matrix(adata.layers[counts_layer])
+    library = np.asarray(counts[mask].sum(axis=1)).ravel()
+    genes = [g for g in genes if g in adata.var_names]
+    sub = counts[mask][:, adata.var_names.get_indexer(genes)].toarray()
+
+    mu = sub.sum(axis=0) / library.sum()
+    detect_prob = 1 - np.exp(-np.outer(library, mu))
+    unexpected = (sub == 0) & (detect_prob >= min_detect_prob)
+
+    cells = adata.obs_names[mask]
+    return (pd.DataFrame(unexpected, index=cells, columns=genes),
+            pd.DataFrame(detect_prob, index=cells, columns=genes))
+
+
+# =========================================================
+# 6. METACELL SIZE TARGETS
+# =========================================================
+def metacell_size_targets(
+    gene_df,                      # DataFrame: per-gene output of dropout_diagnostic.
+    summary,                      # DataFrame: per-cell-type output of dropout_diagnostic.
+    coverage=0.8,                 # float: share of reachable leverage each metacell should detect.
+    min_metacells=3               # int: fewest metacells to keep per cell type (sets the size cap).
+):
+    """
+    Turns the dropout diagnostic into a metacell size rule per cell type.
+
+    The cap is n_cells / min_metacells, so every cell type keeps at least `min_metacells` metacells
+    (and therefore some within-type variation). Genes needing more cells than the cap are
+    'unreachable': pooling cannot fix them without merging most of the cell type, so they are
+    listed for downstream handling (e.g. wider flux bounds) instead of driving metacell size.
+
+    The target is the smallest size at which `coverage` of the reachable leverage is detected with
+    the dropout_diagnostic detection probability. It is also given as a UMI budget
+    (target cells x median library size), which is what an adaptive method should aim for,
+    since deeper cells need fewer partners.
+
+    Returns (targets DataFrame per cell type, uncertain genes DataFrame).
+    """
+    rows, uncertain = [], []
+    for group, s in summary.iterrows():
+        n_cells = int(s['n_units'])
+        median_lib = float(s['median_library_size'])
+        cap = max(1, n_cells // min_metacells)
+
+        d = gene_df[(gene_df['group'] == group) & (gene_df['leverage'] > 0)]
+        needed = d['units_needed'].to_numpy(dtype=float)
+        weight = d['leverage'].to_numpy(dtype=float)
+        total = weight.sum()
+        reachable = needed <= cap
+
+        if reachable.any():
+            target = _weighted_quantile(needed[reachable], weight[reachable], coverage)
+            target = int(np.clip(np.ceil(target), 1, cap))
+        else:
+            target = cap
+
+        rows.append({
+            'group': group,
+            'n_cells': n_cells,
+            'median_library_size': median_lib,
+            'cap_cells': cap,
+            'target_cells': target,
+            'target_umis': int(round(target * median_lib)),
+            'n_metacells': n_cells // target,
+            'leverage_covered_at_target': float(weight[needed <= target].sum() / total) if total else np.nan,
+            'leverage_unreachable': float(weight[~reachable].sum() / total) if total else np.nan,
+            'n_unreachable_genes': int((~reachable).sum()),
+        })
+        unreachable = d[~reachable].assign(cap_cells=cap)
+        uncertain.append(unreachable)
+
+    uncertain = pd.concat(uncertain, ignore_index=True) if uncertain else pd.DataFrame()
+    return pd.DataFrame(rows).set_index('group'), uncertain
