@@ -300,27 +300,96 @@ def aggregate_counts(adata, label_col, groupby, counts_layer='counts'):
     return out
 
 
+def _nb_dispersion(counts, library, min_total=20, n_bins=30):
+    """
+    Negative binomial dispersion for every gene in one cell type, with counts modelled as
+    mean = rate_g * library_size_i and variance = mean + dispersion * mean^2.
+
+    Returns (per-gene method-of-moments dispersion, dispersion trend). The trend is the running
+    median of per-gene dispersion against mean expression, i.e. how much extra variability is
+    typical for genes at that expression level. Using the trend rather than each gene's own
+    dispersion is what lets unusually uneven genes stand out instead of explaining themselves away.
+    """
+    counts = sp.csr_matrix(counts)
+    total = np.asarray(counts.sum(axis=0)).ravel()
+    lib_sq = float(np.sum(library ** 2))
+    rate = total / library.sum()
+    sum_sq = np.asarray(counts.multiply(counts).sum(axis=0)).ravel()
+    sum_y_lib = np.asarray(counts.T @ library).ravel()
+    residual_ss = sum_sq - 2 * rate * sum_y_lib + rate ** 2 * lib_sq
+    with np.errstate(divide='ignore', invalid='ignore'):
+        dispersion = np.where(total > 0, (residual_ss - total) / (rate ** 2 * lib_sq), np.nan)
+    dispersion = np.clip(dispersion, 0, None)
+
+    mean_count = total / len(library)
+    fit = (total >= min_total) & np.isfinite(dispersion)
+    if fit.sum() < 3 * n_bins:
+        trend_value = float(np.median(dispersion[fit])) if fit.any() else 0.0
+        return dispersion, np.full(len(total), trend_value)
+
+    x = np.log10(mean_count[fit])
+    y = dispersion[fit]
+    edges = np.quantile(x, np.linspace(0, 1, n_bins + 1))
+    bin_of = np.clip(np.searchsorted(edges, x, side='right') - 1, 0, n_bins - 1)
+    occupied = [b for b in range(n_bins) if np.any(bin_of == b)]
+    centres = np.array([np.median(x[bin_of == b]) for b in occupied])
+    medians = np.array([np.median(y[bin_of == b]) for b in occupied])
+    trend = np.interp(np.log10(np.maximum(mean_count, 1e-12)), centres, medians)
+    return dispersion, np.maximum(trend, 0)
+
+
+def _p_zero(mean, dispersion):
+    """P(count = 0) under NB(mean, dispersion); reduces to Poisson exp(-mean) as dispersion -> 0."""
+    dispersion = np.maximum(dispersion, 1e-8)
+    return np.exp(-np.log1p(dispersion * mean) / dispersion)
+
+
+def nb_dispersion(adata, groupby, group, counts_layer='counts', symbol_col='gene_symbol'):
+    """Per-gene dispersion and the expression-matched dispersion trend for one cell type, for plotting and checks."""
+    mask = (adata.obs[groupby].astype(str) == str(group)).to_numpy()
+    counts = sp.csr_matrix(adata.layers[counts_layer])[mask]
+    library = np.asarray(counts.sum(axis=1)).ravel().astype(float)
+    dispersion, trend = _nb_dispersion(counts, library)
+    out = pd.DataFrame({
+        'mean_count': np.asarray(counts.sum(axis=0)).ravel() / mask.sum(),
+        'dispersion': dispersion,
+        'dispersion_trend': trend,
+    }, index=adata.var_names)
+    if symbol_col in adata.var.columns:
+        out.insert(0, 'symbol', adata.var[symbol_col].astype(str).values)
+    return out
+
+
 def dropout_diagnostic(
     adata,                        # AnnData: cells or metacells with a raw counts layer and model gene var_names.
     leverage,                     # DataFrame: output of gene_dropout_leverage.
     groupby,                      # str: adata.obs column holding cell types.
     counts_layer='counts',        # str: layer with raw integer counts.
     detection_prob=0.95,          # float: target probability of detecting a gene.
-    reference_size=50             # int: metacell size to benchmark against (e.g. SEACells target_metacell_size).
+    reference_size=50,            # int: metacell size to benchmark against (e.g. SEACells target_metacell_size).
+    model='nb'                    # str: 'nb' (negative binomial, expression-matched dispersion) or 'poisson'.
 ):
     """
     Per gene and cell type, compares observed zeros to the zeros expected from sequencing depth
-    alone (Poisson: P(zero) = exp(-mu_g * library_size)), and estimates how many median-depth
-    units must be pooled to detect the gene with probability `detection_prob`.
+    and typical cell-to-cell variability, and estimates how many median-depth units must be pooled
+    to detect the gene with probability `detection_prob`.
+
+    With model='poisson', every cell of a type is assumed to share one expression rate, so any
+    variability (bursting, technical noise, subpopulations) shows up as excess zeros; this
+    over-flags well-expressed genes. With model='nb', expected zeros allow the amount of extra
+    variability that is typical for genes at that expression level in that cell type, so only
+    genes that are unusually uneven are flagged.
 
     Observed zeros close to expected means dropout is sampling-driven and pooling will fix it.
-    Observed zeros well above expected means the gene is genuinely on in some cells and off in
-    others, so pooling would blur real heterogeneity.
+    Observed zeros well above expected means the gene is unusually uneven between cells of that
+    type (possibly a subpopulation), so which cells get pooled together matters.
 
     Returns (per-gene DataFrame, per-cell-type summary DataFrame), with summaries weighted by leverage.
     """
+    if model not in ('nb', 'poisson'):
+        raise ValueError(f"model must be 'nb' or 'poisson', got '{model}'")
     counts = sp.csr_matrix(adata.layers[counts_layer])
-    library = np.asarray(counts.sum(axis=1)).ravel()
+    library = np.asarray(counts.sum(axis=1)).ravel().astype(float)
     genes = [g for g in leverage.index if g in adata.var_names]
     gene_idx = adata.var_names.get_indexer(genes)
     labels = adata.obs[groupby].astype(str).values
@@ -330,21 +399,32 @@ def dropout_diagnostic(
         if group not in leverage.columns:
             continue
         mask = labels == group
-        sub = counts[mask][:, gene_idx]
+        group_counts = counts[mask]
+        sub = group_counts[:, gene_idx]
         lib = library[mask]
         n_units = int(mask.sum())
 
+        if model == 'nb':
+            dispersion = _nb_dispersion(group_counts, lib)[1][gene_idx]
+        else:
+            dispersion = np.zeros(len(genes))
+
         zero_frac = 1 - sub.getnnz(axis=0) / n_units
-        mu = np.asarray(sub.sum(axis=0)).ravel() / lib.sum()
-        expected_zero = sum(np.exp(-np.outer(lib[i:i + 2000], mu)).sum(axis=0) for i in range(0, n_units, 2000)) / n_units
-        with np.errstate(divide='ignore'):
-            units_needed = np.where(mu > 0, -np.log(1 - detection_prob) / (mu * np.median(lib)), np.inf)
+        rate = np.asarray(sub.sum(axis=0)).ravel() / lib.sum()
+        expected_zero = sum(_p_zero(np.outer(lib[i:i + 2000], rate), dispersion).sum(axis=0)
+                            for i in range(0, n_units, 2000)) / n_units
+
+        # Pooling s independent median-depth cells: P(all zero) = p_zero(median-depth mean) ** s
+        per_cell_zero = _p_zero(rate * np.median(lib), dispersion)
+        with np.errstate(divide='ignore', invalid='ignore'):
+            units_needed = np.where(rate > 0, np.log(1 - detection_prob) / np.log(per_cell_zero), np.inf)
 
         weight = leverage.loc[genes, group].to_numpy(dtype=float)
         rows.append(pd.DataFrame({
             'group': group, 'model_gene': genes, 'symbol': leverage.loc[genes, 'symbol'].values,
             'leverage': weight, 'zero_frac': zero_frac, 'expected_zero_frac': expected_zero,
             'excess_zero_frac': zero_frac - expected_zero, 'units_needed': units_needed,
+            'dispersion': dispersion,
         }))
 
         w_total = weight.sum()
@@ -388,24 +468,29 @@ def unexpected_zeros(
     groupby,                      # str: adata.obs column holding cell types.
     group,                        # str: the cell type to check.
     counts_layer='counts',        # str: layer with raw integer counts.
-    min_detect_prob=0.9           # float: a zero only counts as unexpected if depth predicted detection at least this likely.
+    min_detect_prob=0.9,          # float: a zero only counts as unexpected if detection was predicted at least this likely.
+    model='nb'                    # str: 'nb' or 'poisson', as in dropout_diagnostic.
 ):
     """
-    For each cell in `group` and each gene, flags zeros that sequencing depth says should not have
-    happened (Poisson detection probability >= min_detect_prob, using the cell type's average
-    expression rate). If the same cells carry unexpected zeros across many genes, the zeros are a
+    For each cell in `group` and each gene, flags zeros that should not have happened given the
+    cell's depth, the cell type's average expression rate and (for model='nb') the variability
+    typical at that expression level: detection probability >= min_detect_prob. If the same cells carry unexpected zeros across many genes, the zeros are a
     property of those cells (a subpopulation, or damaged/low-quality cells) rather than random dropout.
 
     Returns (unexpected: cells x genes bool DataFrame, detect_prob: cells x genes float DataFrame).
     """
+    if model not in ('nb', 'poisson'):
+        raise ValueError(f"model must be 'nb' or 'poisson', got '{model}'")
     mask = (adata.obs[groupby].astype(str) == str(group)).to_numpy()
-    counts = sp.csr_matrix(adata.layers[counts_layer])
-    library = np.asarray(counts[mask].sum(axis=1)).ravel()
+    group_counts = sp.csr_matrix(adata.layers[counts_layer])[mask]
+    library = np.asarray(group_counts.sum(axis=1)).ravel().astype(float)
     genes = [g for g in genes if g in adata.var_names]
-    sub = counts[mask][:, adata.var_names.get_indexer(genes)].toarray()
+    gene_idx = adata.var_names.get_indexer(genes)
+    sub = group_counts[:, gene_idx].toarray()
 
-    mu = sub.sum(axis=0) / library.sum()
-    detect_prob = 1 - np.exp(-np.outer(library, mu))
+    dispersion = _nb_dispersion(group_counts, library)[1][gene_idx] if model == 'nb' else np.zeros(len(genes))
+    rate = sub.sum(axis=0) / library.sum()
+    detect_prob = 1 - _p_zero(np.outer(library, rate), dispersion)
     unexpected = (sub == 0) & (detect_prob >= min_detect_prob)
 
     cells = adata.obs_names[mask]
