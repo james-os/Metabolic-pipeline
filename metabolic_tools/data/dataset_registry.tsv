@@ -1,0 +1,4 @@
+name	host	path	celltype_col	gene_column	n_obs	n_vars	notes
+kolla_e16_cells	create	$MET/data/kolla_e16.h5ad	cell_type	gene_symbol			PLACEHOLDER - replace with the real CREATE path
+kolla_e16_cells	laptop	C:/Users/James/OneDrive - King's College London/Documents/Analysis/Metabolic Reaction Enrichment Analysis/8b0e6d9a.h5ad	cell_type	gene_symbol	7961	20587	Kolla E16 cochlea scRNA-seq, log1p CP10K, var_names are ENSMUSG
+kolla_e16_metacells	laptop	C:/Users/James/OneDrive - King's College London/Documents/Metabolic-results/03_metabolic_metacells_E16/metabolic_metacells_E16.h5ad	cell_type	gene_symbol	123	20587	metabolic metacells from notebook 03, counts layer present

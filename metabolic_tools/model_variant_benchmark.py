@@ -32,7 +32,11 @@ n_features delta for how much the feature space actually grew.
 Usage
 -----
     python -m metabolic_tools.model_variant_benchmark \\
-        --adata data/kolla_e16_metacells.h5ad --out results/variant_comparison
+        --dataset kolla_e16_cells --out results/variant_comparison
+
+--dataset takes a short name from metabolic_tools.paths and brings that dataset's
+cell-type and gene columns with it, so they are written down once rather than repeated
+on every command line. --adata takes a path directly for anything not registered.
 """
 
 import argparse
@@ -170,10 +174,13 @@ def compare_variants(adata_path, out_dir, variants=None, **kwargs):
 
 def main():
     parser = argparse.ArgumentParser(description="Compare model variants through module_1")
-    parser.add_argument("--adata", required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--dataset", help="short name from metabolic_tools.paths")
+    source.add_argument("--adata", help="path to an h5ad, if it is not registered")
     parser.add_argument("--out", default="variant_comparison")
-    parser.add_argument("--celltype-col", default="majority_celltype")
-    parser.add_argument("--gene-column", default="gene_symbol")
+    parser.add_argument("--celltype-col", default=None,
+                        help="defaults to the registry's column, or majority_celltype")
+    parser.add_argument("--gene-column", default=None)
     parser.add_argument("--and-strategy", default="median", choices=["min", "median", "mean"])
     parser.add_argument("--or-strategy", default="sum", choices=["sum", "max"])
     parser.add_argument("--resolution", type=float, default=1.0)
@@ -183,8 +190,22 @@ def main():
 
     variants = DEFAULT_VARIANTS if not args.variants else {
         k: DEFAULT_VARIANTS[k] for k in args.variants}
-    compare_variants(args.adata, args.out, variants,
-                     celltype_col=args.celltype_col, gene_column=args.gene_column,
+
+    # A registered dataset brings its own column names, so they only have to be
+    # written down once rather than repeated on every command line.
+    adata_path, celltype_col, gene_column = args.adata, args.celltype_col, args.gene_column
+    if args.dataset:
+        from .paths import resolve, info
+        adata_path = resolve(args.dataset)
+        row = info(args.dataset)
+        celltype_col = celltype_col or row.get("celltype_col") or None
+        gene_column = gene_column or row.get("gene_column") or None
+        print(f"dataset {args.dataset} -> {adata_path}")
+    celltype_col = celltype_col or "majority_celltype"
+    gene_column = gene_column or "gene_symbol"
+
+    compare_variants(adata_path, args.out, variants,
+                     celltype_col=celltype_col, gene_column=gene_column,
                      and_strategy=args.and_strategy, or_strategy=args.or_strategy,
                      cluster_resolution=args.resolution)
 

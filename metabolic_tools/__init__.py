@@ -15,6 +15,8 @@ _EXPORTS = {
     'build_decisions': '.model_gene_patch',
     'apply_decisions': '.model_gene_patch',
     'compare_variants': '.model_variant_benchmark',
+    'resolve': '.paths',
+    'register_dataset': '.paths',
 }
 
 __all__ = list(_EXPORTS)
