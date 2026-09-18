@@ -139,13 +139,29 @@ def run_variant(name, model_path, adata_path, out_dir, celltype_col="majority_ce
     return metrics, ecs_path
 
 
-def compare_variants(adata_path, out_dir, variants=None, **kwargs):
-    """Run every variant and write a side-by-side summary."""
+def compare_variants(adata_path, out_dir, variants=None, resume=False, **kwargs):
+    """
+    Run every variant and write a side-by-side summary.
+
+    With resume=True a variant whose annotated output is already on disk is scored
+    from that file rather than recomputed, so a run interrupted part-way through --
+    these are long enough to hit an interactive session's wall clock -- picks up
+    where it stopped.
+    """
     variants = variants or DEFAULT_VARIANTS
     os.makedirs(out_dir, exist_ok=True)
+    celltype_col = kwargs.get("celltype_col", "majority_celltype")
     rows, feature_sets = [], {}
     for name, model_path in variants.items():
-        metrics, ecs_path = run_variant(name, model_path, adata_path, out_dir, **kwargs)
+        done = os.path.join(out_dir, name, "Annotated_RCS.h5ad")
+        ecs_path = os.path.join(out_dir, name, "ecs_matrix_isozyme_split.h5ad")
+        if resume and os.path.exists(done) and os.path.exists(ecs_path):
+            print(f"\n########## {name} (already done, scoring from disk) ##########")
+            metrics = embedding_metrics(sc.read_h5ad(done), celltype_col)
+            metrics["variant"] = name
+            metrics["model"] = os.path.basename(model_path)
+        else:
+            metrics, ecs_path = run_variant(name, model_path, adata_path, out_dir, **kwargs)
         rows.append(metrics)
         feature_sets[name] = set(sc.read_h5ad(ecs_path).var_names)
 
@@ -186,6 +202,8 @@ def main():
     parser.add_argument("--resolution", type=float, default=1.0)
     parser.add_argument("--variants", nargs="*", default=None,
                         help="subset of " + ", ".join(DEFAULT_VARIANTS))
+    parser.add_argument("--resume", action="store_true",
+                        help="score variants already on disk instead of recomputing them")
     args = parser.parse_args()
 
     variants = DEFAULT_VARIANTS if not args.variants else {
@@ -204,7 +222,7 @@ def main():
     celltype_col = celltype_col or "majority_celltype"
     gene_column = gene_column or "gene_symbol"
 
-    compare_variants(adata_path, args.out, variants,
+    compare_variants(adata_path, args.out, variants, resume=args.resume,
                      celltype_col=celltype_col, gene_column=gene_column,
                      and_strategy=args.and_strategy, or_strategy=args.or_strategy,
                      cluster_resolution=args.resolution)
