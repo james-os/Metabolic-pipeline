@@ -3,7 +3,7 @@
 Checks that the pipeline runs end to end and that its invariants hold. It does not
 check scientific quality -- that is what the real benchmark on the HPC is for.
 """
-import sys, os, tempfile, traceback
+import sys, os, json, tempfile, traceback
 import numpy as np
 import pandas as pd
 import scipy.sparse as sp
@@ -12,9 +12,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from metabolic_tools.metacell_diagnostics import recover_counts
-from metabolic_tools.metabolic_metacells import metabolic_metacells
+from metabolic_tools.metabolic_metacells import metabolic_metacells, classify_reactions
+from metabolic_tools.gene_mapping import resolve_model_path
 from metabolic_tools.metacell_benchmark import thin_counts, fixed_size_labels, evaluate_grouping
 from synthetic_data import make_adata
+
+with open(resolve_model_path('default'), encoding='utf-8') as _f:
+    model_json_for_test = json.load(_f)
 
 CELLTYPE_COL, SAMPLE_COL = 'cell_type', 'sample'
 THIN_FRACTIONS = [0.5, 0.25]
@@ -94,20 +98,67 @@ check('under-budget metacells are the whole of their stratum',
        == np.array([len(strata.groupby([CELLTYPE_COL, SAMPLE_COL]).indices[s])
                     for s, u in zip(stratum_of, mc.obs['under_budget']) if u])).all())
 
-for col in ['umi_budget', 'budget_ratio', 'under_budget', 'detected_leverage_pooled',
-            'expected_detected_leverage_pooled', 'detected_leverage_all']:
+DET_COLS = ['detected_leverage_pooled', 'expected_detected_leverage_pooled',
+            'detected_leverage_reachable', 'expected_detected_leverage_reachable',
+            'detected_leverage_all', 'expected_detected_leverage_all']
+for col in ['umi_budget', 'budget_ratio', 'under_budget'] + DET_COLS:
     check(f'obs column {col!r} present', col in mc.obs.columns)
-det = mc.obs[['detected_leverage_pooled', 'expected_detected_leverage_pooled', 'detected_leverage_all']]
+# Per metacell these need not be ordered -- a weighted mean over a superset of genes is not bounded
+# by the subset's -- but across metacells the tiers must separate, which is why the class exists.
+check('detection separates the tiers on average',
+      mc.obs['detected_leverage_pooled'].mean() > mc.obs['detected_leverage_reachable'].mean()
+      > mc.obs['detected_leverage_all'].mean(),
+      mc.obs[DET_COLS].mean().round(4).to_string())
+det = mc.obs[DET_COLS]
 check('detection fractions are in [0, 1] with no NaN',
-      det.notna().all().all() and (det >= 0).all().all() and (det <= 1).all().all(),
+      det.notna().all().all() and (det >= 0).all().all() and (det <= 1 + 1e-9).all().all(),
       det.describe().to_string())
 
 # ---------------------------------------------------------------- classes
 section('2. Gene and reaction classes')
 gc, rc = info['gene_classes'], info['reaction_classes']
 celltype_set = set(cells.obs[CELLTYPE_COL].astype(str))
-check('gene classes are off/uncertain/pooled', set(gc['class']) <= {'off', 'uncertain', 'pooled'})
-check('reaction classes are off/uncertain/pooled', set(rc['class']) <= {'off', 'uncertain', 'pooled'})
+CLASSES = {'off', 'uncertain', 'partial', 'pooled'}
+check('gene classes are off/uncertain/partial/pooled', set(gc['class']) <= CLASSES)
+check('reaction classes are off/uncertain/partial/pooled', set(rc['class']) <= CLASSES)
+check('all four gene classes occur', set(gc['class']) == CLASSES, sorted(set(gc['class'])))
+
+# the classes must follow units_needed against the sizes actually used
+check('pooled genes are detectable within the size target',
+      (gc.loc[gc['class'] == 'pooled', 'units_needed']
+       <= gc.loc[gc['class'] == 'pooled', 'target_cells']).all())
+check('partial genes sit between the size target and the cap',
+      ((gc.loc[gc['class'] == 'partial', 'units_needed'] > gc.loc[gc['class'] == 'partial', 'target_cells'])
+       & (gc.loc[gc['class'] == 'partial', 'units_needed'] <= gc.loc[gc['class'] == 'partial', 'cap_cells'])).all())
+check('uncertain genes need more cells than the cap',
+      (gc.loc[gc['class'] == 'uncertain', 'units_needed']
+       > gc.loc[gc['class'] == 'uncertain', 'cap_cells']).all())
+
+# detection must fall monotonically across the tiers, which is the reason the class exists
+counts_mc = sp.csr_matrix(mc.layers['counts'])
+seen = {}
+for ct, idx in mc.obs.groupby(mc.obs[CELLTYPE_COL].astype(str)).indices.items():
+    seen[ct] = pd.Series(np.asarray((counts_mc[idx] > 0).sum(axis=0)).ravel() / len(idx),
+                         index=mc.var_names.astype(str))
+gc_seen = gc.assign(detected=[seen[grp].get(gene, np.nan)
+                              for grp, gene in zip(gc['group'], gc['model_gene'])])
+by_class = gc_seen.groupby('class')['detected'].mean()
+print('  mean share of metacells detecting the gene, by class:')
+print('   ' + by_class.round(3).to_string().replace('\n', '\n   '))
+check('detection falls from pooled to partial to uncertain',
+      by_class['pooled'] > by_class['partial'] > by_class['uncertain'], by_class.round(3).to_string())
+
+# the reaction ladder must be monotone: relaxing what counts as support can only improve a class
+rank = {'off': 0, 'uncertain': 1, 'partial': 2, 'pooled': 3}
+strict = gc.assign(**{'class': gc['class'].where(gc['class'] != 'partial', 'uncertain')})
+rc_strict = classify_reactions(model_json_for_test, strict, set(cells.var_names.astype(str)),
+                               'mmusculus', 'median', 'sum')
+merged = (rc.set_index(['group', 'reaction_id'])['class']
+          .map(rank).rename('with_partial')
+          .to_frame().join(rc_strict.set_index(['group', 'reaction_id'])['class'].map(rank).rename('without')))
+check('treating partial genes as uncertain never improves a reaction class',
+      (merged['with_partial'] >= merged['without']).all())
+print(f'  reactions by class: {rc["class"].value_counts().to_dict()}')
 check('one gene row per cell type x model gene', not gc.duplicated(['group', 'model_gene']).any())
 check('one reaction row per cell type x reaction', not rc.duplicated(['group', 'reaction_id']).any())
 check('gene class groups are the cell types', set(gc['group']) == celltype_set,

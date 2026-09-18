@@ -141,26 +141,44 @@ def aggregate_metacells(adata, labels, celltype_col, sample_col=None, counts_lay
 # =========================================================
 def classify_genes(adata, genes_df, targets, counts_layer='counts'):
     """
-    Per cell type, puts each model gene in one of three classes:
+    Per cell type, puts each model gene in one of four classes by how many cells it needs before it
+    is detected, against the size of metacell that is actually built:
       - 'off': no counts anywhere in the dataset (e.g. liver enzymes in cochlea);
-      - 'uncertain': detected somewhere, but needs more cells than the cell type's cap to detect;
-      - 'pooled': detectable within the metacell size, so metacell expression can be trusted.
+      - 'uncertain': needs more cells than the cell type's cap, so no metacell can recover it;
+      - 'partial': needs more than the size target but within the cap, so it is seen in some
+        metacells and not others (pooling more would fix it, at the cost of fewer metacells);
+      - 'pooled': detectable within the size target, so metacell expression can be trusted.
+
+    'partial' exists because detection is a gradient, not a switch: on the development data these
+    genes are seen in ~83% of metacells, against ~99% for 'pooled' and ~44% for 'uncertain'.
+    Collapsing them into either neighbour would either overstate or throw away real signal, so the
+    class is carried through to the flux bounds, which is where the evidence can be weighed.
     """
     dataset_total = pd.Series(np.asarray(sp.csr_matrix(adata.layers[counts_layer]).sum(axis=0)).ravel(), index=adata.var_names)
     dataset_total = dataset_total[~dataset_total.index.duplicated()]
     df = genes_df[['group', 'model_gene', 'symbol', 'leverage', 'units_needed', 'rate', 'dispersion']].copy()
     df['cap_cells'] = df['group'].map(targets['cap_cells'])
+    df['target_cells'] = df['group'].map(targets['target_cells'])
     absent = dataset_total.reindex(df['model_gene']).fillna(0).to_numpy() == 0
-    df['class'] = np.select([absent, df['units_needed'] > df['cap_cells']], ['off', 'uncertain'], 'pooled')
+    df['class'] = np.select(
+        [absent, df['units_needed'] > df['cap_cells'], df['units_needed'] > df['target_cells']],
+        ['off', 'uncertain', 'partial'], 'pooled')
     return df
+
+
+CLASS_LADDER = [('pooled', {'pooled'}),
+                ('partial', {'pooled', 'partial'}),
+                ('uncertain', {'pooled', 'partial', 'uncertain'})]
 
 
 def classify_reactions(model_json, gene_classes, dataset_genes, species, and_strategy='median', or_strategy='sum'):
     """
     Per cell type, classifies each reaction from its genes' classes using the same AND/OR rules as
-    calculate_ecs:
-      - 'pooled' if the pooled genes alone can support the reaction (transcriptomics constrains its bounds);
-      - 'uncertain' if it needs uncertain or unmeasured genes (keep default model bounds, flagged);
+    calculate_ecs. A reaction takes the best class its genes can support on their own:
+      - 'pooled' if the pooled genes alone can support it (transcriptomics constrains its bounds);
+      - 'partial' if it also needs genes only some metacells detect (bounds are usable, but how far
+        to trust them is a judgement for the flux step, not something to settle here);
+      - 'uncertain' if it needs genes no metacell can recover, or genes not measured at all;
       - 'off' if only genes absent from the whole dataset could support it (close; reopen if that
         breaks feasibility or an essential flux).
     Genes in the model but not measured in the dataset count as uncertain, not off.
@@ -186,17 +204,16 @@ def classify_reactions(model_json, gene_classes, dataset_genes, species, and_str
         rxn_id = str(rxn.get('id', 'Unknown_Reaction'))
         for group, classes in lookup.items():
             c = {g: classes.get(g, 'uncertain') if g in dataset_genes else 'uncertain' for g in genes}
-            pooled_only = {g: one if k == 'pooled' else zero for g, k in c.items()}
-            possible = {g: one if k != 'off' else zero for g, k in c.items()}
-            if _evaluate(tree, mapping, pooled_only, 1, and_op, or_op)[0] > 0:
-                klass = 'pooled'
-            elif _evaluate(tree, mapping, possible, 1, and_op, or_op)[0] > 0:
-                klass = 'uncertain'
-            else:
-                klass = 'off'
+            klass = 'off'
+            for name, allowed in CLASS_LADDER:
+                support = {g: one if k in allowed else zero for g, k in c.items()}
+                if _evaluate(tree, mapping, support, 1, and_op, or_op)[0] > 0:
+                    klass = name
+                    break
             counts = Counter(c.values())
             rows.append({'group': group, 'reaction_id': rxn_id, 'class': klass,
                          'n_pooled_genes': counts['pooled'],
+                         'n_partial_genes': counts['partial'],
                          'n_uncertain_genes': counts['uncertain'],
                          'n_off_genes': counts['off']})
     return pd.DataFrame(rows)
@@ -204,9 +221,11 @@ def classify_reactions(model_json, gene_classes, dataset_genes, species, and_str
 
 def metacell_detection(adata, labels, genes_df, gene_classes, celltype_col, counts_layer='counts'):
     """
-    Per metacell, the leverage-weighted share of genes detected (at least one UMI), both for the
-    'pooled' genes the size target aims to cover and for all model genes, plus the detection the
-    dropout model predicted for the pooled genes. Comparing predicted and observed checks the model.
+    Per metacell, the leverage-weighted share of genes detected (at least one UMI), for the
+    'pooled' genes the size target aims to cover, for those plus the 'partial' genes the cap could
+    still reach, and for all model genes, each with the detection the dropout model predicted.
+    Comparing predicted and observed checks the model, and 'reachable' is the informative one to
+    plot, since 'pooled' genes are detected nearly always and leave little to compare.
     """
     counts = sp.csr_matrix(adata.layers[counts_layer])
     library = np.asarray(counts.sum(axis=1)).ravel().astype(float)
@@ -217,25 +236,27 @@ def metacell_detection(adata, labels, genes_df, gene_classes, celltype_col, coun
     for group, g in genes_df[genes_df['leverage'] > 0].groupby('group'):
         g = g.set_index('model_gene')
         g = g[g.index.isin(adata.var_names)]
-        pooled = set(gene_classes.loc[(gene_classes['group'] == group) & (gene_classes['class'] == 'pooled'), 'model_gene'])
-        per_type[group] = (g, adata.var_names.get_indexer(g.index), g.index.isin(pooled))
+        klass = gene_classes[gene_classes['group'] == group].set_index('model_gene')['class'].reindex(g.index)
+        masks = {'pooled': (klass == 'pooled').to_numpy(),
+                 'reachable': klass.isin(['pooled', 'partial']).to_numpy(),
+                 'all': np.ones(len(g), dtype=bool)}
+        per_type[group] = (g, adata.var_names.get_indexer(g.index), masks)
 
     rows = []
     for name, idx in labels.groupby(labels.values).indices.items():
         group = pd.Series(celltypes[idx]).mode().iloc[0]
-        g, gene_idx, is_pooled = per_type[group]
+        g, gene_idx, masks = per_type[group]
         detected = np.asarray(counts[idx][:, gene_idx].sum(axis=0)).ravel() > 0
         w = g['leverage'].to_numpy(float)
         disp = np.maximum(g['dispersion'].to_numpy(float), 1e-8)
         log_p0 = -(np.log1p(np.outer(library[idx], g['rate'].to_numpy(float) * disp)) / disp).sum(axis=0)
         expected = 1 - np.exp(log_p0)
-        wp = w * is_pooled
-        rows.append({
-            'metacell': name,
-            'detected_leverage_pooled': float(wp[detected].sum() / wp.sum()) if wp.sum() else np.nan,
-            'expected_detected_leverage_pooled': float((wp * expected).sum() / wp.sum()) if wp.sum() else np.nan,
-            'detected_leverage_all': float(w[detected].sum() / w.sum()) if w.sum() else np.nan,
-        })
+        row = {'metacell': name}
+        for label, mask in masks.items():
+            wm = w * mask
+            row[f'detected_leverage_{label}'] = float(wm[detected].sum() / wm.sum()) if wm.sum() else np.nan
+            row[f'expected_detected_leverage_{label}'] = float((wm * expected).sum() / wm.sum()) if wm.sum() else np.nan
+        rows.append(row)
     return pd.DataFrame(rows)
 
 
