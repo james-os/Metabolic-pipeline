@@ -1,0 +1,1141 @@
+symbol	ensembl	mitocarta_list	evidence	sub_localization
+Cyc1	ENSMUSG00000022551	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, yeast mit	MIM
+Pdha1	ENSMUSG00000031299	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Atp5d	ENSMUSG00000003072	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Isca2	ENSMUSG00000021241	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, Ricketts	Matrix
+Pdhb	ENSMUSG00000021748	MitoCarta3.0	literature, targetP signal+, yeast mito homolog+, Rickettsia	Matrix
+Uqcrc1	ENSMUSG00000025651	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Coq9	ENSMUSG00000031782	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, Ricketts	MIM
+Mrpl12	ENSMUSG00000039640	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, Rickettsi	Matrix
+Mrps35	ENSMUSG00000040112	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Cox5a	ENSMUSG00000000088	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, yeast mi	MIM
+Uqcrfs1	ENSMUSG00000038462	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Coq7	ENSMUSG00000030652	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	MIM
+Sdha	ENSMUSG00000021577	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Sdhb	ENSMUSG00000009863	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Atp5a1	ENSMUSG00000025428	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Sdhaf4	ENSMUSG00000026154	MitoCarta3.0	targetP signal+, yeast mito homolog++, Rickettsial homolog, 	Matrix
+Pmpcb	ENSMUSG00000029017	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Sdhd	ENSMUSG00000000171	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	MIM
+Uqcrc2	ENSMUSG00000030884	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Coq5	ENSMUSG00000041733	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog+, Rickettsia	MIM
+Ogdh	ENSMUSG00000020456	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Uqcrq	ENSMUSG00000044894	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog++, 	MIM
+Mdh2	ENSMUSG00000019179	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Dbt	ENSMUSG00000000340	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Dlat	ENSMUSG00000000168	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Lrpprc	ENSMUSG00000024120	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrpl53	ENSMUSG00000030037	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Dlst	ENSMUSG00000004789	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, yeast mit	Matrix
+Pdhx	ENSMUSG00000010914	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Gfm1	ENSMUSG00000027774	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Grpel1	ENSMUSG00000029198	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mpc2	ENSMUSG00000026568	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, indu	MIM
+Uqcr10	ENSMUSG00000059534	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, indu	MIM
+Coq3	ENSMUSG00000028247	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, Ricketts	MIM
+Atp5e	ENSMUSG00000016252	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	MIM
+Slc25a3	ENSMUSG00000061904	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	MIM
+Mrpl34	ENSMUSG00000034880	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrps15	ENSMUSG00000028861	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, Rickettsi	Matrix
+Sdhc	ENSMUSG00000058076	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	MIM
+Atp5b	ENSMUSG00000025393	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Mrps23	ENSMUSG00000023723	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	Matrix
+Etfa	ENSMUSG00000032314	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Fh1	ENSMUSG00000026526	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrps27	ENSMUSG00000041632	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Isca1	ENSMUSG00000044792	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Idh3a	ENSMUSG00000032279	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Ndufs1	ENSMUSG00000025968	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	MIM
+Auh	ENSMUSG00000021460	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Afg3l2	ENSMUSG00000024527	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Pmpca	ENSMUSG00000026926	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Cox11	ENSMUSG00000020544	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog++, 	MIM
+Sucla2	ENSMUSG00000022110	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Lars2	ENSMUSG00000035202	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Atp5o	ENSMUSG00000022956	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Mrpl46	ENSMUSG00000030612	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cox15	ENSMUSG00000040018	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	MIM
+Higd2a	ENSMUSG00000025868	MitoCarta3.0	APEX_IMS, yeast mito homolog++, mito protein domain+, induct	MIM
+Uqcrh	ENSMUSG00000063882	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Etfdh	ENSMUSG00000027809	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	MIM
+Timm10	ENSMUSG00000027076	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Echs1	ENSMUSG00000025465	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Hadha	ENSMUSG00000025745	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Bckdha	ENSMUSG00000060376	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Suclg1	ENSMUSG00000052738	MitoCarta3.0	targetP signal, yeast mito homolog+, Rickettsial homolog, mi	Matrix
+Cs	ENSMUSG00000005683	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cox6a1	ENSMUSG00000041697	MitoCarta3.0	literature, targetP signal+, yeast mito homolog+, mito prote	MIM
+Acads	ENSMUSG00000029545	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Ndufv2	ENSMUSG00000024099	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	MIM
+Iars2	ENSMUSG00000026618	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Coq6	ENSMUSG00000021235	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Atp5k	ENSMUSG00000050856	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Idh3b	ENSMUSG00000027406	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Ndufa6	ENSMUSG00000022450	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	MIM
+Letm1	ENSMUSG00000005299	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, yeast mit	MIM
+Atpaf2	ENSMUSG00000042709	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, mito prot	Matrix
+Rtn4ip1	ENSMUSG00000019864	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrpl43	ENSMUSG00000025208	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, mito prot	Matrix
+Abhd11	ENSMUSG00000040532	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Timm50	ENSMUSG00000003438	MitoCarta3.0	literature, APEX_IMS, targetP signal+, yeast mito homolog++,	MIM
+Mrpl28	ENSMUSG00000024181	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Sdhaf2	ENSMUSG00000024668	MitoCarta3.0	GFP, targetP signal, yeast mito homolog++, Rickettsial homol	Matrix
+Ndufb8	ENSMUSG00000025204	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, mito pro	MIM
+Dld	ENSMUSG00000020664	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Ndufs2	ENSMUSG00000013593	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	MIM
+Ndufv1	ENSMUSG00000037916	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	MIM
+Opa1	ENSMUSG00000038084	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Immt	ENSMUSG00000052337	MitoCarta3.0	literature, targetP signal, yeast mito homolog, mito protein	MIM
+Apool	ENSMUSG00000025525	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+, induct	MIM
+Lonp1	ENSMUSG00000041168	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Letmd1	ENSMUSG00000037353	MitoCarta3.0	GFP, targetP signal, yeast mito homolog+, mito protein domai	Membrane
+Pdk4	ENSMUSG00000019577	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, mito protei	MIM
+Mtif2	ENSMUSG00000020459	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufs8	ENSMUSG00000059734	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	MIM
+Ndufs7	ENSMUSG00000020153	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	MIM
+Mrrf	ENSMUSG00000026887	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrpl2	ENSMUSG00000002767	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	Matrix
+Gfm2	ENSMUSG00000021666	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Timm9	ENSMUSG00000021079	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Pitrm1	ENSMUSG00000021193	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Acadm	ENSMUSG00000062908	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Supv3l1	ENSMUSG00000020079	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrpl1	ENSMUSG00000029486	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Aco2	ENSMUSG00000022477	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Coq10a	ENSMUSG00000039914	MitoCarta3.0	targetP signal+, yeast mito homolog+, Rickettsial homolog, m	MIM
+Samm50	ENSMUSG00000022437	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, yeast mito homolog++, Ric	MOM
+Mrps2	ENSMUSG00000035772	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Surf1	ENSMUSG00000015790	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	MIM
+Mrpl44	ENSMUSG00000026248	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Phb	ENSMUSG00000038845	MitoCarta3.0	literature, yeast mito homolog+, Rickettsial homolog, mito p	MIM
+Guf1	ENSMUSG00000029208	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Polrmt	ENSMUSG00000020329	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ghitm	ENSMUSG00000041028	MitoCarta3.0	literature, APEX_IMS, targetP signal+, Rickettsial homolog, 	MIM
+Timm13	ENSMUSG00000020219	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Cpt2	ENSMUSG00000028607	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Mrpl10	ENSMUSG00000001445	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mto1	ENSMUSG00000032342	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Prdx3	ENSMUSG00000024997	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, Ricketts	Matrix
+Cox7a2	ENSMUSG00000032330	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MIM
+Atp5j	ENSMUSG00000022890	MitoCarta3.0	literature, APEX_IMS, targetP signal, mito protein domain+, 	MIM
+Iba57	ENSMUSG00000049287	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, Ricketts	Matrix
+Mrpl40	ENSMUSG00000022706	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Hibch	ENSMUSG00000041426	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Ndufs6	ENSMUSG00000021606	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Oxct1	ENSMUSG00000022186	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Gatd3a	ENSMUSG00000053329	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, induction	Matrix
+Ndufb9	ENSMUSG00000022354	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Cox6c	ENSMUSG00000014313	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Sod2	ENSMUSG00000006818	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufb5	ENSMUSG00000027673	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, mito pro	MIM
+Hadh	ENSMUSG00000027984	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Fech	ENSMUSG00000024588	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Lias	ENSMUSG00000029199	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Nfs1	ENSMUSG00000027618	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Fdx1	ENSMUSG00000032051	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrm1	ENSMUSG00000018405	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Mrps18a	ENSMUSG00000023967	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Malsu1	ENSMUSG00000029815	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Gatb	ENSMUSG00000028085	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Yars2	ENSMUSG00000022792	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Fxn	ENSMUSG00000059363	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Idh3g	ENSMUSG00000002010	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog+, Rickettsial ho	Matrix
+Mrps28	ENSMUSG00000040269	MitoCarta3.0	literature, targetP signal+, mito protein domain+, coexpress	Matrix
+Timm44	ENSMUSG00000002949	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Clpx	ENSMUSG00000015357	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrpl3	ENSMUSG00000032563	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mecr	ENSMUSG00000028910	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Slc25a20	ENSMUSG00000032602	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Slc25a4	ENSMUSG00000031633	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Mtch2	ENSMUSG00000027282	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MOM
+Pdk2	ENSMUSG00000038967	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cox6b1	ENSMUSG00000036751	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MIM
+Vdac1	ENSMUSG00000020402	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MOM
+Mrpl4	ENSMUSG00000003299	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrps14	ENSMUSG00000058267	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Hspa9	ENSMUSG00000024359	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, Rickettsial	Matrix
+Ndufa9	ENSMUSG00000000399	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Ndufa2	ENSMUSG00000014294	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Iscu	ENSMUSG00000025825	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+C1qbp	ENSMUSG00000018446	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Afg1l	ENSMUSG00000038302	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, Ricketts	MIM
+Micos10	ENSMUSG00000050608	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog, mito protein domai	MIM
+Cox17	ENSMUSG00000046516	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog, mito protein domai	IMS
+Uqcc1	ENSMUSG00000005882	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Mrpl33	ENSMUSG00000029142	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Acadl	ENSMUSG00000026003	MitoCarta3.0	literature, targetP signal+, mito protein domain+, induction	MIM
+Ndufs4	ENSMUSG00000021764	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Phb2	ENSMUSG00000004264	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Bckdhb	ENSMUSG00000032263	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog+, Rickettsial ho	MIM
+Mrps12	ENSMUSG00000045948	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Mcat	ENSMUSG00000048755	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrpl24	ENSMUSG00000019710	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrpl13	ENSMUSG00000022370	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Pcca	ENSMUSG00000041650	MitoCarta3.0	literature, targetP signal+, Rickettsial homolog, mito prote	Matrix
+Mrpl17	ENSMUSG00000030879	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Aifm1	ENSMUSG00000036932	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog, mi	MIM
+Cox4i1	ENSMUSG00000031818	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Ndufaf4	ENSMUSG00000028261	MitoCarta3.0	APEX_matrix, GFP, mito protein domain+, induction, coexpress	MIM
+Slc25a35	ENSMUSG00000018740	MitoCarta3.0	APEX_matrix, yeast mito homolog+, mito protein domain+, indu	MIM
+Dap3	ENSMUSG00000068921	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Atp5c1	ENSMUSG00000025781	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Slc25a11	ENSMUSG00000014606	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Timm8b	ENSMUSG00000039016	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Sdhaf1	ENSMUSG00000074211	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, mito protei	Matrix
+Mrpl15	ENSMUSG00000033845	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Alas1	ENSMUSG00000032786	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cmc2	ENSMUSG00000014633	MitoCarta3.0	APEX_IMS, yeast mito homolog++, mito protein domain+, induct	IMS
+Pptc7	ENSMUSG00000038582	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Bckdk	ENSMUSG00000030802	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Txn2	ENSMUSG00000005354	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Suclg2	ENSMUSG00000061838	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mfn1	ENSMUSG00000027668	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, indu	MOM
+Ndufb6	ENSMUSG00000071014	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, mito protein domain+, ind	MIM
+Ndufa5	ENSMUSG00000023089	MitoCarta3.0	literature, APEX_matrix, mito protein domain+, induction, co	MIM
+Mtx2	ENSMUSG00000027099	MitoCarta3.0	literature, mito protein domain+, induction, coexpression++,	MOM
+Ogdhl	ENSMUSG00000021913	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog+, Rickettsi	Matrix
+Acat1	ENSMUSG00000032047	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Echdc3	ENSMUSG00000039063	MitoCarta3.0	targetP signal, yeast mito homolog+, mito protein domain, in	Matrix
+Mrpl21	ENSMUSG00000024829	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Nfu1	ENSMUSG00000029993	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Mrpl55	ENSMUSG00000036860	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Taco1	ENSMUSG00000001983	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Sdhaf3	ENSMUSG00000042505	MitoCarta3.0	targetP signal, yeast mito homolog++, mito protein domain+, 	Matrix
+Mrpl11	ENSMUSG00000024902	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Echdc2	ENSMUSG00000028601	MitoCarta3.0	targetP signal+, yeast mito homolog+, Rickettsial homolog, m	Matrix
+Cox5b	ENSMUSG00000061518	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, yeast mi	MIM
+Acadsb	ENSMUSG00000030861	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Eral1	ENSMUSG00000020832	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog+, Rickettsi	Matrix
+Abcb10	ENSMUSG00000031974	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Bcs1l	ENSMUSG00000026172	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	MIM
+Hsdl2	ENSMUSG00000028383	MitoCarta3.0	APEX_matrix, GFP, Rickettsial homolog, mito protein domain+,	Matrix
+Cmc1	ENSMUSG00000039163	MitoCarta3.0	APEX_IMS, GFP, yeast mito homolog++, mito protein domain+, i	IMS
+Me3	ENSMUSG00000030621	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	Matrix
+Hspd1	ENSMUSG00000025980	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Lyrm7	ENSMUSG00000020268	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Tsfm	ENSMUSG00000040521	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Ethe1	ENSMUSG00000064254	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Aldh4a1	ENSMUSG00000028737	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Vdac2	ENSMUSG00000021771	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MOM
+Coa6	ENSMUSG00000051671	MitoCarta3.0	APEX_IMS, yeast mito homolog++, mito protein domain+, induct	IMS
+Coq4	ENSMUSG00000026798	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, mito prot	MIM
+Ivd	ENSMUSG00000027332	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Acadvl	ENSMUSG00000018574	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Slc25a1	ENSMUSG00000003528	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, coex	MIM
+Slc25a42	ENSMUSG00000002346	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Abcb8	ENSMUSG00000028973	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	MIM
+Ndufs5	ENSMUSG00000028648	MitoCarta3.0	literature, APEX_IMS, mito protein domain+, induction, coexp	MIM
+Mrps7	ENSMUSG00000046756	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mccc1	ENSMUSG00000027709	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	Matrix
+Mrpl49	ENSMUSG00000007338	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufaf5	ENSMUSG00000027384	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal, Rickettsial ho	MIM
+Mrps9	ENSMUSG00000060679	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufb10	ENSMUSG00000040048	MitoCarta3.0	literature, APEX_matrix, mito protein domain+, induction, co	MIM
+Dnaja3	ENSMUSG00000004069	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Mrpl19	ENSMUSG00000030045	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mipep	ENSMUSG00000021993	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Tomm40l	ENSMUSG00000005674	MitoCarta3.0	targetP signal, yeast mito homolog+, mito protein domain+, i	MOM
+Adhfe1	ENSMUSG00000025911	MitoCarta3.0	targetP signal, yeast mito homolog++, mito protein domain, c	Matrix
+Coq8a	ENSMUSG00000026489	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog+, Rickettsial ho	MIM
+Bdh1	ENSMUSG00000046598	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	MIM
+Tomm7	ENSMUSG00000028998	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, coex	MOM
+Hccs	ENSMUSG00000031352	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	IMS
+Mrpl16	ENSMUSG00000024683	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	Matrix
+Prodh	ENSMUSG00000003526	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, mito protei	MIM
+Mrpl30	ENSMUSG00000026087	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufa10	ENSMUSG00000026260	MitoCarta3.0	literature, targetP signal+, mito protein domain, coexpressi	MIM
+Mars2	ENSMUSG00000046994	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Clpp	ENSMUSG00000002660	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Ak3	ENSMUSG00000024782	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Spg7	ENSMUSG00000000738	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, Rickettsial	MIM
+Sco1	ENSMUSG00000069844	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, yeast mi	MIM
+Atpif1	ENSMUSG00000054428	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Chchd3	ENSMUSG00000053768	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, GFP, Rickettsial homolog,	MIM
+Acad12	ENSMUSG00000042647	MitoCarta3.0	targetP signal+, mito protein domain+, coexpression+, MS/MS+	Matrix
+Hibadh	ENSMUSG00000029776	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Gatc	ENSMUSG00000029536	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Cox8b	ENSMUSG00000025488	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MIM
+Clpb	ENSMUSG00000001829	MitoCarta3.0	APEX_IMS, targetP signal+, yeast mito homolog+, Rickettsial 	IMS
+Tmem126a	ENSMUSG00000030615	MitoCarta3.0	literature, mito protein domain+, induction, coexpression++,	MIM
+Aldh6a1	ENSMUSG00000021238	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Mrps18c	ENSMUSG00000016833	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Pdk1	ENSMUSG00000006494	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Ppif	ENSMUSG00000021868	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Lyrm4	ENSMUSG00000046573	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Ech1	ENSMUSG00000053898	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog+, mito prote	Matrix
+Acaa2	ENSMUSG00000036880	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Ndufa7	ENSMUSG00000041881	MitoCarta3.0	literature, APEX_matrix, mito protein domain+, coexpression+	MIM
+Mrpl35	ENSMUSG00000052962	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Pccb	ENSMUSG00000032527	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Coq2	ENSMUSG00000029319	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, Rickettsi	MIM
+Mrpl20	ENSMUSG00000029066	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Timm17a	ENSMUSG00000062580	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MIM
+Timm22	ENSMUSG00000020843	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, indu	MIM
+Mrpl54	ENSMUSG00000034932	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Tomm22	ENSMUSG00000022427	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, coex	MOM
+Crat	ENSMUSG00000026853	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Mrps5	ENSMUSG00000027374	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	Matrix
+Dhtkd1	ENSMUSG00000025815	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog+, Rickettsi	Matrix
+Tmem70	ENSMUSG00000025940	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Alkbh7	ENSMUSG00000002661	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, induction	Matrix
+Mrps22	ENSMUSG00000032459	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Uqcrb	ENSMUSG00000021520	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Cox7c	ENSMUSG00000017778	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog++, 	MIM
+Ndufaf1	ENSMUSG00000027305	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	MIM
+Acad8	ENSMUSG00000031969	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Wars2	ENSMUSG00000004233	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrps34	ENSMUSG00000038880	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	Matrix
+Ndufv3	ENSMUSG00000024038	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	MIM
+Ndufb2	ENSMUSG00000002416	MitoCarta3.0	literature, targetP signal, induction, coexpression++, MS/MS	MIM
+Slc25a12	ENSMUSG00000027010	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Slc25a5	ENSMUSG00000016319	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Mrps21	ENSMUSG00000054312	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	Matrix
+Msrb2	ENSMUSG00000023094	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog+, mito prot	Matrix
+Glrx5	ENSMUSG00000021102	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Chchd10	ENSMUSG00000049422	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, mito protei	IMS
+Coq10b	ENSMUSG00000025981	MitoCarta3.0	GFP, targetP signal, yeast mito homolog+, Rickettsial homolo	MIM
+Slc25a30	ENSMUSG00000022003	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Slc25a13	ENSMUSG00000015112	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Slc25a10	ENSMUSG00000025792	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Cox7a1	ENSMUSG00000074218	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MIM
+Slc25a19	ENSMUSG00000020744	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, indu	MIM
+Smdt1	ENSMUSG00000022452	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MIM
+Mrpl22	ENSMUSG00000020514	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrps10	ENSMUSG00000034729	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Afg3l1	ENSMUSG00000031967	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	MIM
+Fdxr	ENSMUSG00000018861	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Slirp	ENSMUSG00000021040	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal+, mito protein 	Matrix
+Poldip2	ENSMUSG00000001100	MitoCarta3.0	literature, APEX_matrix, targetP signal+, induction, coexpre	Matrix
+Acsf3	ENSMUSG00000015016	MitoCarta3.0	APEX_matrix, targetP signal+, Rickettsial homolog, mito prot	Matrix
+Oxa1l	ENSMUSG00000000959	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	MIM
+Idh2	ENSMUSG00000030541	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Atp5l	ENSMUSG00000038717	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	MIM
+Bola1	ENSMUSG00000015943	MitoCarta3.0	GFP, targetP signal+, Rickettsial homolog, mito protein doma	Matrix
+Fahd2a	ENSMUSG00000027371	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Etfrf1	ENSMUSG00000040370	MitoCarta3.0	mito protein domain+, induction, coexpression, MS/MS++	Matrix
+Ndufc2	ENSMUSG00000030647	MitoCarta3.0	literature, APEX_IMS, mito protein domain+, coexpression++, 	MIM
+Ndufa8	ENSMUSG00000026895	MitoCarta3.0	literature, APEX_IMS, mito protein domain, induction, coexpr	MIM
+Mthfd1l	ENSMUSG00000040675	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Pdk3	ENSMUSG00000035232	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cox14	ENSMUSG00000023020	MitoCarta3.0	literature, GFP, mito protein domain+, induction, coexpressi	MIM
+Gcdh	ENSMUSG00000003809	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Mrpl51	ENSMUSG00000030335	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Hagh	ENSMUSG00000024158	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Mtx1	ENSMUSG00000064068	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, coex	MOM
+Fars2	ENSMUSG00000021420	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Cbr4	ENSMUSG00000031641	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, mito protein d	Matrix
+Mrpl32	ENSMUSG00000015672	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	Matrix
+2310061I04Rik	ENSMUSG00000050705	MitoCarta3.0	targetP signal, induction, coexpression++, MS/MS+	Matrix
+Fdx2	ENSMUSG00000079677	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog+, Rickettsi	Matrix
+mt-Co2	ENSMUSG00000064354	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, yeast mito homolog++, Ric	MIM
+mt-Atp6	ENSMUSG00000064357	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Trap1	ENSMUSG00000005981	MitoCarta3.0	APEX_matrix, GFP, targetP signal, Rickettsial homolog, mito 	Matrix
+Gpd2	ENSMUSG00000026827	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Abcb7	ENSMUSG00000031333	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Hsd17b10	ENSMUSG00000025260	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Glud1	ENSMUSG00000021794	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Aldh2	ENSMUSG00000029455	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Tufm	ENSMUSG00000073838	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Stoml2	ENSMUSG00000028455	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	MIM
+Dhrs4	ENSMUSG00000022210	MitoCarta3.0	targetP signal+, Rickettsial homolog, mito protein domain, c	Matrix
+Aldh9a1	ENSMUSG00000026687	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog+, mito prote	Matrix
+Nars2	ENSMUSG00000018995	MitoCarta3.0	GFP, targetP signal+, yeast mito homolog++, Rickettsial homo	Matrix
+Vwa8	ENSMUSG00000058997	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Mrps26	ENSMUSG00000037740	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Adck5	ENSMUSG00000022550	MitoCarta3.0	targetP signal, yeast mito homolog+, Rickettsial homolog, mi	unknown
+Cars2	ENSMUSG00000056228	MitoCarta3.0	APEX_matrix, targetP signal+, Rickettsial homolog, mito prot	Matrix
+Cox10	ENSMUSG00000042148	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	MIM
+Ndufb11	ENSMUSG00000031059	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, coexpres	MIM
+Pdha2	ENSMUSG00000047674	MitoCarta3.0	literature, yeast mito homolog+, Rickettsial homolog, mito p	Matrix
+Ssbp1	ENSMUSG00000029911	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Hscb	ENSMUSG00000043510	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog++, Rick	Matrix
+Mrpl27	ENSMUSG00000024414	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Hint2	ENSMUSG00000028470	MitoCarta3.0	APEX_matrix, targetP signal+, Rickettsial homolog, mito prot	Matrix
+Etfb	ENSMUSG00000004610	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog, mito protein do	Matrix
+Slc25a15	ENSMUSG00000031482	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Oxnad1	ENSMUSG00000021906	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog, mito p	Matrix
+Cyct	ENSMUSG00000056436	MitoCarta3.0	literature, yeast mito homolog+, Rickettsial homolog, mito p	IMS
+Cycs	ENSMUSG00000058927	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, Rickettsial homol	IMS
+Mrpl23	ENSMUSG00000037772	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrpl9	ENSMUSG00000028140	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Chchd1	ENSMUSG00000063787	MitoCarta3.0	GFP, targetP signal, yeast mito homolog++, mito protein doma	MIM
+Atad3a	ENSMUSG00000029036	MitoCarta3.0	APEX_IMS, APEX_matrix, GFP, yeast mito homolog, Rickettsial 	MIM
+Mmut	ENSMUSG00000023921	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Cisd1	ENSMUSG00000037710	MitoCarta3.0	literature, mito protein domain, induction, coexpression++, 	MOM
+Dars2	ENSMUSG00000026709	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, Rickettsi	Matrix
+Aldh18a1	ENSMUSG00000025007	MitoCarta3.0	literature, targetP signal+, Rickettsial homolog, mito prote	Matrix
+Mrpl50	ENSMUSG00000044018	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Cox8a	ENSMUSG00000035885	MitoCarta3.0	literature, targetP signal+, mito protein domain+, coexpress	MIM
+Mrps6	ENSMUSG00000039680	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	Matrix
+Hspe1	ENSMUSG00000073676	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, yeast mito homolog++, Ric	Matrix
+Ppa2	ENSMUSG00000028013	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Pcx	ENSMUSG00000024892	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	Matrix
+Gldc	ENSMUSG00000024827	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Tamm41	ENSMUSG00000030316	MitoCarta3.0	GFP, yeast mito homolog++, mito protein domain+, MS/MS++	MIM
+Atp5g3	ENSMUSG00000018770	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	MIM
+Mrpl38	ENSMUSG00000020775	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, coexpress	Matrix
+Ndufa12	ENSMUSG00000020022	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, coexpression++	MIM
+Pdf	ENSMUSG00000078931	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Acad10	ENSMUSG00000029456	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain+, coexpres	Matrix
+Ptges2	ENSMUSG00000026820	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Ccdc58	ENSMUSG00000075229	MitoCarta3.0	APEX_IMS, yeast mito homolog++, mito protein domain+, MS/MS+	IMS
+Slc25a31	ENSMUSG00000069041	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, MS/M	MIM
+Atp5h	ENSMUSG00000034566	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	MIM
+Atp5pb	ENSMUSG00000000563	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	MIM
+Mrpl41	ENSMUSG00000036850	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Txnrd2	ENSMUSG00000075704	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mcee	ENSMUSG00000033429	MitoCarta3.0	targetP signal, induction, coexpression++, MS/MS++	Matrix
+Mccc2	ENSMUSG00000021646	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	Matrix
+Ptcd2	ENSMUSG00000021650	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	Matrix
+Ak4	ENSMUSG00000028527	MitoCarta3.0	APEX_matrix, yeast mito homolog++, Rickettsial homolog, mito	Matrix
+Slc25a25	ENSMUSG00000026819	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Tomm40	ENSMUSG00000002984	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MOM
+Clybl	ENSMUSG00000025545	MitoCarta3.0	APEX_matrix, targetP signal+, induction, coexpression+, MS/M	Matrix
+Mterf2	ENSMUSG00000049038	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Dnajc11	ENSMUSG00000039768	MitoCarta3.0	GFP, yeast mito homolog+, Rickettsial homolog, mito protein 	MOM
+Decr1	ENSMUSG00000028223	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Ndufaf6	ENSMUSG00000050323	MitoCarta3.0	literature, targetP signal, mito protein domain, induction, 	MIM
+Ptrh1	ENSMUSG00000053746	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog++, Rick	Matrix
+Rmnd1	ENSMUSG00000019763	MitoCarta3.0	literature, GFP, targetP signal, yeast mito homolog++, Ricke	MIM
+Gcat	ENSMUSG00000006378	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	unknown
+Pyurf	ENSMUSG00000043162	MitoCarta3.0	targetP signal+, induction, coexpression++, MS/MS	unknown
+Acsm1	ENSMUSG00000033533	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Atad1	ENSMUSG00000013662	MitoCarta3.0	yeast mito homolog++, Rickettsial homolog, mito protein doma	MOM
+Tmem14c	ENSMUSG00000021361	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+, induct	MIM
+C030006K11Rik	ENSMUSG00000079002	MitoCarta3.0	APEX_matrix, targetP signal+, coexpression+, MS/MS++	Matrix
+Nit2	ENSMUSG00000022751	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	unknown
+Slc25a26	ENSMUSG00000045100	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+, coex	MIM
+Timm21	ENSMUSG00000024645	MitoCarta3.0	APEX_IMS, GFP, yeast mito homolog++, mito protein domain+, c	MIM
+Ndufa4	ENSMUSG00000029632	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MIM
+Rexo2	ENSMUSG00000032026	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog++, mito pro	Matrix
+Me2	ENSMUSG00000024556	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Sars2	ENSMUSG00000070699	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Dnlz	ENSMUSG00000075467	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, mito prot	Matrix
+Ckmt2	ENSMUSG00000021622	MitoCarta3.0	literature, targetP signal, mito protein domain, induction, 	MIM
+Spryd4	ENSMUSG00000051346	MitoCarta3.0	APEX_matrix, GFP, targetP signal, mito protein domain, coexp	Matrix
+Bphl	ENSMUSG00000038286	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, co	Matrix
+Chchd4	ENSMUSG00000034203	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	IMS
+Mrpl37	ENSMUSG00000028622	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Slc25a51	ENSMUSG00000045973	MitoCarta3.0	GFP, yeast mito homolog+, mito protein domain+, coexpression	MIM
+Mtarc2	ENSMUSG00000073481	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MOM
+Immp1l	ENSMUSG00000042670	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Fam210a	ENSMUSG00000038121	MitoCarta3.0	GFP, targetP signal, induction, coexpression++, MS/MS	MIM
+Mrps24	ENSMUSG00000020477	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	Matrix
+Timm17b	ENSMUSG00000031158	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MIM
+Hars2	ENSMUSG00000019143	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal+, yeast mito ho	Matrix
+Cox16	ENSMUSG00000091803	MitoCarta3.0	APEX_IMS, GFP, targetP signal, yeast mito homolog++, mito pr	MIM
+Pdss2	ENSMUSG00000038240	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Eci1	ENSMUSG00000024132	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Ndufs3	ENSMUSG00000005510	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	MIM
+Hmgcs2	ENSMUSG00000027875	MitoCarta3.0	literature, targetP signal+, Rickettsial homolog, mito prote	Matrix
+L2hgdh	ENSMUSG00000020988	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	MIM
+Zadh2	ENSMUSG00000049090	MitoCarta3.0	targetP signal, mito protein domain, induction, coexpression	unknown
+Aurkaip1	ENSMUSG00000065990	MitoCarta3.0	GFP, targetP signal+, yeast mito homolog++, mito protein dom	Matrix
+Coa5	ENSMUSG00000026112	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	IMS
+H2-Ke6	ENSMUSG00000073422	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Micos13	ENSMUSG00000049760	MitoCarta3.0	induction, coexpression++, MS/MS++	MIM
+Ndufb7	ENSMUSG00000033938	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, induction, coexpression++	MIM
+Nipsnap2	ENSMUSG00000029432	MitoCarta3.0	literature, APEX_matrix, targetP signal+, induction, coexpre	Matrix
+Mrpl47	ENSMUSG00000037531	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mtres1	ENSMUSG00000019797	MitoCarta3.0	GFP, targetP signal, induction, coexpression++, MS/MS+	Matrix
+Ndufaf7	ENSMUSG00000024082	MitoCarta3.0	APEX_matrix, GFP, targetP signal, Rickettsial homolog, mito 	MIM
+Acad9	ENSMUSG00000027710	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Nags	ENSMUSG00000048217	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	Matrix
+Ldhd	ENSMUSG00000031958	MitoCarta3.0	literature, targetP signal+, yeast mito homolog+, mito prote	MIM
+Sardh	ENSMUSG00000009614	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, mito protei	Matrix
+Spr	ENSMUSG00000033735	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, in	unknown
+Naxe	ENSMUSG00000028070	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Timm23	ENSMUSG00000013701	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Mpv17	ENSMUSG00000090262	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, mito protei	MIM
+Mtg1	ENSMUSG00000039018	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ide	ENSMUSG00000056999	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Trnt1	ENSMUSG00000013736	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Mrps25	ENSMUSG00000014551	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Mrpl14	ENSMUSG00000023939	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Mrps30	ENSMUSG00000021731	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Mrps16	ENSMUSG00000049960	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, Rickettsial h	Matrix
+Prelid2	ENSMUSG00000056671	MitoCarta3.0	yeast mito homolog+, mito protein domain+, induction, coexpr	IMS
+Shmt2	ENSMUSG00000025403	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Suox	ENSMUSG00000049858	MitoCarta3.0	APEX_IMS, targetP signal, mito protein domain+, coexpression	IMS
+Ccdc90b	ENSMUSG00000030613	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Rmdn1	ENSMUSG00000028229	MitoCarta3.0	APEX_IMS, targetP signal+, mito protein domain, induction, c	MOM
+Acsm5	ENSMUSG00000030972	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Mrpl36	ENSMUSG00000021607	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	Matrix
+Gstk1	ENSMUSG00000029864	MitoCarta3.0	literature, mito protein domain+, coexpression+, MS/MS++	Matrix
+Fmc1	ENSMUSG00000019689	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	Matrix
+Mrpl58	ENSMUSG00000018858	MitoCarta3.0	APEX_matrix, GFP, targetP signal+, mito protein domain, indu	Matrix
+Cpt1a	ENSMUSG00000024900	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain, induct	MOM
+Ak2	ENSMUSG00000028792	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog, Rickettsial homolo	IMS
+2810006K23Rik	ENSMUSG00000047635	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Gls	ENSMUSG00000026103	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	MIM
+Them4	ENSMUSG00000028145	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Pdss1	ENSMUSG00000026784	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog+, Rickettsia	MIM
+Mtg2	ENSMUSG00000039069	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mrps11	ENSMUSG00000030611	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	Matrix
+Mlycd	ENSMUSG00000074064	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Tcaim	ENSMUSG00000046603	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Ndufc1	ENSMUSG00000037152	MitoCarta3.0	literature, targetP signal+, mito protein domain+, coexpress	MIM
+Gsr	ENSMUSG00000031584	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Rars2	ENSMUSG00000028292	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal, yeast mito hom	Matrix
+Slc25a24	ENSMUSG00000040322	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MIM
+Slc25a18	ENSMUSG00000004902	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Slc25a22	ENSMUSG00000019082	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Mpc1	ENSMUSG00000023861	MitoCarta3.0	GFP, yeast mito homolog+, mito protein domain+, MS/MS++	MIM
+Timm8a1	ENSMUSG00000045455	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Vdac3	ENSMUSG00000008892	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MOM
+Akap1	ENSMUSG00000018428	MitoCarta3.0	literature, mito protein domain, induction, coexpression++, 	MOM
+Eci2	ENSMUSG00000021417	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Mrm2	ENSMUSG00000029557	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, Rickettsia	Matrix
+Lipt2	ENSMUSG00000030725	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	Matrix
+Nubpl	ENSMUSG00000035142	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	Matrix
+Sfxn1	ENSMUSG00000021474	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+, coexpr	MIM
+Slc30a9	ENSMUSG00000029221	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, mito prot	MIM
+Gatm	ENSMUSG00000027199	MitoCarta3.0	literature, targetP signal, mito protein domain+, MS/MS++	Matrix
+Triap1	ENSMUSG00000029535	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain, induc	IMS
+Cpox	ENSMUSG00000022742	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, Rickettsi	MIM
+Xpnpep3	ENSMUSG00000022401	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Pnpla8	ENSMUSG00000036257	MitoCarta3.0	APEX_matrix, Rickettsial homolog, induction, coexpression++,	MIM
+Gadd45gip1	ENSMUSG00000033751	MitoCarta3.0	APEX_matrix, GFP, targetP signal+, coexpression+, MS/MS++	Matrix
+Gfer	ENSMUSG00000040888	MitoCarta3.0	literature, GFP, targetP signal, yeast mito homolog++, mito 	IMS
+Ngrn	ENSMUSG00000047084	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, mito prot	Matrix
+Mrpl57	ENSMUSG00000021967	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Ndufa3	ENSMUSG00000035674	MitoCarta3.0	literature, induction, coexpression++, MS/MS++	MIM
+Ptcd3	ENSMUSG00000063884	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Mrpl45	ENSMUSG00000018882	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Slc25a16	ENSMUSG00000071253	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Ucp1	ENSMUSG00000031710	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, coexp	MIM
+Tars2	ENSMUSG00000028107	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog, Rickettsia	Matrix
+Trit1	ENSMUSG00000028653	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Ndufab1	ENSMUSG00000030869	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Csl	ENSMUSG00000046934	MitoCarta3.0	targetP signal, yeast mito homolog+, Rickettsial homolog, mi	Matrix
+Slc25a39	ENSMUSG00000018677	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Prelid3b	ENSMUSG00000016257	MitoCarta3.0	GFP, yeast mito homolog+, mito protein domain+, induction, c	IMS
+Mtch1	ENSMUSG00000024012	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MOM
+Dele1	ENSMUSG00000024442	MitoCarta3.0	targetP signal+, yeast mito homolog, mito protein domain, in	MIM
+Acaa1a	ENSMUSG00000036138	MitoCarta3.0	targetP signal, yeast mito homolog+, Rickettsial homolog, mi	Matrix
+Acot13	ENSMUSG00000006717	MitoCarta3.0	mito protein domain, induction, coexpression, MS/MS++	Matrix
+Ndufa13	ENSMUSG00000036199	MitoCarta3.0	literature, APEX_IMS, mito protein domain, coexpression++, M	MIM
+Agxt2	ENSMUSG00000089678	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	Matrix
+Selenoo	ENSMUSG00000035757	MitoCarta3.0	targetP signal+, yeast mito homolog, mito protein domain+, c	Matrix
+Oxld1	ENSMUSG00000039670	MitoCarta3.0	targetP signal, yeast mito homolog, mito protein domain+, co	unknown
+Mfn2	ENSMUSG00000029020	MitoCarta3.0	literature, mito protein domain+, induction, coexpression, M	MOM
+Chdh	ENSMUSG00000015970	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, coexpress	MIM
+Msra	ENSMUSG00000054733	MitoCarta3.0	targetP signal+, mito protein domain, coexpression, MS/MS++	Matrix
+Nit1	ENSMUSG00000013997	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, coexpress	Matrix
+Cox4i2	ENSMUSG00000009876	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	MIM
+Lactb	ENSMUSG00000032370	MitoCarta3.0	literature, APEX_IMS, targetP signal, Rickettsial homolog, m	IMS
+Tst	ENSMUSG00000044986	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Coa8	ENSMUSG00000037787	MitoCarta3.0	literature, targetP signal+, mito protein domain+, coexpress	MIM
+Prodh2	ENSMUSG00000036892	MitoCarta3.0	targetP signal, yeast mito homolog+, mito protein domain+, M	MIM
+Cox7b	ENSMUSG00000031231	MitoCarta3.0	literature, targetP signal, mito protein domain+, induction,	MIM
+Glrx2	ENSMUSG00000018196	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, Rickettsial	Matrix
+Aldh1b1	ENSMUSG00000035561	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Ndufb3	ENSMUSG00000026032	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, mito protein domain+, coe	MIM
+Ehhadh	ENSMUSG00000022853	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Echdc1	ENSMUSG00000019883	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Trmu	ENSMUSG00000022386	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Vars2	ENSMUSG00000038838	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, Rickettsial	Matrix
+Mettl17	ENSMUSG00000004561	MitoCarta3.0	GFP, targetP signal+, yeast mito homolog++, mito protein dom	Matrix
+Aass	ENSMUSG00000029695	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	Matrix
+Aadat	ENSMUSG00000057228	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, co	Matrix
+Ndufa11	ENSMUSG00000002379	MitoCarta3.0	literature, APEX_IMS, mito protein domain+, induction, MS/MS	MIM
+Gm4984	nan	MitoCarta3.0	yeast mito homolog+, mito protein domain+, MS/MS++	MIM
+Slc25a21	ENSMUSG00000035472	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Slc25a29	ENSMUSG00000021265	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Mthfd2	ENSMUSG00000005667	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Mmab	ENSMUSG00000029575	MitoCarta3.0	APEX_matrix, GFP, targetP signal+, coexpression, MS/MS++	Matrix
+Hsd17b4	ENSMUSG00000024507	MitoCarta3.0	Rickettsial homolog, mito protein domain+, induction, coexpr	unknown
+Nnt	ENSMUSG00000025453	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, mito protein d	MIM
+Tmem11	ENSMUSG00000043284	MitoCarta3.0	GFP, targetP signal, mito protein domain+, induction, coexpr	MIM
+Mrm3	ENSMUSG00000038046	MitoCarta3.0	APEX_matrix, GFP, targetP signal, mito protein domain+, indu	Matrix
+Rida	ENSMUSG00000022323	MitoCarta3.0	APEX_matrix, yeast mito homolog++, mito protein domain, coex	Matrix
+Cox6a2	ENSMUSG00000030785	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, induc	MIM
+Sco2	ENSMUSG00000091780	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog++, 	MIM
+Cox18	ENSMUSG00000035505	MitoCarta3.0	literature, targetP signal+, yeast mito homolog++, mito prot	MIM
+Gcsh	ENSMUSG00000034424	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Dmgdh	ENSMUSG00000042102	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, mito protei	Matrix
+Rdh13	ENSMUSG00000008435	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	MIM
+Lyrm2	ENSMUSG00000045854	MitoCarta3.0	APEX_matrix, GFP, targetP signal+, mito protein domain+, coe	Matrix
+Prdx5	ENSMUSG00000024953	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Maip1	ENSMUSG00000025971	MitoCarta3.0	GFP, targetP signal, induction, coexpression, MS/MS+	Matrix
+Gstz1	ENSMUSG00000021033	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Twnk	ENSMUSG00000025209	MitoCarta3.0	literature, APEX_matrix, targetP signal+, Rickettsial homolo	Matrix
+Tefm	ENSMUSG00000046909	MitoCarta3.0	APEX_matrix, targetP signal, induction, coexpression++, MS/M	Matrix
+Coa3	ENSMUSG00000017188	MitoCarta3.0	APEX_IMS, APEX_matrix, mito protein domain+, coexpression, M	MIM
+Mcur1	ENSMUSG00000021371	MitoCarta3.0	APEX_matrix, yeast mito homolog+, mito protein domain+, indu	MIM
+Pck2	ENSMUSG00000040618	MitoCarta3.0	literature, targetP signal+, mito protein domain, coexpressi	Matrix
+Hmgcl	ENSMUSG00000028672	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Abhd10	ENSMUSG00000033157	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal+, Ricketts	Matrix
+BC003965	ENSMUSG00000067722	MitoCarta3.0	APEX_IMS, targetP signal+, induction, coexpression, MS/MS	IMS
+Acot2	ENSMUSG00000021226	MitoCarta3.0	literature, targetP signal, mito protein domain, induction, 	Matrix
+Alas2	ENSMUSG00000025270	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	Matrix
+Acsm3	ENSMUSG00000030935	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Romo1	ENSMUSG00000067847	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, mito protein dom	MIM
+Mrpl39	ENSMUSG00000022889	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Rhot2	ENSMUSG00000025733	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+, induct	MOM
+Higd1a	ENSMUSG00000038412	MitoCarta3.0	literature, APEX_IMS, mito protein domain+, induction, MS/MS	MIM
+Tbrg4	ENSMUSG00000000384	MitoCarta3.0	literature, APEX_matrix, targetP signal+, coexpression, MS/M	Matrix
+Apoo	ENSMUSG00000049233	MitoCarta3.0	literature, APEX_IMS, targetP signal, mito protein domain+, 	MIM
+Pdp1	ENSMUSG00000049225	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Dnajc15	ENSMUSG00000022013	MitoCarta3.0	GFP, yeast mito homolog, mito protein domain, induction, coe	MIM
+Bcat2	ENSMUSG00000030826	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Abcd3	ENSMUSG00000028127	MitoCarta3.0	GFP, targetP signal, Rickettsial homolog, mito protein domai	Membrane
+Cps1	ENSMUSG00000025991	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Atp5mpl	ENSMUSG00000021290	MitoCarta3.0	induction, coexpression++, MS/MS+	MIM
+Oat	ENSMUSG00000030934	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Hao2	ENSMUSG00000027870	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Tha1	ENSMUSG00000017713	MitoCarta3.0	targetP signal+, mito protein domain+, MS/MS+	Matrix
+Hadhb	ENSMUSG00000059447	MitoCarta3.0	literature, targetP signal, Rickettsial homolog, mito protei	MIM
+Rdh14	ENSMUSG00000020621	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	Membrane
+Fastkd1	ENSMUSG00000027086	MitoCarta3.0	APEX_matrix, targetP signal, induction, coexpression++	Matrix
+Car5b	ENSMUSG00000031373	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	Matrix
+Grpel2	ENSMUSG00000024580	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Mrps17	ENSMUSG00000034211	MitoCarta3.0	literature, targetP signal, mito protein domain, induction, 	Matrix
+Lipt1	ENSMUSG00000037216	MitoCarta3.0	GFP, targetP signal, yeast mito homolog++, mito protein doma	Matrix
+Slc25a44	ENSMUSG00000050144	MitoCarta3.0	yeast mito homolog+, mito protein domain+, induction, MS/MS	MIM
+Dut	ENSMUSG00000027203	MitoCarta3.0	literature, targetP signal+, Rickettsial homolog, MS/MS++	Matrix
+Immp2l	ENSMUSG00000056899	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain, coexp	MIM
+Cox19	ENSMUSG00000045438	MitoCarta3.0	yeast mito homolog, mito protein domain, induction, coexpres	IMS
+Aldh1l2	ENSMUSG00000020256	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Chchd2	ENSMUSG00000070493	MitoCarta3.0	APEX_IMS, targetP signal+, yeast mito homolog+, mito protein	IMS
+Pisd	ENSMUSG00000023452	MitoCarta3.0	targetP signal, yeast mito homolog++, mito protein domain, M	MIM
+Crot	ENSMUSG00000003623	MitoCarta3.0	yeast mito homolog+, mito protein domain, induction, coexpre	unknown
+Noa1	ENSMUSG00000036285	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	MIM
+Ndufaf8	ENSMUSG00000078572	MitoCarta3.0	targetP signal, induction, coexpression+, MS/MS	IMS
+Acaa1b	ENSMUSG00000010651	MitoCarta3.0	targetP signal, yeast mito homolog+, Rickettsial homolog, mi	unknown
+Mtrf1l	ENSMUSG00000019774	MitoCarta3.0	literature, targetP signal+, yeast mito homolog+, Rickettsia	Matrix
+Atp23	ENSMUSG00000025436	MitoCarta3.0	yeast mito homolog++, mito protein domain+, coexpression	IMS
+Yme1l1	ENSMUSG00000026775	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog, Rickettsial homolo	MIM
+Hdhd5	ENSMUSG00000058979	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, mito protei	Matrix
+Aldh7a1	ENSMUSG00000053644	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Chchd7	ENSMUSG00000042198	MitoCarta3.0	yeast mito homolog, induction, coexpression, MS/MS+	IMS
+Pdpr	ENSMUSG00000033624	MitoCarta3.0	APEX_matrix, targetP signal+, yeast mito homolog, mito prote	Matrix
+Nln	ENSMUSG00000021710	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Ndufaf2	ENSMUSG00000068184	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	MIM
+Fastkd2	ENSMUSG00000025962	MitoCarta3.0	literature, APEX_matrix, targetP signal+, induction, coexpre	Matrix
+Dcakd	ENSMUSG00000020935	MitoCarta3.0	GFP, yeast mito homolog, Rickettsial homolog, mito protein d	Membrane
+Sdr39u1	ENSMUSG00000022223	MitoCarta3.0	targetP signal, mito protein domain, coexpression, MS/MS++	unknown
+Gars	ENSMUSG00000029777	MitoCarta3.0	targetP signal+, yeast mito homolog, mito protein domain, in	Matrix
+Uqcr11	ENSMUSG00000020163	MitoCarta3.0	literature, targetP signal, mito protein domain+, MS/MS++	MIM
+Ears2	ENSMUSG00000030871	MitoCarta3.0	literature, APEX_matrix, GFP, yeast mito homolog++, Ricketts	Matrix
+Cox6b2	ENSMUSG00000051811	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Timm10b	ENSMUSG00000089847	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog+, mito protein doma	MIM
+Atpaf1	ENSMUSG00000028710	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	Matrix
+Sfxn3	ENSMUSG00000025212	MitoCarta3.0	yeast mito homolog, mito protein domain+, MS/MS++	MIM
+Abcd2	ENSMUSG00000055782	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, co	Membrane
+Sqor	ENSMUSG00000005803	MitoCarta3.0	literature, targetP signal+, mito protein domain, MS/MS++	MIM
+Sirt5	ENSMUSG00000054021	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Nudt13	ENSMUSG00000021809	MitoCarta3.0	GFP, targetP signal, mito protein domain, induction, coexpre	Matrix
+Acad11	ENSMUSG00000090150	MitoCarta3.0	mito protein domain+, induction, coexpression	MIM
+Ppox	ENSMUSG00000062729	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog++, mito protein 	MIM
+D2hgdh	ENSMUSG00000073609	MitoCarta3.0	literature, APEX_matrix, targetP signal+, yeast mito homolog	Matrix
+Diablo	ENSMUSG00000029433	MitoCarta3.0	literature, APEX_IMS, targetP signal+, mito protein domain+,	IMS
+Slc25a45	ENSMUSG00000024818	MitoCarta3.0	yeast mito homolog, mito protein domain+, MS/MS++	MIM
+Ttc19	ENSMUSG00000042298	MitoCarta3.0	literature, APEX_IMS, targetP signal+, mito protein domain, 	MIM
+Agxt	ENSMUSG00000026272	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	Matrix
+Dglucy	ENSMUSG00000021185	MitoCarta3.0	literature, APEX_matrix, targetP signal+, coexpression, MS/M	Matrix
+Mtfmt	ENSMUSG00000059183	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+mt-Co1	ENSMUSG00000064351	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog++, Rickettsial homo	MIM
+Endog	ENSMUSG00000015337	MitoCarta3.0	literature, APEX_IMS, yeast mito homolog, mito protein domai	IMS
+Fam162a	ENSMUSG00000003955	MitoCarta3.0	APEX_IMS, APEX_matrix, targetP signal, induction, coexpressi	MIM
+Atp5j2	ENSMUSG00000038690	MitoCarta3.0	literature, coexpression++, MS/MS++	MIM
+Gls2	ENSMUSG00000044005	MitoCarta3.0	targetP signal, mito protein domain+, MS/MS++	Matrix
+Timmdc1	ENSMUSG00000002846	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Mrps33	ENSMUSG00000029918	MitoCarta3.0	literature, targetP signal, mito protein domain+, MS/MS++	Matrix
+Tfam	ENSMUSG00000003923	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Ecsit	ENSMUSG00000066839	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	MIM
+Mrs2	ENSMUSG00000021339	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog++, coex	MIM
+Abcb6	ENSMUSG00000026198	MitoCarta3.0	literature, yeast mito homolog+, Rickettsial homolog, mito p	MOM
+Mtfr1l	ENSMUSG00000046671	MitoCarta3.0	mito protein domain+, induction, coexpression, MS/MS	unknown
+Lap3	ENSMUSG00000039682	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, coexpressi	Matrix
+Acsf2	ENSMUSG00000076435	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Gpt2	ENSMUSG00000031700	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Grhpr	ENSMUSG00000035637	MitoCarta3.0	APEX_matrix, yeast mito homolog, mito protein domain, coexpr	Matrix
+Stom	ENSMUSG00000026880	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	Membrane
+Glod4	ENSMUSG00000017286	MitoCarta3.0	APEX_matrix, targetP signal, coexpression, MS/MS++	Matrix
+Tomm6	ENSMUSG00000033475	MitoCarta3.0	GFP, mito protein domain+, coexpression, MS/MS+	MOM
+Mrps36	ENSMUSG00000061474	MitoCarta3.0	literature, APEX_matrix, mito protein domain+, MS/MS++	Matrix
+Tmem65	ENSMUSG00000062373	MitoCarta3.0	literature, APEX_matrix, targetP signal, coexpression, MS/MS	MIM
+Tomm70a	ENSMUSG00000022752	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain, induct	MOM
+Fhit	ENSMUSG00000060579	MitoCarta3.0	targetP signal, yeast mito homolog, mito protein domain, MS/	Matrix
+Osgepl1	ENSMUSG00000026096	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, Rickettsial	Matrix
+Crls1	ENSMUSG00000027357	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	MIM
+Mocs1	ENSMUSG00000064120	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain+, MS/MS+	Matrix
+Aldh1l1	ENSMUSG00000030088	MitoCarta3.0	APEX_matrix, yeast mito homolog, Rickettsial homolog, mito p	Matrix
+Rfk	ENSMUSG00000024712	MitoCarta3.0	targetP signal, yeast mito homolog++, MS/MS	Matrix
+Dhrs1	ENSMUSG00000002332	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, MS	MIM
+Polg	ENSMUSG00000039176	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Prelid3a	ENSMUSG00000024530	MitoCarta3.0	yeast mito homolog+, mito protein domain+, MS/MS	IMS
+Timm8a2	ENSMUSG00000071229	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	IMS
+Slc25a14	ENSMUSG00000031105	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Rhot1	ENSMUSG00000017686	MitoCarta3.0	literature, targetP signal, yeast mito homolog, mito protein	MOM
+Gpx1	ENSMUSG00000063856	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Slc25a46	ENSMUSG00000024259	MitoCarta3.0	yeast mito homolog+, mito protein domain+, induction	MOM
+mt-Nd5	ENSMUSG00000064367	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, Rickettsial homolog, mito	MIM
+mt-Nd4	ENSMUSG00000064363	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, Rickettsial homolog, mito	MIM
+mt-Nd2	ENSMUSG00000064345	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain+, MS/MS	MIM
+Prelid1	ENSMUSG00000021486	MitoCarta3.0	literature, APEX_IMS, GFP, targetP signal, yeast mito homolo	IMS
+Tstd3	ENSMUSG00000028251	MitoCarta3.0	targetP signal, yeast mito homolog, Rickettsial homolog, mit	unknown
+Slc25a32	ENSMUSG00000022299	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, mito protei	MIM
+Mcu	ENSMUSG00000009647	MitoCarta3.0	literature, GFP, targetP signal, mito protein domain+, MS/MS	MIM
+Nipsnap1	ENSMUSG00000034285	MitoCarta3.0	APEX_matrix, targetP signal+, coexpression, MS/MS++	Matrix
+Pus1	ENSMUSG00000029507	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, mito prot	Matrix
+Pdp2	ENSMUSG00000048371	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog+, mito prote	Matrix
+Lypla1	ENSMUSG00000025903	MitoCarta3.0	Rickettsial homolog, mito protein domain, coexpression, MS/M	unknown
+Mthfd2l	ENSMUSG00000029376	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	Matrix
+Mtrf1	ENSMUSG00000022022	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Coq8b	ENSMUSG00000003762	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog+, Ricke	MIM
+Hemk1	ENSMUSG00000032579	MitoCarta3.0	GFP, targetP signal, yeast mito homolog, Rickettsial homolog	Matrix
+Akr7a5	ENSMUSG00000028743	MitoCarta3.0	APEX_matrix, targetP signal+, coexpression, MS/MS++	Matrix
+Cyp27a1	ENSMUSG00000026170	MitoCarta3.0	literature, targetP signal+, mito protein domain, MS/MS++	MIM
+Oxct2a	ENSMUSG00000076436	MitoCarta3.0	targetP signal+, mito protein domain, MS/MS++	Matrix
+Mrpl52	ENSMUSG00000010406	MitoCarta3.0	literature, APEX_matrix, targetP signal+, coexpression, MS/M	Matrix
+Fis1	ENSMUSG00000019054	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+	MOM
+Amt	ENSMUSG00000032607	MitoCarta3.0	targetP signal, yeast mito homolog, mito protein domain, MS/	Matrix
+Exog	ENSMUSG00000042787	MitoCarta3.0	APEX_IMS, targetP signal, yeast mito homolog, mito protein d	MIM
+Mpst	ENSMUSG00000071711	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	MIM
+Pnpo	ENSMUSG00000018659	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog++, coexpress	Matrix
+Mpv17l2	ENSMUSG00000035559	MitoCarta3.0	GFP, targetP signal, yeast mito homolog+, mito protein domai	MIM
+Fundc2	ENSMUSG00000031198	MitoCarta3.0	mito protein domain+, MS/MS++	MOM
+Mrpl18	ENSMUSG00000057388	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Atp5g2	ENSMUSG00000062683	MitoCarta3.0	literature, targetP signal+, yeast mito homolog+, Rickettsia	MIM
+Mettl5	ENSMUSG00000051730	MitoCarta3.0	Rickettsial homolog, mito protein domain+, induction, coexpr	Matrix
+Slc25a38	ENSMUSG00000032519	MitoCarta3.0	yeast mito homolog++, mito protein domain+, coexpression	MIM
+Slc25a36	ENSMUSG00000032449	MitoCarta3.0	GFP, yeast mito homolog+, mito protein domain+, coexpression	MIM
+Trmt2b	ENSMUSG00000067369	MitoCarta3.0	GFP, targetP signal, mito protein domain+, induction, coexpr	Matrix
+Abat	ENSMUSG00000057880	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Aldh5a1	ENSMUSG00000035936	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, MS/MS++	Matrix
+Got2	ENSMUSG00000031672	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, targetP signal, mito prot	MIM
+Ckmt1	ENSMUSG00000000308	MitoCarta3.0	literature, targetP signal, mito protein domain, MS/MS++	MIM
+Gtpbp3	ENSMUSG00000007610	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog+	Matrix
+Sirt3	ENSMUSG00000025486	MitoCarta3.0	literature, APEX_matrix, mito protein domain, induction, coe	Matrix
+C330018D20Rik	ENSMUSG00000024592	MitoCarta3.0	targetP signal, coexpression+, MS/MS	Matrix
+Parl	ENSMUSG00000033918	MitoCarta3.0	literature, targetP signal, yeast mito homolog++, mito prote	MIM
+Bloc1s1	ENSMUSG00000090247	MitoCarta3.0	mito protein domain, coexpression++, MS/MS	unknown
+Cox8c	ENSMUSG00000043319	MitoCarta3.0	literature, targetP signal, mito protein domain+, MS/MS	MIM
+Acly	ENSMUSG00000020917	MitoCarta3.0	APEX_matrix, yeast mito homolog+, Rickettsial homolog, mito 	Matrix
+Sfxn5	ENSMUSG00000033720	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+, MS/MS+	MIM
+Slc25a40	ENSMUSG00000054099	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Slc25a27	ENSMUSG00000023912	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Slc25a23	ENSMUSG00000046329	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Ucp3	ENSMUSG00000032942	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+, MS/MS	MIM
+Htra2	ENSMUSG00000068329	MitoCarta3.0	literature, APEX_IMS, targetP signal, Rickettsial homolog, m	MIM
+Nadk2	ENSMUSG00000022253	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	Matrix
+mt-Cytb	ENSMUSG00000064370	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Chchd5	ENSMUSG00000037938	MitoCarta3.0	APEX_IMS, yeast mito homolog++, coexpression, MS/MS	IMS
+Mrps31	ENSMUSG00000031533	MitoCarta3.0	literature, APEX_matrix, targetP signal, induction, coexpres	Matrix
+Ndufa1	ENSMUSG00000016427	MitoCarta3.0	literature, coexpression+, MS/MS++	MIM
+Hoga1	ENSMUSG00000025176	MitoCarta3.0	GFP, targetP signal, Rickettsial homolog, mito protein domai	Matrix
+Aldh3a2	ENSMUSG00000010025	MitoCarta3.0	targetP signal+, yeast mito homolog, mito protein domain, co	Membrane
+Pam16	ENSMUSG00000014301	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Tomm5	ENSMUSG00000078713	MitoCarta3.0	literature, mito protein domain+, MS/MS++	MOM
+Ndufb4	ENSMUSG00000022820	MitoCarta3.0	literature, mito protein domain+, MS/MS++	MIM
+Fam136a	ENSMUSG00000057497	MitoCarta3.0	APEX_IMS, mito protein domain+, MS/MS++	IMS
+Mpv17l	ENSMUSG00000022679	MitoCarta3.0	yeast mito homolog+, mito protein domain, MS/MS++	MIM
+Gykl1	ENSMUSG00000053624	MitoCarta3.0	yeast mito homolog+, mito protein domain, MS/MS++	Membrane
+Cpt1b	ENSMUSG00000078937	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain, MS/MS+	MOM
+Akr1b10	ENSMUSG00000061758	MitoCarta3.0	induction, coexpression, MS/MS++	unknown
+Slc25a2	ENSMUSG00000050304	MitoCarta3.0	literature, yeast mito homolog++, mito protein domain+	MIM
+Slc25a53	ENSMUSG00000044348	MitoCarta3.0	yeast mito homolog++, mito protein domain+	MIM
+Opa3	ENSMUSG00000052214	MitoCarta3.0	literature, targetP signal, coexpression, MS/MS++	MOM
+Fahd1	ENSMUSG00000045316	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog, mito protein do	Matrix
+Pxmp4	ENSMUSG00000000876	MitoCarta3.0	targetP signal, mito protein domain+, coexpression	unknown
+Nif3l1	ENSMUSG00000026036	MitoCarta3.0	APEX_matrix, targetP signal, yeast mito homolog, coexpressio	Matrix
+Grsf1	ENSMUSG00000044221	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, induction,	Matrix
+Macrod1	ENSMUSG00000036278	MitoCarta3.0	APEX_matrix, targetP signal, coexpression, MS/MS++	Matrix
+Cisd3	ENSMUSG00000078695	MitoCarta3.0	APEX_matrix, mito protein domain, coexpression, MS/MS++	Matrix
+Nmnat3	ENSMUSG00000032456	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS++	Matrix
+Nudt8	ENSMUSG00000024869	MitoCarta3.0	APEX_matrix, mito protein domain, coexpression, MS/MS++	Matrix
+Cat	ENSMUSG00000027187	MitoCarta3.0	yeast mito homolog++, mito protein domain, coexpression	IMS
+Dnajc19	ENSMUSG00000027679	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	MIM
+Elac2	ENSMUSG00000020549	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog, Ricket	Matrix
+Sugct	ENSMUSG00000055137	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	Matrix
+Hint3	ENSMUSG00000019791	MitoCarta3.0	Rickettsial homolog, mito protein domain, induction, coexpre	unknown
+Kars	ENSMUSG00000031948	MitoCarta3.0	literature, GFP, targetP signal+, Rickettsial homolog, mito 	Matrix
+Dnajc28	ENSMUSG00000039763	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, co	unknown
+Cyb5b	ENSMUSG00000031924	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS++	MOM
+Nudt2	ENSMUSG00000028443	MitoCarta3.0	mito protein domain, coexpression, MS/MS++	Matrix
+Phyh	ENSMUSG00000026664	MitoCarta3.0	targetP signal, induction, MS/MS++	Matrix
+Guk1	ENSMUSG00000020444	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, induction,	Matrix
+Nudt19	ENSMUSG00000034875	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain, induction	Matrix
+mt-Co3	ENSMUSG00000064358	MitoCarta3.0	literature, yeast mito homolog++, Rickettsial homolog, mito 	MIM
+Mrpl42	ENSMUSG00000062981	MitoCarta3.0	APEX_matrix, GFP, mito protein domain+, induction, MS/MS	Matrix
+Dhrs7b	ENSMUSG00000042569	MitoCarta3.0	Rickettsial homolog, mito protein domain, induction, coexpre	Membrane
+Nt5m	ENSMUSG00000032615	MitoCarta3.0	literature, targetP signal, mito protein domain, induction, 	Matrix
+Mthfsl	ENSMUSG00000079427	MitoCarta3.0	targetP signal, yeast mito homolog, Rickettsial homolog, mit	Matrix
+Mthfs	ENSMUSG00000066442	MitoCarta3.0	targetP signal, yeast mito homolog, Rickettsial homolog, mit	Matrix
+Nme4	ENSMUSG00000024177	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog, Ricket	MIM
+Oma1	ENSMUSG00000035069	MitoCarta3.0	APEX_IMS, GFP, targetP signal, yeast mito homolog++, coexpre	MIM
+Acsl6	ENSMUSG00000020333	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	MOM
+Rpusd3	ENSMUSG00000051169	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Acss1	ENSMUSG00000027452	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	MIM
+Dguok	ENSMUSG00000014554	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Pars2	ENSMUSG00000043572	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog, Ricket	Matrix
+Htatip2	ENSMUSG00000039745	MitoCarta3.0	yeast mito homolog, mito protein domain+, MS/MS	Membrane
+Qrsl1	ENSMUSG00000019863	MitoCarta3.0	literature, APEX_matrix, GFP, yeast mito homolog, Rickettsia	Matrix
+Naxd	ENSMUSG00000031505	MitoCarta3.0	GFP, targetP signal, mito protein domain, MS/MS++	MIM
+Chchd6	ENSMUSG00000030086	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, yeast mito homolog, coexp	MIM
+Pcbd2	ENSMUSG00000021496	MitoCarta3.0	targetP signal+, yeast mito homolog, induction, MS/MS	unknown
+Agmat	ENSMUSG00000040706	MitoCarta3.0	literature, targetP signal+, mito protein domain, MS/MS+	Matrix
+Micu2	ENSMUSG00000021973	MitoCarta3.0	literature, APEX_IMS, GFP, targetP signal+, mito protein dom	MIM
+Akr1b7	ENSMUSG00000052131	MitoCarta3.0	induction, coexpression, MS/MS++	unknown
+Scp2	ENSMUSG00000028603	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain+	MIM
+Rab24	ENSMUSG00000034789	MitoCarta3.0	yeast mito homolog, mito protein domain, induction, coexpres	MOM
+Mcub	ENSMUSG00000027994	MitoCarta3.0	literature, targetP signal+, mito protein domain+	MIM
+Lyplal1	ENSMUSG00000039246	MitoCarta3.0	targetP signal, mito protein domain, MS/MS++	unknown
+Spata19	ENSMUSG00000031991	MitoCarta3.0	mito protein domain+, MS/MS++	unknown
+mt-Atp8	ENSMUSG00000064356	MitoCarta3.0	literature, mito protein domain+, MS/MS++	MIM
+Ldhal6b	nan	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, MS	Matrix
+Aldh1a7	ENSMUSG00000024747	MitoCarta3.0	yeast mito homolog+, mito protein domain, coexpression, MS/M	unknown
+Kyat3	ENSMUSG00000040213	MitoCarta3.0	APEX_matrix, yeast mito homolog, Rickettsial homolog, mito p	Matrix
+Oxsm	ENSMUSG00000021786	MitoCarta3.0	literature, APEX_matrix, yeast mito homolog, Rickettsial hom	Matrix
+mt-Nd3	ENSMUSG00000064360	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain+, MS/MS	MIM
+Adck1	ENSMUSG00000021044	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Slc25a33	ENSMUSG00000028982	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+	MIM
+Mgst1	ENSMUSG00000008540	MitoCarta3.0	mito protein domain, coexpression, MS/MS++	Membrane
+Ung	ENSMUSG00000029591	MitoCarta3.0	literature, targetP signal, yeast mito homolog, mito protein	Matrix
+Nsun4	ENSMUSG00000028706	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, induction,	Matrix
+Tmem205	ENSMUSG00000040883	MitoCarta3.0	yeast mito homolog, mito protein domain+, coexpression	Membrane
+Dbi	ENSMUSG00000026385	MitoCarta3.0	targetP signal, mito protein domain, induction, coexpression	unknown
+Coasy	ENSMUSG00000001755	MitoCarta3.0	APEX_matrix, mito protein domain, coexpression, MS/MS++	Matrix
+Stard7	ENSMUSG00000027367	MitoCarta3.0	APEX_IMS, targetP signal, mito protein domain, induction, co	IMS
+Letm2	ENSMUSG00000037363	MitoCarta3.0	targetP signal, yeast mito homolog+, mito protein domain+	MIM
+Ptcd1	ENSMUSG00000029624	MitoCarta3.0	targetP signal, mito protein domain+, coexpression	Matrix
+Mtfp1	ENSMUSG00000004748	MitoCarta3.0	literature, induction, coexpression, MS/MS+	Membrane
+Coa4	ENSMUSG00000044881	MitoCarta3.0	yeast mito homolog++, mito protein domain, MS/MS	IMS
+Ephx2	ENSMUSG00000022040	MitoCarta3.0	Rickettsial homolog, mito protein domain, coexpression	unknown
+Nrd1	ENSMUSG00000053510	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain+	Matrix
+Acacb	ENSMUSG00000042010	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	MOM
+Mavs	ENSMUSG00000037523	MitoCarta3.0	literature, induction, coexpression+, MS/MS	MOM
+Tmem143	ENSMUSG00000002781	MitoCarta3.0	targetP signal, coexpression+, MS/MS	MIM
+Mtpap	ENSMUSG00000024234	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Sdsl	ENSMUSG00000029596	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Cmpk2	ENSMUSG00000020638	MitoCarta3.0	literature, targetP signal+, Rickettsial homolog, MS/MS	Matrix
+Glyctk	ENSMUSG00000020258	MitoCarta3.0	targetP signal, coexpression, MS/MS+	Matrix
+Rpusd4	ENSMUSG00000032044	MitoCarta3.0	APEX_matrix, GFP, targetP signal, Rickettsial homolog, mito 	Matrix
+Smim20	ENSMUSG00000061461	MitoCarta3.0	literature,targetP signal, coexpression, MS/MS	MIM
+Mterf4	ENSMUSG00000026273	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain+, coexpress	Matrix
+Top1mt	ENSMUSG00000000934	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Arg2	ENSMUSG00000021125	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Ptrh2	ENSMUSG00000072582	MitoCarta3.0	literature, yeast mito homolog, mito protein domain, MS/MS++	MOM
+Lyrm1	ENSMUSG00000030922	MitoCarta3.0	GFP, yeast mito homolog, mito protein domain+, MS/MS	unknown
+Aars2	ENSMUSG00000023938	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Acsl1	ENSMUSG00000018796	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	MOM
+Dnajc30	ENSMUSG00000061118	MitoCarta3.0	APEX_matrix, GFP, targetP signal, Rickettsial homolog, mito 	MIM
+Tmlhe	ENSMUSG00000079834	MitoCarta3.0	literature, APEX_matrix, targetP signal, yeast mito homolog,	Matrix
+Bax	ENSMUSG00000003873	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS++	MOM
+Cryzl2	ENSMUSG00000033488	MitoCarta3.0	targetP signal, mito protein domain, MS/MS++	Matrix
+Dnm1l	ENSMUSG00000022789	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain, induct	MOM
+Pxmp2	ENSMUSG00000029499	MitoCarta3.0	GFP, yeast mito homolog+, mito protein domain, induction	MIM
+Cox20	ENSMUSG00000026500	MitoCarta3.0	literature, APEX_IMS, GFP, yeast mito homolog++, MS/MS	MIM
+Tmem177	ENSMUSG00000036975	MitoCarta3.0	targetP signal, coexpression, MS/MS	MIM
+Tk2	ENSMUSG00000035824	MitoCarta3.0	literature, targetP signal+, mito protein domain, MS/MS	Matrix
+Fundc1	ENSMUSG00000025040	MitoCarta3.0	yeast mito homolog, mito protein domain+, MS/MS	MOM
+Pgs1	ENSMUSG00000017715	MitoCarta3.0	targetP signal, yeast mito homolog++	MIM
+Fasn	ENSMUSG00000025153	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	IMS
+Cbr2	ENSMUSG00000025150	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, MS	Matrix
+Chpt1	ENSMUSG00000060002	MitoCarta3.0	targetP signal, mito protein domain, induction, coexpression	MIM
+Atp5g1	ENSMUSG00000006057	MitoCarta3.0	literature, targetP signal, yeast mito homolog+, Rickettsial	MIM
+Fam210b	ENSMUSG00000027495	MitoCarta3.0	targetP signal, yeast mito homolog, coexpression, MS/MS	MIM
+Sfxn2	ENSMUSG00000025036	MitoCarta3.0	yeast mito homolog, mito protein domain+, coexpression	MIM
+Mmadhc	ENSMUSG00000026766	MitoCarta3.0	APEX_matrix, targetP signal, induction, coexpression	Matrix
+Otc	ENSMUSG00000031173	MitoCarta3.0	literature, targetP signal, mito protein domain, MS/MS+	Matrix
+Txnrd1	ENSMUSG00000020250	MitoCarta3.0	GFP, yeast mito homolog, Rickettsial homolog, mito protein d	unknown
+Arf5	ENSMUSG00000020440	MitoCarta3.0	targetP signal, mito protein domain, coexpression, MS/MS	unknown
+Fpgs	ENSMUSG00000009566	MitoCarta3.0	APEX_matrix, GFP, targetP signal, yeast mito homolog, Ricket	Matrix
+Trmt10c	ENSMUSG00000044763	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal+, mito protein 	Matrix
+Them7	ENSMUSG00000055312	MitoCarta3.0	targetP signal, mito protein domain, MS/MS+	Matrix
+Lactb2	ENSMUSG00000025937	MitoCarta3.0	mito protein domain, induction, MS/MS+	Matrix
+Smim26	ENSMUSG00000074754	MitoCarta3.0	induction, coexpression, MS/MS	Membrane
+Pgam5	ENSMUSG00000029500	MitoCarta3.0	APEX_IMS, mito protein domain, coexpression, MS/MS++	MOM
+Ptpmt1	ENSMUSG00000063235	MitoCarta3.0	literature, APEX_matrix, mito protein domain, coexpression, 	MIM
+Hebp1	ENSMUSG00000042770	MitoCarta3.0	APEX_IMS, mito protein domain, coexpression, MS/MS++	IMS
+Abcd1	ENSMUSG00000031378	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, in	Membrane
+Hsdl1	ENSMUSG00000034189	MitoCarta3.0	GFP, Rickettsial homolog, mito protein domain, MS/MS++	unknown
+Cbr3	ENSMUSG00000022947	MitoCarta3.0	targetP signal, yeast mito homolog, Rickettsial homolog, mit	Matrix
+Prdx6	ENSMUSG00000026701	MitoCarta3.0	yeast mito homolog+, Rickettsial homolog, mito protein domai	unknown
+Dnajc4	ENSMUSG00000024963	MitoCarta3.0	GFP, targetP signal, Rickettsial homolog, mito protein domai	Membrane
+Cebpzos	ENSMUSG00000062691	MitoCarta3.0	coexpression+, MS/MS+	unknown
+Foxred1	ENSMUSG00000039048	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MIM
+Eri3	ENSMUSG00000033423	MitoCarta3.0	targetP signal+, mito protein domain, MS/MS	Matrix
+Dhx30	ENSMUSG00000032480	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, mito protei	Matrix
+Bcl2l13	ENSMUSG00000009112	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS+	MOM
+Acp6	ENSMUSG00000028093	MitoCarta3.0	literature, APEX_IMS, targetP signal, mito protein domain, M	IMS
+Cox7a2l	ENSMUSG00000024248	MitoCarta3.0	literature, APEX_IMS, APEX_matrix, mito protein domain+, MS/	MIM
+Tstd1	ENSMUSG00000091166	MitoCarta3.0	targetP signal, yeast mito homolog, mito protein domain, MS/	unknown
+Qdpr	ENSMUSG00000015806	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, induction	Matrix
+Acsm2	ENSMUSG00000030945	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	Matrix
+Adck2	ENSMUSG00000046947	MitoCarta3.0	GFP, targetP signal, yeast mito homolog, Rickettsial homolog	MIM
+Osbpl1a	ENSMUSG00000044252	MitoCarta3.0	Rickettsial homolog, mito protein domain, induction, MS/MS	unknown
+Trmt1	ENSMUSG00000001909	MitoCarta3.0	targetP signal+, yeast mito homolog, mito protein domain, co	Matrix
+Mtif3	ENSMUSG00000016510	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, mito protein d	Matrix
+Pet100	ENSMUSG00000087687	MitoCarta3.0	literature, yeast mito homolog++, MS/MS	MIM
+Mtfr1	ENSMUSG00000027601	MitoCarta3.0	literature, targetP signal, mito protein domain+, coexpressi	Membrane
+Tfb1m	ENSMUSG00000036983	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, mito protein d	Matrix
+Fth1	ENSMUSG00000024661	MitoCarta3.0	mito protein domain, MS/MS++	unknown
+Tspo	ENSMUSG00000041736	MitoCarta3.0	literature, mito protein domain, MS/MS++	MOM
+Glyat	ENSMUSG00000063683	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS+	Matrix
+Rbfa	ENSMUSG00000024570	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, coexpressi	Matrix
+Rnaseh1	ENSMUSG00000020630	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Tmem186	ENSMUSG00000043140	MitoCarta3.0	targetP signal, coexpression, MS/MS	MIM
+Pex11b	ENSMUSG00000028102	MitoCarta3.0	targetP signal, coexpression, MS/MS	Membrane
+Nudt5	ENSMUSG00000025817	MitoCarta3.0	yeast mito homolog++, mito protein domain, coexpression	unknown
+Sod1	ENSMUSG00000022982	MitoCarta3.0	literature, yeast mito homolog, mito protein domain, inducti	IMS
+Star	ENSMUSG00000031574	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MOM | IMS
+Gtpbp10	ENSMUSG00000040464	MitoCarta3.0	APEX_matrix, yeast mito homolog+, Rickettsial homolog, mito 	Matrix
+Acss3	ENSMUSG00000035948	MitoCarta3.0	targetP signal, yeast mito homolog, mito protein domain, MS/	Matrix
+Ccdc51	ENSMUSG00000025645	MitoCarta3.0	APEX_matrix, targetP signal, MS/MS++	MIM
+Acot9	ENSMUSG00000025287	MitoCarta3.0	literature, targetP signal, MS/MS++	MIM
+Ndufaf3	ENSMUSG00000070283	MitoCarta3.0	literature, targetP signal, mito protein domain, MS/MS	MIM
+Flad1	ENSMUSG00000042642	MitoCarta3.0	APEX_matrix, mito protein domain, induction, coexpression	Matrix
+Acaca	ENSMUSG00000020532	MitoCarta3.0	yeast mito homolog, Rickettsial homolog, mito protein domain	Matrix
+Kmo	ENSMUSG00000039783	MitoCarta3.0	yeast mito homolog, mito protein domain, MS/MS++	MOM
+Mterf3	ENSMUSG00000021519	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal, mito protein d	Matrix
+Oxr1	ENSMUSG00000022307	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain, MS/MS	MOM
+Nudt9	ENSMUSG00000029310	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	Matrix
+Thnsl1	ENSMUSG00000048550	MitoCarta3.0	APEX_matrix, mito protein domain, MS/MS++	Matrix
+Pycr2	ENSMUSG00000026520	MitoCarta3.0	APEX_matrix, mito protein domain, MS/MS++	Matrix
+Hint1	ENSMUSG00000020267	MitoCarta3.0	Rickettsial homolog, mito protein domain, coexpression	unknown
+Slc25a34	ENSMUSG00000040740	MitoCarta3.0	yeast mito homolog+, mito protein domain+	MIM
+Slc25a48	ENSMUSG00000021509	MitoCarta3.0	yeast mito homolog+, mito protein domain+	MIM
+Slc25a28	ENSMUSG00000040414	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+	MIM
+Slc25a43	ENSMUSG00000037636	MitoCarta3.0	yeast mito homolog+, mito protein domain+	MIM
+Slc25a47	ENSMUSG00000048856	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+	MIM
+Slc25a41	ENSMUSG00000011486	MitoCarta3.0	yeast mito homolog+, mito protein domain+	MIM
+Slc25a54	ENSMUSG00000027880	MitoCarta3.0	yeast mito homolog+, mito protein domain+	Membrane
+Slc25a37	ENSMUSG00000034248	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+	MIM
+Ucp2	ENSMUSG00000033685	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain+	MIM
+Ybey	ENSMUSG00000033126	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, MS/MS	Matrix
+Ogg1	ENSMUSG00000030271	MitoCarta3.0	literature, targetP signal+, yeast mito homolog, mito protei	Matrix
+Gm4952	ENSMUSG00000071633	MitoCarta3.0	mito protein domain, MS/MS++	unknown
+Fabp1	ENSMUSG00000054422	MitoCarta3.0	mito protein domain, MS/MS++	unknown
+Mettl15	ENSMUSG00000057234	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, coexpressi	Matrix
+Metap1d	ENSMUSG00000041921	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Ldhb	ENSMUSG00000030246	MitoCarta3.0	Rickettsial homolog, mito protein domain, induction	unknown
+Lyrm9	ENSMUSG00000072640	MitoCarta3.0	mito protein domain+, MS/MS	unknown
+Mtarc1	ENSMUSG00000026621	MitoCarta3.0	mito protein domain+, MS/MS	MOM
+Recql4	ENSMUSG00000033762	MitoCarta3.0	targetP signal, Rickettsial homolog, mito protein domain, co	Matrix
+Plpbp	ENSMUSG00000031485	MitoCarta3.0	APEX_matrix, targetP signal, coexpression, MS/MS++	Matrix
+Mul1	ENSMUSG00000041241	MitoCarta3.0	literature, mito protein domain+, induction	MOM
+Nudt6	ENSMUSG00000050174	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain, coexpressi	Matrix
+Pink1	ENSMUSG00000028756	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MOM
+Vps13d	ENSMUSG00000020220	MitoCarta3.0	manual, yeast mito homolog, mito protein domain, induction, 	MOM
+Dmac2	ENSMUSG00000057229	MitoCarta3.0	APEX_matrix, GFP, targetP signal, induction, MS/MS	MIM
+Micu1	ENSMUSG00000020111	MitoCarta3.0	literature, APEX_IMS, GFP, targetP signal, mito protein doma	MIM
+Nt5dc3	ENSMUSG00000054027	MitoCarta3.0	APEX_matrix, targetP signal, MS/MS++	Matrix
+Nipsnap3a	ENSMUSG00000015242	MitoCarta3.0	APEX_matrix, targetP signal, MS/MS++	Matrix
+Top3a	ENSMUSG00000002814	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Amacr	ENSMUSG00000022244	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS	Matrix
+Trmt5	ENSMUSG00000034442	MitoCarta3.0	literature,targetP signal, yeast mito homolog, mito protein 	Matrix
+Micu3	ENSMUSG00000039478	MitoCarta3.0	manual, targetP signal, mito protein domain, MS/MS	MIM
+Pnkd	ENSMUSG00000026179	MitoCarta3.0	literature,targetP signal, mito protein domain, MS/MS	MIM
+Car5a	ENSMUSG00000025317	MitoCarta3.0	literature, targetP signal, mito protein domain, MS/MS	Matrix
+Nthl1	ENSMUSG00000041429	MitoCarta3.0	literature, targetP signal, yeast mito homolog, Rickettsial 	unknown
+Arl2	ENSMUSG00000024944	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS+	IMS
+Synj2bp	ENSMUSG00000090935	MitoCarta3.0	APEX_IMS, mito protein domain, coexpression, MS/MS+	MOM
+Mettl8	ENSMUSG00000041975	MitoCarta3.0	APEX_matrix, targetP signal, mito protein domain+	Matrix
+Mterf1b	ENSMUSG00000053178	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Rsad1	ENSMUSG00000039096	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	MIM
+Fdps	ENSMUSG00000059743	MitoCarta3.0	Rickettsial homolog, mito protein domain, MS/MS+	MIM
+Ociad1	ENSMUSG00000029152	MitoCarta3.0	APEX_IMS, GFP, MS/MS++	MOM
+Fastk	ENSMUSG00000028959	MitoCarta3.0	GFP, targetP signal, induction, coexpression	MIM
+Acsm4	ENSMUSG00000047026	MitoCarta3.0	manual, targetP signal, yeast mito homolog, Rickettsial homo	Matrix
+Nme6	ENSMUSG00000032478	MitoCarta3.0	literature, APEX_matrix, GFP, yeast mito homolog, Rickettsia	Matrix
+Ahcyl1	ENSMUSG00000027893	MitoCarta3.0	mito protein domain+, induction	MOM
+Smim8	ENSMUSG00000028295	MitoCarta3.0	manual, induction, coexpression, MS/MS	MOM
+Idi1	ENSMUSG00000058258	MitoCarta3.0	targetP signal, mito protein domain, MS/MS+	Matrix
+Mtx3	ENSMUSG00000021704	MitoCarta3.0	manual, mito protein domain+, MS/MS	MOM
+Tmem126b	ENSMUSG00000030614	MitoCarta3.0	mito protein domain+, MS/MS	MIM
+Bnip3	ENSMUSG00000078566	MitoCarta3.0	literature, mito protein domain+, MS/MS	MOM
+Fkbp8	ENSMUSG00000019428	MitoCarta3.0	literature, yeast mito homolog, mito protein domain, coexpre	MOM
+Mcrip2	ENSMUSG00000025732	MitoCarta3.0	induction, coexpression+	unknown
+Bola3	ENSMUSG00000045160	MitoCarta3.0	targetP signal, mito protein domain, MS/MS	Matrix
+Pnpt1	ENSMUSG00000020464	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix|IMS
+Pde12	ENSMUSG00000043702	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain	Matrix
+Usp30	ENSMUSG00000029592	MitoCarta3.0	literature,targetP signal+, mito protein domain	MOM
+Tfb2m	ENSMUSG00000026492	MitoCarta3.0	literature, APEX_matrix, targetP signal+, mito protein domai	Matrix
+Mrps18b	ENSMUSG00000024436	MitoCarta3.0	literature, APEX_matrix, Rickettsial homolog, mito protein d	Matrix
+Maob	ENSMUSG00000040147	MitoCarta3.0	literature, mito protein domain, MS/MS++	MOM
+Prxl2a	ENSMUSG00000021792	MitoCarta3.0	GFP, mito protein domain, MS/MS++	Membrane
+Mgst3	ENSMUSG00000026688	MitoCarta3.0	APEX_IMS, mito protein domain, MS/MS++	MOM
+Dhodh	ENSMUSG00000031730	MitoCarta3.0	literature, mito protein domain, MS/MS++	MIM
+Mrpl48	ENSMUSG00000030706	MitoCarta3.0	literature, APEX_matrix, mito protein domain, MS/MS++	Matrix
+Gdap1	ENSMUSG00000025777	MitoCarta3.0	APEX_IMS, mito protein domain, MS/MS++	MOM
+Bak1	ENSMUSG00000057789	MitoCarta3.0	literature, mito protein domain, MS/MS++	MOM
+mt-Nd1	ENSMUSG00000064341	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain, MS/MS	MIM
+Ociad2	ENSMUSG00000029153	MitoCarta3.0	MS/MS++	unknown
+Taz	ENSMUSG00000009995	MitoCarta3.0	literature,yeast mito homolog++, mito protein domain	IMS
+Dcxr	ENSMUSG00000039450	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Pmaip1	ENSMUSG00000024521	MitoCarta3.0	literature, targetP signal, mito protein domain+	MOM
+Nipsnap3b	ENSMUSG00000015247	MitoCarta3.0	GFP, targetP signal, MS/MS+	Matrix
+Mmaa	ENSMUSG00000037022	MitoCarta3.0	manual, targetP signal, coexpression+	Matrix
+Cyp11a1	ENSMUSG00000032323	MitoCarta3.0	literature, mito protein domain, MS/MS+	MIM
+Aifm2	ENSMUSG00000020085	MitoCarta3.0	literature, yeast mito homolog, Rickettsial homolog, mito pr	Membrane
+Marchf5	ENSMUSG00000023307	MitoCarta3.0	literature, mito protein domain, coexpression, MS/MS	MOM
+Prdx2	ENSMUSG00000005161	MitoCarta3.0	GFP, Rickettsial homolog, mito protein domain, coexpression	unknown
+Sfxn4	ENSMUSG00000063698	MitoCarta3.0	literature, yeast mito homolog, mito protein domain+	MIM
+Ifi27	ENSMUSG00000064215	MitoCarta3.0	literature, targetP signal, induction, coexpression	Membrane
+Abca9	ENSMUSG00000041797	MitoCarta3.0	GFP, targetP signal, Rickettsial homolog, mito protein domai	Membrane
+Ddx28	ENSMUSG00000045538	MitoCarta3.0	literature, APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Acot7	ENSMUSG00000028937	MitoCarta3.0	targetP signal, mito protein domain, induction	Matrix
+Msrb3	ENSMUSG00000051236	MitoCarta3.0	yeast mito homolog+, mito protein domain	unknown
+2300009A05Rik	ENSMUSG00000032403	MitoCarta3.0	APEX_matrix, targetP signal, MS/MS	Matrix
+Agpat5	ENSMUSG00000031467	MitoCarta3.0	literature, mito protein domain, induction, MS/MS	MOM
+Acod1	ENSMUSG00000022126	MitoCarta3.0	literature,yeast mito homolog, mito protein domain+	Matrix
+Fbxl4	ENSMUSG00000040410	MitoCarta3.0	literature, mito protein domain, coexpression	IMS
+Ftmt	ENSMUSG00000024510	MitoCarta3.0	literature, targetP signal, mito protein domain, MS/MS	Matrix
+Gpam	ENSMUSG00000024978	MitoCarta3.0	literature, mito protein domain, coexpression	Membrane
+Qtrt1	ENSMUSG00000002825	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Hpdl	ENSMUSG00000043155	MitoCarta3.0	manual, targetP signal, induction	unknown
+Isoc2a	ENSMUSG00000086784	MitoCarta3.0	APEX_matrix, MS/MS++	Matrix
+Cyp11b1	ENSMUSG00000075604	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MIM
+Cyp11b2	ENSMUSG00000022589	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	MIM
+Pet117	ENSMUSG00000098387	MitoCarta3.0	literature, yeast mito homolog, MS/MS	MIM
+Dhrs2	ENSMUSG00000022209	MitoCarta3.0	literature,targetP signal, Rickettsial homolog, mito protein	Matrix
+Cdk5rap1	ENSMUSG00000027487	MitoCarta3.0	literature,targetP signal, Rickettsial homolog, mito protein	Matrix
+Snd1	ENSMUSG00000001424	MitoCarta3.0	GFP, yeast mito homolog, mito protein domain	unknown
+Cyb5r3	ENSMUSG00000018042	MitoCarta3.0	literature, mito protein domain, MS/MS+	MOM
+Maoa	ENSMUSG00000025037	MitoCarta3.0	literature, mito protein domain, MS/MS+	MOM
+Mff	ENSMUSG00000026150	MitoCarta3.0	literature, induction, MS/MS	MOM
+Nlrx1	ENSMUSG00000032109	MitoCarta3.0	APEX_matrix, targetP signal, MS/MS	Matrix
+Fam185a	ENSMUSG00000047221	MitoCarta3.0	APEX_matrix, targetP signal, coexpression	Matrix
+Mief1	ENSMUSG00000022412	MitoCarta3.0	literature, mito protein domain, induction, coexpression	MOM | Matrix
+Coa7	ENSMUSG00000048351	MitoCarta3.0	literature, APEX_IMS, mito protein domain, coexpression, MS/	IMS
+Acot11	ENSMUSG00000034853	MitoCarta3.0	literature,targetP signal, mito protein domain, coexpression	Matrix
+Pusl1	ENSMUSG00000051557	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog, mito prote	Matrix
+Polq	ENSMUSG00000034206	MitoCarta3.0	literature,targetP signal, Rickettsial homolog, mito protein	Matrix
+Dmac2l	ENSMUSG00000054894	MitoCarta3.0	literature, APEX_matrix, MS/MS++	MIM
+Rmdn3	ENSMUSG00000070730	MitoCarta3.0	literature, APEX_IMS, GFP, MS/MS++	MOM
+Atp5md	ENSMUSG00000071528	MitoCarta3.0	GFP, MS/MS++	MIM
+Tomm20	ENSMUSG00000093904	MitoCarta3.0	literature, yeast mito homolog+	MOM
+Bnip3l	ENSMUSG00000022051	MitoCarta3.0	literature, mito protein domain+, coexpression	MOM
+Aifm3	ENSMUSG00000022763	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain+	MIM
+Timm29	ENSMUSG00000048429	MitoCarta3.0	coexpression, MS/MS	MIM
+Ppm1k	ENSMUSG00000037826	MitoCarta3.0	literature, targetP signal, mito protein domain	Matrix
+Sirt4	ENSMUSG00000029524	MitoCarta3.0	literature, targetP signal, mito protein domain	Matrix
+Park7	ENSMUSG00000028964	MitoCarta3.0	literature, mito protein domain, coexpression	MOM
+Mterf1a	ENSMUSG00000040429	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+mt-Nd4l	ENSMUSG00000065947	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain	MIM
+AA467197	ENSMUSG00000033213	MitoCarta3.0	GFP, mito protein domain, MS/MS+	Membrane
+Uqcc2	ENSMUSG00000024208	MitoCarta3.0	APEX_matrix, GFP, coexpression, MS/MS	MIM
+Nme3	ENSMUSG00000073435	MitoCarta3.0	GFP, yeast mito homolog, Rickettsial homolog, mito protein d	MOM
+Gtpbp6	ENSMUSG00000033434	MitoCarta3.0	APEX_matrix, targetP signal+, mito protein domain	Matrix
+Them5	ENSMUSG00000028148	MitoCarta3.0	literature,targetP signal+, mito protein domain	Matrix
+Prkaca	ENSMUSG00000005469	MitoCarta3.0	literature,mito protein domain, coexpression	MIM
+Miga2	ENSMUSG00000026858	MitoCarta3.0	literature,coexpression	MOM
+Mgarp	ENSMUSG00000037161	MitoCarta3.0	literature, APEX_IMS, targetP signal, yeast mito homolog, co	Membrane
+Mcl1	ENSMUSG00000038612	MitoCarta3.0	manual, targetP signal, mito protein domain	MOM
+Myg1	ENSMUSG00000001285	MitoCarta3.0	literature, targetP signal, mito protein domain, coexpressio	Matrix
+Etfbkmt	ENSMUSG00000039958	MitoCarta3.0	literature,mito protein domain+	Matrix
+Mutyh	ENSMUSG00000028687	MitoCarta3.0	GFP, targetP signal, Rickettsial homolog, mito protein domai	Matrix
+Fastkd5	ENSMUSG00000079043	MitoCarta3.0	APEX_matrix, targetP signal, coexpression	Matrix
+Paics	ENSMUSG00000029247	MitoCarta3.0	APEX_matrix, Rickettsial homolog, coexpression	Matrix
+Cpt1c	ENSMUSG00000007783	MitoCarta3.0	literature, yeast mito homolog+, mito protein domain	MOM
+Rcc1l	ENSMUSG00000061979	MitoCarta3.0	literature, APEX_matrix, targetP signal, coexpression	Matrix
+Antkmt	ENSMUSG00000057411	MitoCarta3.0	literature,coexpression, MS/MS	MIM
+Uqcc3	ENSMUSG00000071654	MitoCarta3.0	literature,coexpression, MS/MS	MIM
+Prdx4	ENSMUSG00000025289	MitoCarta3.0	APEX_IMS, Rickettsial homolog, mito protein domain	IMS
+Pycr1	ENSMUSG00000025140	MitoCarta3.0	literature, mito protein domain, MS/MS	Matrix
+Cryz	ENSMUSG00000028199	MitoCarta3.0	APEX_matrix, mito protein domain, MS/MS	Matrix
+Angel2	ENSMUSG00000026634	MitoCarta3.0	APEX_matrix, mito protein domain, MS/MS	Matrix
+Mgme1	ENSMUSG00000027424	MitoCarta3.0	literature, APEX_matrix, GFP, targetP signal	Matrix
+Agpat4	ENSMUSG00000023827	MitoCarta3.0	literature,mito protein domain, induction	MOM
+Comtd1	ENSMUSG00000021773	MitoCarta3.0	GFP, MS/MS++	Membrane
+Neu4	ENSMUSG00000034000	MitoCarta3.0	GFP, targetP signal+	MOM
+Cyp27b1	ENSMUSG00000006724	MitoCarta3.0	literature, targetP signal, mito protein domain	MIM
+Noct	ENSMUSG00000023087	MitoCarta3.0	literature,targetP signal, mito protein domain	Matrix
+Hdhd3	ENSMUSG00000038422	MitoCarta3.0	APEX_matrix, MS/MS++	Matrix
+Slc8b1	ENSMUSG00000032754	MitoCarta3.0	literature,mito protein domain, induction	MIM
+mt-Nd6	ENSMUSG00000064368	MitoCarta3.0	literature, Rickettsial homolog, mito protein domain	MIM
+Dmac1	ENSMUSG00000028398	MitoCarta3.0	literature,MS/MS	MIM
+Bco2	ENSMUSG00000032066	MitoCarta3.0	literature,mito protein domain, MS/MS	MIM
+Tdrkh	ENSMUSG00000041912	MitoCarta3.0	GFP, mito protein domain, MS/MS	Membrane
+Gpx4	ENSMUSG00000075706	MitoCarta3.0	literature, yeast mito homolog, mito protein domain	MIM
+Comt	ENSMUSG00000000326	MitoCarta3.0	GFP, induction, coexpression	Membrane
+Mtfr2	ENSMUSG00000019992	MitoCarta3.0	manual, mito protein domain+	Membrane
+Bik	ENSMUSG00000016758	MitoCarta3.0	manual, mito protein domain+	MOM
+Lig3	ENSMUSG00000020697	MitoCarta3.0	literature,yeast mito homolog, mito protein domain, coexpres	Matrix
+Cry1	ENSMUSG00000020038	MitoCarta3.0	literature, yeast mito homolog, mito protein domain, coexpre	unknown
+Trub2	ENSMUSG00000039826	MitoCarta3.0	APEX_matrix, yeast mito homolog, Rickettsial homolog, mito p	Matrix
+Tomm20l	ENSMUSG00000021078	MitoCarta3.0	manual, yeast mito homolog+	MOM
+Ccdc127	ENSMUSG00000021578	MitoCarta3.0	APEX_IMS, MS/MS	Membrane
+Yrdc	ENSMUSG00000028889	MitoCarta3.0	manual, targetP signal, Rickettsial homolog	Matrix
+Prepl	ENSMUSG00000024127	MitoCarta3.0	APEX_matrix, targetP signal, Rickettsial homolog	Matrix
+Myo19	ENSMUSG00000020527	MitoCarta3.0	literature,yeast mito homolog, mito protein domain	MOM
+Thg1l	ENSMUSG00000011254	MitoCarta3.0	literature, targetP signal, coexpression	Matrix
+Pif1	ENSMUSG00000041064	MitoCarta3.0	literature, yeast mito homolog, mito protein domain	Matrix
+Rab5if	ENSMUSG00000027637	MitoCarta3.0	GFP, induction, coexpression	MIM
+Cep89	ENSMUSG00000023072	MitoCarta3.0	literature, targetP signal	IMS
+Acot10	ENSMUSG00000047565	MitoCarta3.0	literature, targetP signal	Matrix
+Efhd1	ENSMUSG00000026255	MitoCarta3.0	literature, mito protein domain, induction	MIM
+Bid	ENSMUSG00000004446	MitoCarta3.0	literature, mito protein domain, coexpression	MOM
+Atpsckmt	ENSMUSG00000039065	MitoCarta3.0	literature,coexpression	MIM
+Cyp24a1	ENSMUSG00000038567	MitoCarta3.0	literature, targetP signal, mito protein domain	MIM
+Sptlc2	ENSMUSG00000021036	MitoCarta3.0	GFP, Rickettsial homolog, mito protein domain	Membrane
+Apex1	ENSMUSG00000035960	MitoCarta3.0	literature,Rickettsial homolog, mito protein domain	Matrix
+E130311K13Rik	ENSMUSG00000048581	MitoCarta3.0	APEX_matrix, MS/MS	Matrix
+Agk	ENSMUSG00000029916	MitoCarta3.0	literature, APEX_IMS, mito protein domain	MIM
+Dus2	ENSMUSG00000031901	MitoCarta3.0	GFP, Rickettsial homolog, mito protein domain	Matrix
+Pank2	ENSMUSG00000037514	MitoCarta3.0	literature, targetP signal, mito protein domain	IMS
+Polg2	ENSMUSG00000020718	MitoCarta3.0	literature, APEX_matrix, targetP signal, mito protein domain	Matrix
+Gpat2	ENSMUSG00000046338	MitoCarta3.0	manual, mito protein domain	MOM
+Tomm34	ENSMUSG00000018322	MitoCarta3.0	literature, mito protein domain	MOM
+Plscr3	ENSMUSG00000019461	MitoCarta3.0	literature,yeast mito homolog, mito protein domain	MIM
+Fkbp10	ENSMUSG00000001555	MitoCarta3.0	APEX_IMS, mito protein domain	IMS
+Exd2	ENSMUSG00000032705	MitoCarta3.0	literature,mito protein domain	Matrix
+Bcl2l1	ENSMUSG00000007659	MitoCarta3.0	literature, mito protein domain	MOM
+Golph3	ENSMUSG00000022200	MitoCarta3.0	literature, targetP signal, induction	IMS
+Nt5dc2	ENSMUSG00000071547	MitoCarta3.0	APEX_matrix, MS/MS	Matrix
+Armc10	ENSMUSG00000038525	MitoCarta3.0	GFP, MS/MS	MOM
+Alkbh1	ENSMUSG00000079036	MitoCarta3.0	literature, APEX_matrix, mito protein domain	Matrix
+Akap10	ENSMUSG00000047804	MitoCarta3.0	literature, mito protein domain	MOM
+Serac1	ENSMUSG00000015659	MitoCarta3.0	literature, APEX_IMS, targetP signal	MOM
+Septin4	ENSMUSG00000020486	MitoCarta3.0	literature, mito protein domain	MOM
+Fastkd3	ENSMUSG00000021532	MitoCarta3.0	APEX_matrix, targetP signal	Matrix
+Bcl2l11	ENSMUSG00000027381	MitoCarta3.0	manual, targetP signal	MOM
+Nbr1	ENSMUSG00000017119	MitoCarta3.0	APEX_IMS, coexpression	IMS
+Rpia	ENSMUSG00000053604	MitoCarta3.0	APEX_matrix, targetP signal	Matrix
+Bok	ENSMUSG00000026278	MitoCarta3.0	manual, mito protein domain	MOM
+Miga1	ENSMUSG00000054942	MitoCarta3.0	literature	MOM
+Prorp	ENSMUSG00000021023	MitoCarta3.0	APEX_matrix	Matrix
+Stx17	ENSMUSG00000061455	MitoCarta3.0	APEX_IMS, coexpression	MOM
+Primpol	ENSMUSG00000038225	MitoCarta3.0	literature,mito protein domain	Matrix
+Dna2	ENSMUSG00000036875	MitoCarta3.0	literature, mito protein domain	Matrix
+Adcy10	ENSMUSG00000026567	MitoCarta3.0	literature,mito protein domain	Membrane
+Prss35	ENSMUSG00000033491	MitoCarta3.0	GFP, mito protein domain	unknown
+Mief2	ENSMUSG00000018599	MitoCarta3.0	literature,mito protein domain	MOM
+Nsun3	ENSMUSG00000050312	MitoCarta3.0	APEX_matrix, mito protein domain	Matrix
+Pabpc5	ENSMUSG00000034732	MitoCarta3.0	literature, mito protein domain	Matrix
+Styxl1	ENSMUSG00000019178	MitoCarta3.0	literature,mito protein domain	Matrix
+Sphk2	ENSMUSG00000057342	MitoCarta3.0	literature,mito protein domain	MIM
+Prkn	ENSMUSG00000023826	MitoCarta3.0	manual, mito protein domain	MOM
+Nsun2	ENSMUSG00000021595	MitoCarta3.0	literature,mito protein domain	Matrix
+Pick1	ENSMUSG00000068206	MitoCarta3.0	literature, mito protein domain	unknown
+Dmpk	ENSMUSG00000030409	MitoCarta3.0	literature, mito protein domain	MOM
+Casp9	ENSMUSG00000028914	MitoCarta3.0	literature,mito protein domain	IMS
+Casp8	ENSMUSG00000026029	MitoCarta3.0	literature, mito protein domain	MOM
+Casp3	ENSMUSG00000031628	MitoCarta3.0	literature,mito protein domain	IMS
+Bcl2l2	ENSMUSG00000089682	MitoCarta3.0	literature, mito protein domain	MOM
+Bcl2l10	ENSMUSG00000032191	MitoCarta3.0	manual, mito protein domain	MOM
+Bcl2a1d	ENSMUSG00000096581	MitoCarta3.0	manual, mito protein domain	MOM
+Bcl2	ENSMUSG00000057329	MitoCarta3.0	literature, mito protein domain	MOM
+Bad	ENSMUSG00000024959	MitoCarta3.0	literature, mito protein domain	MOM
+Pde2a	ENSMUSG00000030653	MitoCarta3.0	literature,targetP signal	MIM
+Spata20	ENSMUSG00000020867	MitoCarta3.0	APEX_matrix	Matrix
+Plgrkt	ENSMUSG00000016495	MitoCarta3.0	GFP	Membrane
+Pld6	ENSMUSG00000043648	MitoCarta3.0	literature	MOM
+Bbc3	ENSMUSG00000002083	MitoCarta3.0	manual	MOM
+Cstad	ENSMUSG00000047363	MitoCarta3.0	literature	MOM
+1700066M21Rik	ENSMUSG00000038323	MitoCarta3.0	APEX_matrix	Matrix
+Spire1	ENSMUSG00000024533	MitoCarta3.0	literature	MOM
+Armcx1	ENSMUSG00000033460	MitoCarta3.0	literature	MOM
+Armcx2	ENSMUSG00000033436	MitoCarta3.0	literature	Membrane
+Armcx6	ENSMUSG00000050394	MitoCarta3.0	literature	Membrane
+Nat8l	ENSMUSG00000048142	MitoCarta3.0	literature	Membrane
+Sphkap	ENSMUSG00000026163	MitoCarta3.0	manual	MIM
+Mettl4	ENSMUSG00000055660	MitoCarta3.0	literature	Matrix
+Armcx3	ENSMUSG00000049047	MitoCarta3.0	literature	MOM
+Snap29	ENSMUSG00000022765	MitoCarta3.0	APEX_IMS	IMS
+Polb	ENSMUSG00000031536	MitoCarta3.0	literature	Matrix
+Htd2	ENSMUSG00000023156	MitoCarta3.0	literature	Matrix
+Pigbos1	ENSMUSG00000098332	MitoCarta3.0	literature	MOM

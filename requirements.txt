@@ -4,3 +4,11 @@ cobra
 numpy
 scipy
 pandas
+matplotlib
+seaborn
+statsmodels
+scikit-learn
+adjustText
+# module_1 clusters with scanpy's igraph-flavoured Leiden
+igraph
+leidenalg

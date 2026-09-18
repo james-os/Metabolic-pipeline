@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+# reference models downloaded by model_gene_audit (~95 MB)
+metabolic_tools/data/refs/
