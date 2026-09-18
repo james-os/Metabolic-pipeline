@@ -24,13 +24,50 @@ def compute_pca(adata, n_top_genes=2000, n_pcs=30, key='X_pca'):
     return adata.obsm[key]
 
 
-def _balanced_partition(coords, weights, n_groups, n_iter=15, slack=0.1, random_state=0):
+def _fill_starved(coords, weights, labels, centres, floor):
+    """
+    Tops up any group left below `floor` total weight from the groups that have weight to spare.
+
+    The capacity cap only limits how heavy a group may become, so a group that few cells prefer can
+    be left starved while every other group sits just under the cap. The caller only asks for as
+    many groups as the weight can afford, so each group can reach the floor; this moves whichever
+    spare cell lies closest to the starved group's centroid, which keeps the groups compact.
+
+    Groups can still finish below the floor if no single cell can be moved without pushing its own
+    group under, so callers must keep treating the floor as a target rather than a guarantee.
+    """
+    if floor is None:
+        return labels
+    n_groups = len(centres)
+    load = np.bincount(labels, weights=weights, minlength=n_groups)
+    labels = labels.copy()
+    for _ in range(len(labels)):
+        starved = np.flatnonzero(load < floor)
+        if not len(starved):
+            break
+        g = int(starved[np.argmin(load[starved])])
+        members = labels == g
+        centre = np.average(coords[members], axis=0, weights=weights[members]) if members.any() else centres[g]
+        spare = np.flatnonzero((labels != g) & (load[labels] - weights >= floor))
+        if not len(spare):
+            break
+        i = int(spare[np.argmin(((coords[spare] - centre) ** 2).sum(axis=1))])
+        load[labels[i]] -= weights[i]
+        load[g] += weights[i]
+        labels[i] = g
+    return labels
+
+
+def _balanced_partition(coords, weights, n_groups, n_iter=15, slack=0.1, floor=None, random_state=0):
     """
     Splits points into `n_groups` compact groups with roughly equal total weight (UMIs).
 
     Capacity-constrained k-means: each round, cells are assigned to the nearest centroid that still
     has room (capacity = mean group weight * (1 + slack)), handling the most clear-cut cells first
     so ambiguous cells take whatever room is left. Centroids are then UMI-weighted means.
+
+    `floor` sets a minimum total weight per group, topped up after clustering; without it a group
+    the other groups can absorb between them is left far lighter than the rest.
     """
     n = len(coords)
     if n_groups <= 1 or n <= 1:
@@ -66,7 +103,7 @@ def _balanced_partition(coords, weights, n_groups, n_iter=15, slack=0.1, random_
         if np.array_equal(new, labels):
             break
         labels = new
-    return labels
+    return _fill_starved(coords, weights, labels, centres, floor)
 
 
 def aggregate_metacells(adata, labels, celltype_col, sample_col=None, counts_layer='counts', target_sum=1e4):
@@ -233,9 +270,13 @@ def metabolic_metacells(
        dropout model per cell type.
     2. Sets a UMI budget per cell type: the pool needed to detect `coverage` of reachable leverage,
        capped so every cell type keeps at least `min_metacells` metacells.
-    3. Within each cell type x sample, splits cells into floor(total UMIs / budget) groups (at least
-       one) that are compact in the embedding and balanced in UMIs. A cell type x sample with fewer
-       UMIs than the budget becomes a single metacell flagged 'under_budget'.
+    3. Within each cell type x sample, splits cells into as many groups as the stratum's UMIs can
+       keep at the budget (at most floor(total UMIs / budget)), compact in the embedding and
+       balanced in UMIs. Whole cells cannot always be split that finely, so a split that still
+       leaves a metacell short is retried with one group fewer: fewer, fuller metacells rather than
+       a starved one. A cell type x sample with fewer UMIs than the budget becomes a single metacell
+       flagged 'under_budget', so that flag marks a stratum too small to afford a metacell rather
+       than an uneven split.
     4. Classifies genes and reactions per cell type as pooled / uncertain / off.
 
     Returns (metacell AnnData, info dict with 'labels', 'targets', 'gene_classes',
@@ -262,7 +303,13 @@ def metabolic_metacells(
     for (celltype, sample), idx in strata.groupby([celltype_col, sample_col]).indices.items():
         budget = float(targets.loc[celltype, 'target_umis'])
         n_groups = int(max(1, min(len(idx), library[idx].sum() // budget)))
-        part = _balanced_partition(coords[idx], library[idx], n_groups, slack=slack, random_state=random_state)
+        while True:
+            part = _balanced_partition(coords[idx], library[idx], n_groups, slack=slack, floor=budget,
+                                       random_state=random_state)
+            load = np.bincount(part, weights=library[idx], minlength=n_groups)
+            if n_groups == 1 or load.min() >= budget:
+                break
+            n_groups -= 1
         labels.iloc[idx] = [f'{celltype}|{sample}|{k}' for k in part]
 
     mc = aggregate_metacells(adata, labels, celltype_col, sample_col, counts_layer)
