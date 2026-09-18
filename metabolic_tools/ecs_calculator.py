@@ -25,6 +25,13 @@ def calculate_ecs(
     Implements a Global Redundancy Registry to ensure identical GPR rules 
     are only calculated once, protecting hub genes from deletion.
     """
+    and_ops = {'min': np.min, 'median': np.median, 'mean': np.mean}
+    or_ops = {'sum': np.sum, 'max': np.max}
+    if and_strategy not in and_ops:
+        raise ValueError(f"and_strategy must be one of {list(and_ops)}, got '{and_strategy}'")
+    if or_strategy not in or_ops:
+        raise ValueError(f"or_strategy must be one of {list(or_ops)}, got '{or_strategy}'")
+
     print("--> Loading transcriptomic data...")
     adata = sc.read_h5ad(adata_path)
     
@@ -110,9 +117,9 @@ def calculate_ecs(
             elif isinstance(node, ast.BoolOp):
                 arrays = [_eval(val) for val in node.values]
                 if isinstance(node.op, ast.And):
-                    return np.min(arrays, axis=0) if and_strategy == 'min' else np.mean(arrays, axis=0)
+                    return and_ops[and_strategy](arrays, axis=0)
                 elif isinstance(node.op, ast.Or):
-                    return np.sum(arrays, axis=0) if or_strategy == 'sum' else np.max(arrays, axis=0)
+                    return or_ops[or_strategy](arrays, axis=0)
             return np.zeros(n_cells)
             
         return _eval(tree)
