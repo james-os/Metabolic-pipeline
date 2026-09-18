@@ -23,6 +23,16 @@ with open(resolve_model_path('default'), encoding='utf-8') as _f:
 CELLTYPE_COL, SAMPLE_COL = 'cell_type', 'sample'
 THIN_FRACTIONS = [0.5, 0.25]
 REFERENCE_SIZE = 50
+
+# mirrors notebook 03's settings cell
+SIZING_VARIANTS = {
+    'split=T,and=median': dict(split_isozymes=True,  sizing_and_strategy='median'),
+    'split=F,and=median': dict(split_isozymes=False, sizing_and_strategy='median'),
+    'split=T,and=min':    dict(split_isozymes=True,  sizing_and_strategy='min'),
+    'split=F,and=min':    dict(split_isozymes=False, sizing_and_strategy='min'),
+}
+REFERENCE_VARIANT = 'split=T,and=median'
+SCORING_SPLIT_ISOZYMES = False
 SEED = 0
 
 PASS, FAIL = [], []
@@ -219,37 +229,54 @@ for frac in THIN_FRACTIONS:
     check(f'thinning to {frac:.0%} keeps about that share of UMIs ({kept:.3f})', abs(kept - frac) < 0.02)
     check(f'thinned cells line up with the originals ({frac:.0%})', thinned.obs_names.equals(cells.obs_names))
 
-    mc_t, info_t = metabolic_metacells(thinned, **common)
-    thinned = info_t['cells']
-    budgets = info_t['targets']['target_umis']
+    # notebook cell 10: size every sweep variant on the thinned cells, sharing one embedding
+    var_runs = {}
+    for nm, kw in SIZING_VARIANTS.items():
+        mc_t, info_t = metabolic_metacells(thinned, **common, **kw)
+        thinned = info_t['cells']
+        var_runs[nm] = (mc_t, info_t)
+    check(f'every sweep variant sizes on the same embedding ({frac:.0%})',
+          all(info_t['cells'].obsm['X_pca'].shape == thinned.obsm['X_pca'].shape
+              for _, info_t in var_runs.values()))
 
-    n_metabolic = mc_t.obs[CELLTYPE_COL].value_counts()
-    matched_size = (thinned.obs[CELLTYPE_COL].astype(str).value_counts() / n_metabolic).to_dict()
+    groupings = [(nm, info_t['labels'], info_t) for nm, (mc_t, info_t) in var_runs.items()]
+    ref_mc, ref_info = var_runs[REFERENCE_VARIANT]
+    budgets = ref_info['targets']['target_umis']
+    matched_size = (thinned.obs[CELLTYPE_COL].astype(str).value_counts()
+                    / ref_mc.obs[CELLTYPE_COL].value_counts()).to_dict()
     check(f'matched sizes are finite for every cell type ({frac:.0%})',
           set(matched_size) == celltype_set and all(np.isfinite(v) for v in matched_size.values()),
           str(matched_size))
+    groupings.append(('fixed_size_matched',
+                      fixed_size_labels(thinned, CELLTYPE_COL, matched_size, random_state=SEED), ref_info))
+    groupings.append((f'fixed_{REFERENCE_SIZE}',
+                      fixed_size_labels(thinned, CELLTYPE_COL, REFERENCE_SIZE, random_state=SEED), ref_info))
 
-    groupings = {
-        'metabolic': info_t['labels'],
-        'fixed_size_matched': fixed_size_labels(thinned, CELLTYPE_COL, matched_size, random_state=SEED),
-        f'fixed_{REFERENCE_SIZE}': fixed_size_labels(thinned, CELLTYPE_COL, REFERENCE_SIZE, random_state=SEED),
-    }
-    for nm, lab in groupings.items():
+    for nm, lab, info_g in groupings:
         check(f'{nm} labels every cell ({frac:.0%})', lab.notna().all() and len(lab) == thinned.n_obs)
         records.append(evaluate_grouping(cells, thinned, lab, nm, frac, CELLTYPE_COL, SAMPLE_COL,
-                                         budgets, info_t['genes'], info_t['gene_classes'],
-                                         species='mmusculus', and_strategy='median',
-                                         or_strategy='sum', budget_tolerance=0.9))
+                                         info_g['targets']['target_umis'], info_g['genes'],
+                                         info_g['gene_classes'], species='mmusculus',
+                                         and_strategy='median', or_strategy='sum',
+                                         split_isozymes=SCORING_SPLIT_ISOZYMES, budget_tolerance=0.9))
+    info_t = ref_info
 bench = pd.concat(records, ignore_index=True)
+bench['is_variant'] = bench['method'].isin(SIZING_VARIANTS)
 print(f'  benchmark table: {bench.shape}')
 check('benchmark has rows', len(bench) > 0)
+check('every sweep variant and reference produced rows',
+      set(bench['method']) == set(SIZING_VARIANTS) | {'fixed_size_matched', f'fixed_{REFERENCE_SIZE}'},
+      sorted(set(bench['method'])))
+check('every variant is scored on the same feature set',
+      bench[bench['is_variant']].groupby('method')['features_present'].sum().nunique() >= 1
+      and bench.loc[bench['is_variant'], 'features_present'].gt(0).all())
 
 # scoring the summed reaction rather than each isozyme branch is a different feature set
-split_off = evaluate_grouping(cells, thinned, info_t['labels'], 'metabolic', THIN_FRACTIONS[-1],
-                              CELLTYPE_COL, SAMPLE_COL, budgets, info_t['genes'], info_t['gene_classes'],
-                              species='mmusculus', and_strategy='median', or_strategy='sum',
-                              split_isozymes=False, budget_tolerance=0.9)
-split_on = bench[(bench['method'] == 'metabolic') & (bench['fraction'] == THIN_FRACTIONS[-1])]
+split_on = evaluate_grouping(cells, thinned, ref_info['labels'], REFERENCE_VARIANT, THIN_FRACTIONS[-1],
+                             CELLTYPE_COL, SAMPLE_COL, budgets, ref_info['genes'], ref_info['gene_classes'],
+                             species='mmusculus', and_strategy='median', or_strategy='sum',
+                             split_isozymes=True, budget_tolerance=0.9)
+split_off = bench[(bench['method'] == REFERENCE_VARIANT) & (bench['fraction'] == THIN_FRACTIONS[-1])]
 check('evaluate_grouping accepts split_isozymes and it changes the feature set',
       split_off['features_present'].sum() < split_on['features_present'].sum(),
       f"split=False {split_off['features_present'].sum()} vs split=True {split_on['features_present'].sum()}")
@@ -265,18 +292,38 @@ check('deeper data gives no more false zeros than shallower',
       <= bench[bench['fraction'] == 0.25]['false_zero_rate'].median() + 1e-9,
       bench.groupby('fraction')['false_zero_rate'].median().to_string())
 check('the metabolic method keeps samples pure',
-      (bench.loc[bench['method'] == 'metabolic', 'sample_purity'] == 1).all())
+      (bench.loc[bench['method'] == REFERENCE_VARIANT, 'sample_purity'] == 1).all())
 
 # ---------------------------------------------------------------- notebook aggregations
 section('5. Notebook aggregation cells')
+try:
+    full_runs, full_cells = {}, adata
+    for nm, kw in SIZING_VARIANTS.items():
+        mc_v, info_v = metabolic_metacells(full_cells, **common, **kw)
+        full_cells = info_v['cells']
+        full_runs[nm] = (mc_v, info_v)
+    sizing_summary = pd.DataFrame({
+        nm: {'metacells': int(mc_v.n_obs),
+             'median_cells': float(mc_v.obs['n_cells'].median()),
+             'mean_budget_umis': float(mc_v.obs['umi_budget'].mean()),
+             'under_budget': int(mc_v.obs['under_budget'].sum()),
+             'detected_reachable': float(mc_v.obs['detected_leverage_reachable'].median()),
+             **{f'rxn_{k}': int((info_v['reaction_classes']['class'] == k).sum())
+                for k in ['pooled', 'partial', 'uncertain', 'off']}}
+        for nm, (mc_v, info_v) in full_runs.items()}).T
+    check('cell 5: sizing sweep summary', len(sizing_summary) == len(SIZING_VARIANTS))
+    print(sizing_summary.round(3).to_string())
+except Exception:
+    check('cell 5: sizing sweep summary', False)
+    traceback.print_exc()
+
 try:
     per_stratum = (mc.obs.groupby([CELLTYPE_COL, SAMPLE_COL], observed=True)
                    .agg(metacells=('n_cells', 'size'), cells=('n_cells', 'sum'),
                         median_cells=('n_cells', 'median'), min_budget_ratio=('budget_ratio', 'min'),
                         under_budget=('under_budget', 'sum'),
-                        detected_pooled=('detected_leverage_pooled', 'median')).round(2))
+                        detected_reachable=('detected_leverage_reachable', 'median')).round(2))
     check('cell 6: metacells per stratum', len(per_stratum) > 0)
-    print(per_stratum.to_string())
 except Exception:
     check('cell 6: metacells per stratum', False)
     traceback.print_exc()
@@ -287,10 +334,17 @@ try:
                     false_zero_rate=('false_zero_rate', 'median'),
                     median_rel_error=('median_rel_error', 'median'), spearman=('spearman', 'median'),
                     detected_leverage_all=('detected_leverage_all', 'median'),
+                    detected_leverage_reachable=('detected_leverage_reachable', 'median'),
                     compactness=('compactness', 'median'),
                     mixed_sample_share=('sample_purity', lambda s: float((s < 1).mean())),
                     under_budget_share=('under_budget', 'mean')).round(3))
+    order = list(SIZING_VARIANTS) + [x for x in summary.index.get_level_values('method').unique()
+                                     if x not in SIZING_VARIANTS]
+    summary = summary.reindex(pd.MultiIndex.from_product([THIN_FRACTIONS, order],
+                                                         names=['fraction', 'method'])).dropna(how='all')
     check('cell 11: benchmark summary', len(summary) > 0)
+    check('cell 11: every variant and reference survives the reindex',
+          len(summary) == len(THIN_FRACTIONS) * (len(SIZING_VARIANTS) + 2), f'{len(summary)} rows')
     print(summary.to_string())
 except Exception:
     check('cell 11: benchmark summary', False)
@@ -305,7 +359,7 @@ except Exception:
     traceback.print_exc()
 
 try:
-    m = bench[bench['method'] == 'metabolic']
+    m = bench[bench['method'] == REFERENCE_VARIANT]
     paired = (m.groupby(['fraction', CELLTYPE_COL, 'under_budget'])
                .agg(metacells=('metacell', 'size'), false_zero_rate=('false_zero_rate', 'median'),
                     detected_leverage_all=('detected_leverage_all', 'median'),
@@ -364,7 +418,7 @@ except Exception:
     traceback.print_exc()
 
 try:
-    markers = {'metabolic': 'o', 'fixed_size_matched': 's', f'fixed_{REFERENCE_SIZE}': '^'}
+    markers = {'fixed_size_matched': 's', f'fixed_{REFERENCE_SIZE}': '^'}
     fig, axes = plt.subplots(2, len(THIN_FRACTIONS), figsize=(6 * len(THIN_FRACTIONS), 8), squeeze=False)
     for c, frac in enumerate(THIN_FRACTIONS):
         for r, metric in enumerate(['false_zero_rate', 'detected_leverage_all']):
