@@ -12,7 +12,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from metabolic_tools.metacell_diagnostics import recover_counts
-from metabolic_tools.metabolic_metacells import metabolic_metacells, classify_reactions, ambient_floor
+from metabolic_tools.metabolic_metacells import (
+    metabolic_metacells, classify_reactions, ambient_floor, aggregate_metacells,
+    pseudobulk_gene_classes)
 from metabolic_tools.gene_mapping import resolve_model_path
 from metabolic_tools.metacell_benchmark import thin_counts, fixed_size_labels, evaluate_grouping
 from synthetic_data import make_adata
@@ -230,6 +232,43 @@ check('one expressed control inflates the floor',
       ambient_floor(planted, control_symbols)[0] > floor_val)
 print(pd.crosstab(gc['group'], gc['class']).to_string())
 print(pd.crosstab(rc['group'], rc['class']).to_string())
+
+# ---------------------------------------------------------------- pseudobulk
+section('2b. Pseudobulk classes (notebook 04)')
+pb_labels = (cells.obs[CELLTYPE_COL].astype(str) + '|' + cells.obs[SAMPLE_COL].astype(str))
+pb = aggregate_metacells(cells, pb_labels, CELLTYPE_COL, SAMPLE_COL)
+n_types = cells.obs[CELLTYPE_COL].nunique()
+n_samples = cells.obs[SAMPLE_COL].nunique()
+check('one unit per cell type x sample', pb.n_obs == n_types * n_samples,
+      f'{pb.n_obs} units vs {n_types} x {n_samples}')
+check('pseudobulk units are pure', (pb.obs['celltype_purity'] == 1).all()
+      and (pb.obs['sample_purity'] == 1).all())
+check('pseudobulk conserves every UMI',
+      np.isclose(float(pb.layers['counts'].sum()), float(cell_counts.sum())))
+check('a pseudobulk unit is at least as deep as any metacell of its cell type',
+      pb.obs.groupby(pb.obs[CELLTYPE_COL].astype(str))['total_umis'].median().ge(
+          mc.obs.groupby(mc.obs[CELLTYPE_COL].astype(str))['total_umis'].median()).all())
+
+pgc = pseudobulk_gene_classes(pb, info['genes'], CELLTYPE_COL, SAMPLE_COL,
+                              control_genes=control_symbols)
+check('pseudobulk classes are off/uncertain/partial/pooled', set(pgc['class']) <= CLASSES)
+check('one row per cell type x model gene', not pgc.duplicated(['group', 'model_gene']).any())
+check('n_samples matches the samples each cell type actually has',
+      (pgc['n_samples'] <= n_samples).all() and (pgc['n_samples'] > 0).all())
+check('pooled means every sample detected it',
+      (pgc.loc[pgc['class'] == 'pooled', 'n_detected']
+       == pgc.loc[pgc['class'] == 'pooled', 'n_samples']).all())
+check('partial means some samples but not all',
+      ((pgc.loc[pgc['class'] == 'partial', 'n_detected'] > 0)
+       & (pgc.loc[pgc['class'] == 'partial', 'n_detected']
+          < pgc.loc[pgc['class'] == 'partial', 'n_samples'])).all())
+check('off and uncertain mean no sample detected it',
+      (pgc.loc[pgc['class'].isin(['off', 'uncertain']), 'n_detected'] == 0).all())
+prc = classify_reactions(model_json_for_test, pgc, set(cells.var_names.astype(str)),
+                         'mmusculus', 'median', 'sum')
+check('reactions classify from pseudobulk genes', len(prc) > 0 and set(prc['class']) <= CLASSES)
+print(f'  genes {pgc["class"].value_counts().to_dict()}')
+print(f'  reactions {prc["class"].value_counts().to_dict()}')
 
 # ---------------------------------------------------------------- determinism
 section('3. Determinism')

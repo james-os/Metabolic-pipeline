@@ -285,6 +285,50 @@ def classify_reactions(model_json, gene_classes, dataset_genes, species, and_str
     return pd.DataFrame(rows)
 
 
+def pseudobulk_gene_classes(pb, genes_df, celltype_col, sample_col, counts_layer='counts',
+                            control_genes=AMBIENT_CONTROL_SYMBOLS, floor_quantile=0.95, confidence=0.95):
+    """
+    Gene classes for pseudobulk, where a unit is a whole cell type x sample and there is nothing
+    left to pool. Replication takes over from the model's size tiers, so the class is evidence
+    rather than prediction:
+      - 'pooled': detected in every sample of that cell type, so the bound is reproducible;
+      - 'partial': detected in some samples but not all -- real, but not reliably seen at this depth;
+      - 'off': detected in no sample, and the cell type pools enough UMIs that expression at the
+        ambient floor would have shown up, so there is positive evidence of absence;
+      - 'uncertain': detected in no sample, but too shallow to tell absence from dropout.
+
+    The 'partial' tier means something different here than for metacells. There it was "would be
+    detectable in a larger metacell than we build"; here nothing larger exists, so it means the
+    samples disagree -- which is the more useful warning when the samples are the replicates.
+
+    Returns a DataFrame with one row per cell type x model gene, carrying n_samples and
+    n_detected alongside the class, and the ambient floor in .attrs.
+    """
+    counts = sp.csr_matrix(pb.layers[counts_layer])
+    celltypes = pb.obs[celltype_col].astype(str).to_numpy()
+    floor, _ = ambient_floor(genes_df, control_genes, floor_quantile) if control_genes else (float('nan'), None)
+
+    df = genes_df[['group', 'model_gene', 'symbol', 'leverage', 'units_needed', 'rate']].copy()
+    gene_pos = {g: i for i, g in enumerate(pb.var_names.astype(str))}
+    n_samples, n_detected, pooled_umis = [], [], []
+    for group, gene in zip(df['group'].astype(str), df['model_gene'].astype(str)):
+        rows = np.flatnonzero(celltypes == group)
+        j = gene_pos.get(gene)
+        n_samples.append(len(rows))
+        n_detected.append(int((np.asarray(counts[rows, j].todense()).ravel() > 0).sum()) if j is not None else 0)
+        pooled_umis.append(float(counts[rows].sum()) if len(rows) else 0.0)
+    df['n_samples'] = n_samples
+    df['n_detected'] = n_detected
+
+    ceiling = np.where(np.asarray(pooled_umis) > 0, -np.log(1 - confidence) / np.maximum(pooled_umis, 1), np.inf)
+    deep_enough = np.isfinite(floor) & (ceiling <= floor)
+    df['class'] = np.select(
+        [df['n_detected'] == df['n_samples'], df['n_detected'] > 0, deep_enough],
+        ['pooled', 'partial', 'off'], 'uncertain')
+    df.attrs['ambient_floor'] = floor
+    return df
+
+
 def metacell_detection(adata, labels, genes_df, gene_classes, celltype_col, counts_layer='counts'):
     """
     Per metacell, the leverage-weighted share of genes detected (at least one UMI), for the
