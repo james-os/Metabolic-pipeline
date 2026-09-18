@@ -133,6 +133,32 @@ section('3. Determinism')
 mc2, info2 = metabolic_metacells(adata, **common)
 check('same seed gives the same labels', info2['labels'].equals(info['labels']))
 
+# ---------------------------------------------------------------- sizing knobs
+section('3b. Sizing knobs (split_isozymes, sizing_and_strategy)')
+# the defaults must reproduce the run above, so the knobs cannot change behaviour unless asked
+mc_def, info_def = metabolic_metacells(adata, split_isozymes=True, sizing_and_strategy=None, **common)
+check('defaults leave the result unchanged', info_def['labels'].equals(info['labels']))
+check('sizing_and_strategy=None matches and_strategy',
+      info_def['targets']['target_umis'].equals(info['targets']['target_umis']))
+
+variants = {'split=True, and=median (default)': dict(split_isozymes=True),
+            'split=False': dict(split_isozymes=False),
+            'sizing and=min': dict(sizing_and_strategy='min'),
+            'split=False, sizing and=min': dict(split_isozymes=False, sizing_and_strategy='min')}
+knob_budgets = {}
+for label, kw in variants.items():
+    mc_v, info_v = metabolic_metacells(adata, **common, **kw)
+    knob_budgets[label] = info_v['targets']['target_umis']
+    check(f'runs with {label}', mc_v.n_obs > 0 and (mc_v.obs['sample_purity'] == 1).all())
+    print(f'    {label:<32} {mc_v.n_obs:>3} metacells, mean budget {knob_budgets[label].mean():>8.0f} UMIs')
+check('split_isozymes changes the UMI budget',
+      not knob_budgets['split=True, and=median (default)'].equals(knob_budgets['split=False']))
+check('sizing_and_strategy changes the UMI budget',
+      not knob_budgets['split=True, and=median (default)'].equals(knob_budgets['sizing and=min']))
+check('sizing_and_strategy is independent of the scoring and_strategy',
+      metabolic_metacells(adata, **{**common, 'and_strategy': 'min'}, sizing_and_strategy='median'
+                          )[1]['targets']['target_umis'].equals(knob_budgets['split=True, and=median (default)']))
+
 # ---------------------------------------------------------------- part 2
 section('4. Benchmark path (thinning and comparison groupings)')
 records = []
@@ -166,6 +192,19 @@ for frac in THIN_FRACTIONS:
 bench = pd.concat(records, ignore_index=True)
 print(f'  benchmark table: {bench.shape}')
 check('benchmark has rows', len(bench) > 0)
+
+# scoring the summed reaction rather than each isozyme branch is a different feature set
+split_off = evaluate_grouping(cells, thinned, info_t['labels'], 'metabolic', THIN_FRACTIONS[-1],
+                              CELLTYPE_COL, SAMPLE_COL, budgets, info_t['genes'], info_t['gene_classes'],
+                              species='mmusculus', and_strategy='median', or_strategy='sum',
+                              split_isozymes=False, budget_tolerance=0.9)
+split_on = bench[(bench['method'] == 'metabolic') & (bench['fraction'] == THIN_FRACTIONS[-1])]
+check('evaluate_grouping accepts split_isozymes and it changes the feature set',
+      split_off['features_present'].sum() < split_on['features_present'].sum(),
+      f"split=False {split_off['features_present'].sum()} vs split=True {split_on['features_present'].sum()}")
+print(f'    features scored: split=True {split_on["features_present"].sum()}, '
+      f'split=False {split_off["features_present"].sum()}; '
+      f'false zeros {split_on["false_zero_rate"].median():.3f} vs {split_off["false_zero_rate"].median():.3f}')
 for col in ['false_zero_rate', 'median_rel_error', 'spearman', 'compactness', 'budget_ratio']:
     check(f'benchmark column {col!r} is mostly finite', bench[col].notna().mean() > 0.5,
           f'{bench[col].notna().mean():.2f} finite')

@@ -156,14 +156,19 @@ def compactness(adata, labels, celltype_col, use_rep='X_pca', n_pcs=30):
 
 def evaluate_grouping(original, thinned, labels, method, fraction, celltype_col, sample_col, umi_budgets,
                       genes_df, gene_classes, model_path='default', species='mmusculus', and_strategy='median',
-                      or_strategy='sum', use_rep='X_pca', budget_tolerance=0.9):
+                      or_strategy='sum', split_isozymes=True, use_rep='X_pca', budget_tolerance=0.9):
     """
     Scores one grouping of the thinned cells: dropout error against the same groups at full depth,
     gene detection, UMI budget attainment, sample mixing and compactness. One row per metacell.
+
+    `and_strategy`, `or_strategy` and `split_isozymes` define what counts as a feature here, so they
+    should match how the scores will be read downstream, not necessarily how the metacells were
+    sized: sizing for each isozyme branch and scoring the summed reaction is a pairing worth testing.
     """
     mc_thin = aggregate_metacells(thinned, labels, celltype_col, sample_col)
     mc_truth = aggregate_metacells(original, labels, celltype_col, sample_col)
-    kwargs = dict(model_path=model_path, species=species, and_strategy=and_strategy, or_strategy=or_strategy)
+    kwargs = dict(model_path=model_path, species=species, and_strategy=and_strategy,
+                  or_strategy=or_strategy, split_isozymes=split_isozymes)
     result = compare_to_truth(feature_scores(mc_thin, **kwargs), feature_scores(mc_truth, **kwargs)).set_index('metacell')
     result = result.join(mc_thin.obs)
     result['umi_budget'] = result[celltype_col].map(umi_budgets).astype(float)

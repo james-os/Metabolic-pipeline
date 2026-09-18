@@ -251,6 +251,13 @@ def metabolic_metacells(
     symbol_col='gene_symbol',     # str: adata.var column with gene symbols.
     and_strategy='median',        # str: AND operator, matching calculate_ecs.
     or_strategy='sum',            # str: OR operator, matching calculate_ecs.
+    split_isozymes=True,          # bool: size for each isozyme branch separately (as calculate_ecs scores them)
+                                  #       rather than for the summed reaction; False weights an isozyme by its
+                                  #       share of the sum, which is what a flux bound actually depends on.
+    sizing_and_strategy=None,     # str: AND operator used to weight genes when sizing, if it should differ from
+                                  #      the one used to score. None follows and_strategy. 'min' sizes for every
+                                  #      complex subunit while and_strategy='median' keeps scoring robust to the
+                                  #      dropout that remains.
     counts_layer='counts',        # str: raw counts layer; recovered from adata.X if missing.
     coverage=0.8,                 # float: share of reachable leverage each metacell should detect.
     min_metacells=3,              # int: fewest metacells per cell type (sets the size cap).
@@ -267,7 +274,9 @@ def metabolic_metacells(
     Builds metacells sized to protect detection of reaction-relevant genes.
 
     1. Scores each gene's importance to reaction scores (whole-dataset leverage) and fits the
-       dropout model per cell type.
+       dropout model per cell type. `sizing_and_strategy` and `split_isozymes` control that
+       weighting alone; `and_strategy` and `or_strategy` stay the operators the scores are read
+       with, so metacells can be sized conservatively and still be scored robustly.
     2. Sets a UMI budget per cell type: the pool needed to detect `coverage` of reachable leverage,
        capped so every cell type keeps at least `min_metacells` metacells.
     3. Within each cell type x sample, splits cells into as many groups as the stratum's UMIs can
@@ -286,9 +295,11 @@ def metabolic_metacells(
         recover_counts(adata)
         counts_layer = 'counts'
 
+    sizing_and = and_strategy if sizing_and_strategy is None else sizing_and_strategy
     leverage, adata = gene_dropout_leverage(adata, celltype_col, model_path=model_path, species=species,
-                                            symbol_col=symbol_col, and_strategy=and_strategy,
-                                            or_strategy=or_strategy, reference='global')
+                                            symbol_col=symbol_col, and_strategy=sizing_and,
+                                            or_strategy=or_strategy, split_isozymes=split_isozymes,
+                                            reference='global')
     genes_df, summary = dropout_diagnostic(adata, leverage, celltype_col, counts_layer=counts_layer,
                                            detection_prob=detection_prob, model=null_model)
     targets, _ = metacell_size_targets(genes_df, summary, coverage=coverage, min_metacells=min_metacells)
