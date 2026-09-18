@@ -6,11 +6,13 @@ import pandas as pd
 import scipy.sparse as sp
 import anndata as ad
 from metabolic_tools.gene_mapping import resolve_model_path, model_symbol_to_id
+from metabolic_tools.metabolic_metacells import AMBIENT_CONTROL_SYMBOLS
 
 CELLTYPES = {'IHC': 250, 'OHC_1': 150, 'GER': 120, 'LER_Fst': 55, 'Hensen': 22}
 SAMPLES = {'se_1': 0.45, 'se_2': 1.0, 'se_3': 1.4}   # relative sequencing depth
 N_PADDING = 200
-N_ABSENT = 30                                        # model genes with no counts anywhere
+N_ABSENT = 30                                        # model genes not expressed in this tissue
+AMBIENT_COUNTS = 3                                   # stray counts each picks up from soup / index hopping
 
 
 def make_adata(seed=0, median_umis=2700):
@@ -44,8 +46,12 @@ def make_adata(seed=0, median_umis=2700):
         rates[t] *= shift
         rates[t] /= rates[t].sum()
 
-    # some model genes are absent everywhere (liver-type enzymes in the real data)
-    absent = rng.choice(len(symbols), size=N_ABSENT, replace=False)
+    # Genes not expressed in this tissue, including the ambient controls. True rate is zero; the
+    # stray counts they still carry are added after sampling, below.
+    controls = [i for i, s in enumerate(symbols) if s in set(AMBIENT_CONTROL_SYMBOLS)]
+    others = rng.choice([i for i in range(len(symbols)) if i not in set(controls)],
+                        size=max(0, N_ABSENT - len(controls)), replace=False)
+    absent = np.array(sorted(set(controls) | set(others.tolist())), dtype=int)
     rates[:, absent] = 0.0
     rates /= rates.sum(axis=1, keepdims=True)
 
@@ -59,7 +65,16 @@ def make_adata(seed=0, median_umis=2700):
         p = rates[type_index[type_of_cell[i]]]
         draw = rng.poisson(library[i] * p * rng.gamma(shape=4.0, scale=0.25, size=n_genes))
         rows.append(sp.csr_matrix(draw.astype(np.float64)))
-    counts = sp.vstack(rows).tocsr()
+    counts = sp.vstack(rows).tolil()
+    # Scatter a few stray counts over the genes that are not expressed at all. Real ambient RNA and
+    # index hopping put a handful of counts on every gene, which is why a dataset-wide zero-count
+    # test for 'off' never fires and the ambient floor is needed. Note the synthetic dataset is far
+    # too small to reproduce the regime this creates on real data: telling ambient from genuine low
+    # expression needs cell types pooling millions of UMIs, not the ~1e6 here.
+    for j in absent:
+        for i in rng.choice(n_cells, size=rng.poisson(AMBIENT_COUNTS), replace=True):
+            counts[i, j] += 1.0
+    counts = counts.tocsr()
     counts.eliminate_zeros()
 
     # log1p(counts per 10k), and no counts layer -- recover_counts must reconstruct it
@@ -71,5 +86,6 @@ def make_adata(seed=0, median_umis=2700):
     obs = pd.DataFrame({'cell_type': pd.Categorical(type_of_cell)}, index=obs_rows)
     adata = ad.AnnData(X=norm.astype(np.float32), obs=obs, var=var)
     adata.uns['truth'] = {'absent_symbols': [symbols[i] for i in absent],
+                          'control_symbols': [s for s in symbols if s in set(AMBIENT_CONTROL_SYMBOLS)],
                           'true_counts_total': float(counts.sum())}
     return adata

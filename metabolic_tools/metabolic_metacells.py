@@ -139,11 +139,56 @@ def aggregate_metacells(adata, labels, celltype_col, sample_col=None, counts_lay
 # =========================================================
 # 2. GENE AND REACTION CLASSES
 # =========================================================
-def classify_genes(adata, genes_df, targets, counts_layer='counts'):
+# Model genes whose pathways cannot run outside liver, so in any other tissue whatever signal they
+# carry is ambient contamination rather than expression: urea cycle, histidine and tyrosine
+# catabolism, serine dehydratase, gluconeogenesis. Deliberately excludes genes with broader
+# expression (Arg2, Ass1, Asl, Fbp1, Pck1, Hmgcs2, Gls2) -- one truly expressed control raises the
+# floor and starts closing reactions that should stay open.
+#
+# Sdsl was in this list and has been removed: on Kolla E16 it is detected in all 18 cell types at
+# roughly a hundred times the rate of the other controls, so it is expressed in cochlea and is not
+# a negative control there. It alone pushed the floor up by a factor of six. Check any new tissue
+# the same way -- `ambient_floor` returns the per-control breakdown for exactly this purpose.
+AMBIENT_CONTROL_SYMBOLS = ('Cps1', 'Otc', 'Arg1', 'Hal', 'Ftcd', 'Uroc1', 'Amdhd1',
+                           'Fah', 'Hgd', 'Hpd', 'Sds', 'G6pc')
+
+
+def ambient_floor(genes_df, control_genes=AMBIENT_CONTROL_SYMBOLS, quantile=0.95):
+    """
+    Estimates the expression rate below which a gene cannot be told apart from ambient RNA.
+
+    Every droplet carries some ambient transcript, so in a dataset of any size no gene has exactly
+    zero counts and a zero-count test for "off" never fires. `control_genes` are genes whose
+    pathways cannot run in the tissue, so whatever rate they show is contamination, measured rather
+    than assumed; the floor is a high quantile of their fitted rates.
+
+    The controls must be chosen from biology and never from their counts in this dataset. Picking
+    the lowest-count genes and calling their rate the floor only restates which genes were lowest.
+
+    Returns (floor rate, a per-control summary). Inspect that summary before trusting the floor: a
+    control detected in every cell type, or an order of magnitude above its fellows, is expressed in
+    this tissue and has to be dropped. The floor is NaN if no control is present in the data, and
+    the caller should then fall back to the zero-count test alone.
+    """
+    wanted = {str(g) for g in control_genes}
+    matched = genes_df[genes_df['symbol'].astype(str).isin(wanted)
+                       | genes_df['model_gene'].astype(str).isin(wanted)]
+    if matched.empty:
+        return float('nan'), matched
+    per_control = (matched.groupby('symbol')['rate']
+                   .agg(n_groups='size', median_rate='median', max_rate='max',
+                        groups_detected=lambda s: int((s > 0).sum()))
+                   .sort_values('median_rate'))
+    return float(np.quantile(matched['rate'].to_numpy(dtype=float), quantile)), per_control
+
+
+def classify_genes(adata, genes_df, targets, counts_layer='counts',
+                   control_genes=AMBIENT_CONTROL_SYMBOLS, floor_quantile=0.95, confidence=0.95):
     """
     Per cell type, puts each model gene in one of four classes by how many cells it needs before it
     is detected, against the size of metacell that is actually built:
-      - 'off': no counts anywhere in the dataset (e.g. liver enzymes in cochlea);
+      - 'off': indistinguishable from ambient contamination in this cell type, so there is no
+        evidence the gene is expressed here (e.g. liver enzymes in cochlea);
       - 'uncertain': needs more cells than the cell type's cap, so no metacell can recover it;
       - 'partial': needs more than the size target but within the cap, so it is seen in some
         metacells and not others (pooling more would fix it, at the cost of fewer metacells);
@@ -153,13 +198,34 @@ def classify_genes(adata, genes_df, targets, counts_layer='counts'):
     genes are seen in ~83% of metacells, against ~99% for 'pooled' and ~44% for 'uncertain'.
     Collapsing them into either neighbour would either overstate or throw away real signal, so the
     class is carried through to the flux bounds, which is where the evidence can be weighed.
+
+    'off' means two things together: the gene has no counts at all in this cell type, AND the cell
+    type pools enough UMIs that expression at the ambient floor would have been seen. Both are
+    needed. A zero on its own says little in a shallow cell type, and a rate merely *near* the floor
+    cannot be separated from genuine low expression -- the two distributions overlap. So the floor
+    is used to decide which cell types are deep enough to make the call, not as a cut on rate.
+
+    Because it is judged per cell type, a gene can be off in one cell type and expressed in another.
+    Passing control_genes=None falls back to requiring exactly zero counts across the whole dataset,
+    which on a dataset of any size is a bar nothing clears.
     """
     dataset_total = pd.Series(np.asarray(sp.csr_matrix(adata.layers[counts_layer]).sum(axis=0)).ravel(), index=adata.var_names)
     dataset_total = dataset_total[~dataset_total.index.duplicated()]
     df = genes_df[['group', 'model_gene', 'symbol', 'leverage', 'units_needed', 'rate', 'dispersion']].copy()
     df['cap_cells'] = df['group'].map(targets['cap_cells'])
     df['target_cells'] = df['group'].map(targets['target_cells'])
+
     absent = dataset_total.reindex(df['model_gene']).fillna(0).to_numpy() == 0
+    floor = float('nan')
+    if control_genes is not None:
+        floor, _ = ambient_floor(genes_df, control_genes, floor_quantile)
+        if np.isfinite(floor):
+            # rate a cell type could have missed entirely, given how many UMIs it pools
+            pooled_umis = (targets['n_cells'] * targets['median_library_size']).astype(float)
+            ceiling = -np.log(1 - confidence) / df['group'].map(pooled_umis).to_numpy(dtype=float)
+            absent = absent | ((df['rate'].to_numpy(dtype=float) == 0) & (ceiling <= floor))
+    df.attrs['ambient_floor'] = floor
+
     df['class'] = np.select(
         [absent, df['units_needed'] > df['cap_cells'], df['units_needed'] > df['target_cells']],
         ['off', 'uncertain', 'partial'], 'pooled')
@@ -284,6 +350,8 @@ def metabolic_metacells(
     min_metacells=3,              # int: fewest metacells per cell type (sets the size cap).
     detection_prob=0.95,          # float: detection probability used for size targets.
     null_model='nb',              # str: 'nb' or 'poisson' dropout model.
+    control_genes=AMBIENT_CONTROL_SYMBOLS,  # seq: genes that cannot be expressed in this tissue, used to measure the
+                                  #      ambient floor so 'off' can mean something. None disables it.
     use_rep='X_pca',              # str: adata.obsm embedding used to group similar cells; computed if missing.
     n_top_genes=2000,             # int: highly variable genes for the PCA, if computed.
     n_pcs=30,                     # int: principal components used.
@@ -351,7 +419,7 @@ def metabolic_metacells(
 
     with open(resolve_model_path(model_path), 'r', encoding='utf-8') as f:
         model_json = json.load(f)
-    gene_classes = classify_genes(adata, genes_df, targets, counts_layer)
+    gene_classes = classify_genes(adata, genes_df, targets, counts_layer, control_genes=control_genes)
     reaction_classes = classify_reactions(model_json, gene_classes, set(adata.var_names.astype(str)), species,
                                           and_strategy, or_strategy)
 
@@ -360,5 +428,6 @@ def metabolic_metacells(
         mc.obs[col] = detection[col].reindex(mc.obs_names).values
 
     info = {'labels': labels, 'targets': targets, 'gene_classes': gene_classes,
+            'ambient_floor': gene_classes.attrs.get('ambient_floor'),
             'reaction_classes': reaction_classes, 'leverage': leverage, 'genes': genes_df, 'cells': adata}
     return mc, info

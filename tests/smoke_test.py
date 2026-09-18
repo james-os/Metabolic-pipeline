@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from metabolic_tools.metacell_diagnostics import recover_counts
-from metabolic_tools.metabolic_metacells import metabolic_metacells, classify_reactions
+from metabolic_tools.metabolic_metacells import metabolic_metacells, classify_reactions, ambient_floor
 from metabolic_tools.gene_mapping import resolve_model_path
 from metabolic_tools.metacell_benchmark import thin_counts, fixed_size_labels, evaluate_grouping
 from synthetic_data import make_adata
@@ -177,15 +177,57 @@ check('reaction class groups are the cell types', set(rc['group']) == celltype_s
       f'{sorted(set(rc["group"]))} vs {sorted(celltype_set)}')
 
 absent_symbols = set(adata.uns['truth']['absent_symbols'])
+control_symbols = set(adata.uns['truth']['control_symbols'])
 sym = gc['symbol'].astype(str)
 absent_rows = gc[sym.isin(absent_symbols)]
-check('genes absent from the dataset are classed off',
-      len(absent_rows) > 0 and (absent_rows['class'] == 'off').all(),
-      f'{len(absent_rows)} rows, classes {sorted(set(absent_rows["class"]))}')
 present_rows = gc[~sym.isin(absent_symbols)]
-check('genes present in the dataset are not classed off',
-      not (present_rows['class'] == 'off').any(),
-      f'{int((present_rows["class"] == "off").sum())} present genes classed off')
+
+# Ambient means nothing reads exactly zero across the dataset, so the old dataset-wide zero test
+# must find nothing -- the floor is what has to do the work.
+counts_all = sp.csr_matrix(cells.layers['counts']).sum(axis=0)
+ambient_idx = cells.var_names.get_indexer(
+    gc.loc[sym.isin(absent_symbols), 'model_gene'].unique())
+ambient_totals = np.asarray(counts_all).ravel()[ambient_idx[ambient_idx >= 0]]
+check('ambient genes still pick up counts, so a zero-count test would find nothing',
+      (ambient_totals > 0).mean() > 0.5,
+      f'{int((ambient_totals == 0).sum())}/{len(ambient_totals)} have exactly zero counts')
+
+check('the ambient floor is finite and positive',
+      np.isfinite(info.get('ambient_floor', np.nan)) and info['ambient_floor'] > 0,
+      str(info.get('ambient_floor')))
+check('anything classed off has no counts in that cell type',
+      (gc.loc[gc['class'] == 'off', 'rate'] == 0).all(),
+      gc.loc[(gc['class'] == 'off') & (gc['rate'] > 0)].head().to_string())
+# 'off' is judged per cell type, so a gene expressed elsewhere can legitimately be off here; the
+# rule is a statistical call and will sometimes fire on a genuinely expressed but very rare gene.
+# What matters is that it mostly finds the genes that really are not expressed.
+off_rows = gc[gc['class'] == 'off']
+precision = (off_rows['symbol'].astype(str).isin(absent_symbols).mean()
+             if len(off_rows) else float('nan'))
+check('most genes classed off really are the non-expressed ones', precision > 0.6,
+      f'{precision:.0%} of {len(off_rows)} off rows; '
+      f'{off_rows.loc[~off_rows["symbol"].astype(str).isin(absent_symbols), "symbol"].tolist()[:8]}')
+check('the non-expressed genes are the ones enriched for off',
+      (absent_rows['class'] == 'off').mean() > (present_rows['class'] == 'off').mean(),
+      f'{(absent_rows["class"] == "off").mean():.3f} vs {(present_rows["class"] == "off").mean():.3f}')
+print(f'  ambient floor {info["ambient_floor"]:.3e}; '
+      f'off rows {int((gc["class"] == "off").sum())} of {len(gc)}')
+
+# ambient_floor must flag a control that is actually expressed -- the failure mode that matters,
+# since one such control raises the floor and starts closing reactions that should stay open
+floor_val, per_control = ambient_floor(info['genes'], control_symbols)
+check('ambient_floor reports each control so a bad one can be spotted',
+      set(per_control.columns) >= {'n_groups', 'median_rate', 'max_rate', 'groups_detected'}
+      and len(per_control) > 0, str(per_control.columns.tolist()))
+planted = info['genes'].copy()
+hot = planted['symbol'].astype(str) == sorted(control_symbols)[0]
+planted.loc[hot, 'rate'] = planted['rate'].max()
+_, spoiled = ambient_floor(planted, control_symbols)
+check('a control expressed in every cell type stands out in that report',
+      spoiled.loc[sorted(control_symbols)[0], 'groups_detected'] == gc['group'].nunique()
+      and spoiled['median_rate'].idxmax() == sorted(control_symbols)[0])
+check('one expressed control inflates the floor',
+      ambient_floor(planted, control_symbols)[0] > floor_val)
 print(pd.crosstab(gc['group'], gc['class']).to_string())
 print(pd.crosstab(rc['group'], rc['class']).to_string())
 
@@ -206,16 +248,20 @@ variants = {'split=True, and=median (default)': dict(split_isozymes=True),
             'split=False': dict(split_isozymes=False),
             'sizing and=min': dict(sizing_and_strategy='min'),
             'split=False, sizing and=min': dict(split_isozymes=False, sizing_and_strategy='min')}
-knob_budgets = {}
+knob_budgets, knob_leverage = {}, {}
 for label, kw in variants.items():
     mc_v, info_v = metabolic_metacells(adata, **common, **kw)
     knob_budgets[label] = info_v['targets']['target_umis']
+    knob_leverage[label] = info_v['genes'].set_index(['group', 'model_gene'])['leverage']
     check(f'runs with {label}', mc_v.n_obs > 0 and (mc_v.obs['sample_purity'] == 1).all())
     print(f'    {label:<32} {mc_v.n_obs:>3} metacells, mean budget {knob_budgets[label].mean():>8.0f} UMIs')
-check('split_isozymes changes the UMI budget',
-      not knob_budgets['split=True, and=median (default)'].equals(knob_budgets['split=False']))
-check('sizing_and_strategy changes the UMI budget',
-      not knob_budgets['split=True, and=median (default)'].equals(knob_budgets['sizing and=min']))
+# The budget is an integer cell count times a median library size, so on data this small two
+# weightings can round to the same number. The claim under test is that the weighting itself moves.
+base = 'split=True, and=median (default)'
+check('split_isozymes changes how genes are weighted',
+      not knob_leverage[base].equals(knob_leverage['split=False'].reindex(knob_leverage[base].index)))
+check('sizing_and_strategy changes how genes are weighted',
+      not knob_leverage[base].equals(knob_leverage['sizing and=min'].reindex(knob_leverage[base].index)))
 check('sizing_and_strategy is independent of the scoring and_strategy',
       metabolic_metacells(adata, **{**common, 'and_strategy': 'min'}, sizing_and_strategy='median'
                           )[1]['targets']['target_umis'].equals(knob_budgets['split=True, and=median (default)']))
